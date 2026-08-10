@@ -25,23 +25,29 @@ body{
   overflow-x:hidden;
 }
 
-/* Sparse moving space details — intentionally kept to the edges */
+/* Floating space details — enough to feel alive, still kept off the reading area */
 body::before,
 body::after,
 html::before,
-html::after{
+html::after,
+.wrap::before,
+.wrap::after,
+header::before,
+header::after,
+footer::before,
+footer::after{
   position:fixed;
   pointer-events:none;
   z-index:0;
   line-height:1;
-  text-shadow:0 0 10px rgba(255,255,255,.95);
+  text-shadow:0 0 10px rgba(255,255,255,.96);
 }
 body::before{
   content:"✦";
   top:16vh;
   left:7vw;
   font-size:20px;
-  color:rgba(158,137,184,.48);
+  color:rgba(158,137,184,.50);
   animation:floatSparkleOne 15s ease-in-out infinite alternate;
 }
 body::after{
@@ -49,7 +55,7 @@ body::after{
   top:68vh;
   right:8vw;
   font-size:16px;
-  color:rgba(205,143,165,.42);
+  color:rgba(205,143,165,.44);
   animation:floatSparkleTwo 19s ease-in-out infinite alternate;
 }
 html::before{
@@ -62,8 +68,8 @@ html::before{
   place-items:center;
   border-radius:50%;
   font-size:20px;
-  color:rgba(136,166,154,.30);
-  box-shadow:0 0 0 1px rgba(136,166,154,.16),0 0 16px rgba(136,166,154,.10);
+  color:rgba(136,166,154,.34);
+  box-shadow:0 0 0 1px rgba(136,166,154,.18),0 0 16px rgba(136,166,154,.12);
   animation:driftPlanetOne 28s ease-in-out infinite alternate;
 }
 html::after{
@@ -71,9 +77,59 @@ html::after{
   bottom:12vh;
   left:5vw;
   font-size:23px;
-  color:rgba(156,137,183,.24);
+  color:rgba(156,137,183,.27);
   transform:rotate(-18deg);
   animation:driftPlanetTwo 34s ease-in-out infinite alternate;
+}
+.wrap::before{
+  content:"✶";
+  top:45vh;
+  left:2.5vw;
+  font-size:13px;
+  color:rgba(181,160,207,.36);
+  animation:floatSparkleThree 22s ease-in-out infinite alternate;
+}
+.wrap::after{
+  content:"✦";
+  top:24vh;
+  right:12vw;
+  font-size:10px;
+  color:rgba(211,155,177,.34);
+  animation:floatSparkleFour 25s ease-in-out infinite alternate;
+}
+header::before{
+  content:"◉";
+  top:8vh;
+  right:3vw;
+  font-size:11px;
+  color:rgba(151,177,166,.23);
+  box-shadow:0 0 12px rgba(151,177,166,.10);
+  animation:driftPlanetThree 38s ease-in-out infinite alternate;
+}
+header::after{
+  content:"⋆";
+  top:9vh;
+  left:3vw;
+  font-size:18px;
+  color:rgba(204,164,188,.33);
+  animation:floatSparkleFive 17s ease-in-out infinite alternate;
+}
+footer::before{
+  content:"◌";
+  bottom:27vh;
+  right:3.5vw;
+  font-size:16px;
+  color:rgba(164,144,190,.20);
+  transform:rotate(22deg);
+  animation:driftPlanetFour 42s ease-in-out infinite alternate;
+}
+footer::after{
+  content:"✧";
+  bottom:34vh;
+  left:11vw;
+  font-size:11px;
+  color:rgba(132,164,151,.28);
+  animation:floatSparkleSix 27s ease-in-out infinite alternate;
 }
 
 @keyframes floatSparkleOne{
@@ -86,6 +142,22 @@ html::after{
   55%{opacity:.50}
   100%{transform:translate3d(-38px,30px,0) rotate(-16deg);opacity:.32}
 }
+@keyframes floatSparkleThree{
+  from{transform:translate3d(0,0,0) rotate(-8deg);opacity:.18}
+  to{transform:translate3d(31px,42px,0) rotate(18deg);opacity:.42}
+}
+@keyframes floatSparkleFour{
+  from{transform:translate3d(0,0,0);opacity:.16}
+  to{transform:translate3d(-24px,-37px,0);opacity:.38}
+}
+@keyframes floatSparkleFive{
+  from{transform:translate3d(0,0,0) rotate(0);opacity:.18}
+  to{transform:translate3d(39px,24px,0) rotate(25deg);opacity:.45}
+}
+@keyframes floatSparkleSix{
+  from{transform:translate3d(0,0,0);opacity:.16}
+  to{transform:translate3d(27px,-30px,0);opacity:.34}
+}
 @keyframes driftPlanetOne{
   0%{transform:translate3d(0,0,0) scale(.95);opacity:.18}
   50%{opacity:.34}
@@ -95,6 +167,14 @@ html::after{
   0%{transform:translate3d(0,0,0) rotate(-18deg);opacity:.16}
   50%{opacity:.28}
   100%{transform:translate3d(34px,-22px,0) rotate(10deg);opacity:.21}
+}
+@keyframes driftPlanetThree{
+  from{transform:translate3d(0,0,0) scale(.88);opacity:.12}
+  to{transform:translate3d(-32px,36px,0) scale(1.08);opacity:.24}
+}
+@keyframes driftPlanetFour{
+  from{transform:translate3d(0,0,0) rotate(22deg);opacity:.12}
+  to{transform:translate3d(-26px,-34px,0) rotate(-8deg);opacity:.22}
 }
 
 a{color:inherit}
@@ -173,10 +253,22 @@ footer{text-align:center;color:#8f817a;padding-top:32px;font:500 12px/1.7 -apple
   body::after{right:3vw;font-size:13px}
   html::before{right:2vw;opacity:.72}
   html::after{left:2vw;opacity:.65}
+  .wrap::before{left:1.5vw}
+  .wrap::after{right:3vw}
+  header::before{right:1.5vw}
+  header::after{left:1.5vw}
+  footer::before{right:1.5vw}
+  footer::after{left:3vw}
 }
 @media (prefers-reduced-motion: reduce){
   body::before,
   body::after,
   html::before,
-  html::after{animation:none}
+  html::after,
+  .wrap::before,
+  .wrap::after,
+  header::before,
+  header::after,
+  footer::before,
+  footer::after{animation:none}
 }
