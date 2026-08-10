@@ -1,0 +1,54 @@
+/* Wandering memory portal — deliberately separate from the main space artwork. */
+body:not(.archive-page) .time-portal{
+  position:fixed;
+  top:0;
+  left:0;
+  width:auto;
+  max-width:min(360px,82vw);
+  margin:0;
+  padding:10px 14px;
+  gap:10px;
+  z-index:20;
+  background:rgba(255,253,249,.70);
+  border:1px solid rgba(183,156,204,.24);
+  box-shadow:0 8px 28px rgba(92,73,104,.10);
+  backdrop-filter:blur(7px);
+  -webkit-backdrop-filter:blur(7px);
+  animation:memoryWander 44s ease-in-out infinite alternate;
+}
+body:not(.archive-page) .time-portal .portal-orbit{width:44px;height:44px;flex-basis:44px}
+body:not(.archive-page) .time-portal .portal-copy strong{font-size:9px;white-space:nowrap}
+body:not(.archive-page) .time-portal .portal-copy span{font-size:12px;white-space:nowrap}
+body:not(.archive-page) .time-portal:hover{animation-play-state:paused;background:rgba(255,253,249,.94)}
+
+@keyframes memoryWander{
+  0%{transform:translate3d(5vw,12vh,0) rotate(-1deg)}
+  16%{transform:translate3d(61vw,21vh,0) rotate(1deg)}
+  33%{transform:translate3d(68vw,67vh,0) rotate(-1deg)}
+  50%{transform:translate3d(12vw,73vh,0) rotate(1deg)}
+  67%{transform:translate3d(32vw,43vh,0) rotate(-1deg)}
+  84%{transform:translate3d(63vw,8vh,0) rotate(1deg)}
+  100%{transform:translate3d(7vw,55vh,0) rotate(0)}
+}
+
+@media(max-width:700px){
+  body:not(.archive-page) .time-portal{
+    max-width:230px;
+    padding:8px 10px;
+    animation-name:memoryWanderMobile;
+    animation-duration:38s;
+  }
+  body:not(.archive-page) .time-portal .portal-orbit{width:36px;height:36px;flex-basis:36px}
+  body:not(.archive-page) .time-portal .portal-copy strong{font-size:7.5px;letter-spacing:.12em}
+  body:not(.archive-page) .time-portal .portal-copy span{font-size:10px}
+  @keyframes memoryWanderMobile{
+    0%{transform:translate3d(4vw,10vh,0)}
+    18%{transform:translate3d(39vw,24vh,0)}
+    36%{transform:translate3d(31vw,70vh,0)}
+    54%{transform:translate3d(3vw,61vh,0)}
+    72%{transform:translate3d(34vw,42vh,0)}
+    88%{transform:translate3d(38vw,8vh,0)}
+    100%{transform:translate3d(5vw,45vh,0)}
+  }
+}
+@media(prefers-reduced-motion:reduce){body:not(.archive-page) .time-portal{animation:none;transform:translate3d(5vw,14vh,0)}}
