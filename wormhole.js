@@ -2,6 +2,14 @@
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let traveling = false;
 
+  if (!document.querySelector('link[data-wormhole-long]')) {
+    const longStyles = document.createElement('link');
+    longStyles.rel = 'stylesheet';
+    longStyles.href = '/wormhole-long.css';
+    longStyles.dataset.wormholeLong = 'true';
+    document.head.appendChild(longStyles);
+  }
+
   function makeTransition(x, y, mode) {
     document.documentElement.style.setProperty('--worm-x', `${x}px`);
     document.documentElement.style.setProperty('--worm-y', `${y}px`);
@@ -16,6 +24,7 @@
       <div class="event-horizon"></div>
       <div class="accretion-halo halo-front"></div>
       <div class="accretion-line"></div>
+      <div class="tunnel-depth"></div>
       <div class="wormhole-flash"></div>
     `;
     document.body.appendChild(overlay);
@@ -41,7 +50,7 @@
       const x = rect.left + rect.width / 2;
       const y = rect.top + rect.height / 2;
       portal.style.animationPlayState = 'paused';
-      travel(portal.href, x, y, 'to-past', 1250);
+      travel(portal.href, x, y, 'to-past', 2700);
     });
   }
 
@@ -53,7 +62,7 @@
       const rect = back.getBoundingClientRect();
       const x = rect.left + rect.width / 2;
       const y = rect.top + rect.height / 2;
-      travel(back.href, x, y, 'to-present', 1100);
+      travel(back.href, x, y, 'to-present', 2250);
     });
   }
 })();
