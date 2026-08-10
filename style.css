@@ -27,7 +27,6 @@ body{
   isolation:isolate;
 }
 
-/* Monochrome illustrated space objects. Each moves independently. */
 body::before,body::after,
 html::before,html::after,
 .wrap::before,.wrap::after,
@@ -44,56 +43,46 @@ article::before,article::after{
   opacity:.48;
   filter:drop-shadow(0 0 5px rgba(255,255,255,.92));
 }
-
-/* four-point star */
 body::before{
   width:34px;height:34px;left:4vw;top:14vh;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 5C35 22 42 29 59 32C42 35 35 42 32 59C29 42 22 35 5 32C22 29 29 22 32 5Z' fill='%23b79ccc'/%3E%3Ccircle cx='32' cy='32' r='4' fill='%23fffaf6'/%3E%3C/svg%3E");
   animation:float1 14s ease-in-out infinite alternate;
 }
-/* ringed planet */
 body::after{
   width:74px;height:58px;right:3vw;top:35vh;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 90 70'%3E%3Cellipse cx='45' cy='37' rx='33' ry='11' fill='none' stroke='%23b79ccc' stroke-width='4' transform='rotate(-12 45 37)'/%3E%3Ccircle cx='45' cy='34' r='17' fill='%23b79ccc' fill-opacity='.55' stroke='%23b79ccc' stroke-width='2'/%3E%3Cpath d='M31 28Q45 22 59 29' fill='none' stroke='%23fffaf6' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E");
   animation:float2 22s ease-in-out infinite alternate;
 }
-/* tiny star */
 html::before{
   width:24px;height:24px;right:8vw;top:11vh;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 9C34 23 41 30 55 32C41 34 34 41 32 55C30 41 23 34 9 32C23 30 30 23 32 9Z' fill='%23b79ccc'/%3E%3C/svg%3E");
   animation:float3 18s ease-in-out infinite alternate;
 }
-/* moon */
 html::after{
   width:44px;height:44px;left:5vw;bottom:13vh;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 74 74'%3E%3Cpath d='M49 10C32 13 22 25 22 39C22 51 29 60 40 64C25 65 12 54 10 39C8 23 20 9 36 7C41 6 45 7 49 10Z' fill='%23b79ccc' fill-opacity='.68' stroke='%23b79ccc' stroke-width='2'/%3E%3C/svg%3E");
   animation:float4 26s ease-in-out infinite alternate;
 }
-/* small planet */
 .wrap::before{
   width:42px;height:42px;right:5vw;bottom:10vh;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 74 74'%3E%3Ccircle cx='37' cy='37' r='23' fill='%23b79ccc' fill-opacity='.42' stroke='%23b79ccc' stroke-width='2'/%3E%3Ccircle cx='46' cy='30' r='5' fill='%23b79ccc' fill-opacity='.5'/%3E%3Ccircle cx='28' cy='42' r='4' fill='%23b79ccc' fill-opacity='.5'/%3E%3C/svg%3E");
   animation:float5 31s ease-in-out infinite alternate;
 }
-/* sparkle */
 .wrap::after{
   width:28px;height:28px;left:8vw;top:57vh;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 8C34 23 41 30 56 32C41 34 34 41 32 56C30 41 23 34 8 32C23 30 30 23 32 8Z' fill='%23b79ccc'/%3E%3C/svg%3E");
   animation:float6 20s ease-in-out infinite alternate;
 }
-/* lower ringed planet */
 footer::before{
   width:62px;height:50px;left:3vw;bottom:31vh;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 90 70'%3E%3Cellipse cx='45' cy='37' rx='32' ry='10' fill='none' stroke='%23b79ccc' stroke-width='4' transform='rotate(13 45 37)'/%3E%3Ccircle cx='45' cy='34' r='16' fill='%23b79ccc' fill-opacity='.40' stroke='%23b79ccc' stroke-width='2'/%3E%3C/svg%3E");
   animation:float7 35s ease-in-out infinite alternate;
 }
-/* small star */
 footer::after{
   width:20px;height:20px;right:10vw;bottom:27vh;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 11C34 24 40 30 53 32C40 34 34 40 32 53C30 40 24 34 11 32C24 30 30 24 32 11Z' fill='%23b79ccc'/%3E%3C/svg%3E");
   animation:float8 16s ease-in-out infinite alternate;
 }
-/* homepage extras */
 header::before{
   width:22px;height:22px;left:11vw;top:28vh;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 10C34 24 40 30 54 32C40 34 34 40 32 54C30 40 24 34 10 32C24 30 30 24 32 10Z' fill='%23b79ccc'/%3E%3C/svg%3E");
@@ -104,7 +93,6 @@ header::after{
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 70 70'%3E%3Ccircle cx='35' cy='35' r='21' fill='%23b79ccc' fill-opacity='.36' stroke='%23b79ccc' stroke-width='2'/%3E%3Ccircle cx='28' cy='30' r='4' fill='%23b79ccc' fill-opacity='.58'/%3E%3Ccircle cx='42' cy='41' r='5' fill='%23b79ccc' fill-opacity='.46'/%3E%3C/svg%3E");
   animation:float10 29s ease-in-out infinite alternate;
 }
-/* standalone extras */
 article::before{
   width:23px;height:23px;left:11vw;top:31vh;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 9C34 23 41 30 55 32C41 34 34 41 32 55C30 41 23 34 9 32C23 30 30 23 32 9Z' fill='%23b79ccc'/%3E%3C/svg%3E");
@@ -196,13 +184,30 @@ blockquote p{font-size:17px}
 .back{display:inline-block;margin-top:28px;text-decoration:none;color:#766b66;font:600 13px/1.2 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
 footer{text-align:center;color:#8f817a;padding-top:32px;font:500 12px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
 @media(max-width:1100px){
-  body::before,body::after,html::before,html::after,.wrap::before,.wrap::after,footer::before,footer::after,header::before,header::after,article::before,article::after{opacity:.38}
+  body::before,body::after,html::before,html::after,.wrap::before,.wrap::after,footer::before,footer::after,header::before,header::after,article::before,article::after{opacity:.42}
 }
 @media(max-width:600px){
-  .wrap{padding-top:46px}
+  .wrap{width:min(94vw,920px);padding-top:46px}
   .entry,article{border-radius:22px}
   .entry-top{align-items:flex-start;flex-direction:column;gap:5px}
-  body::before,body::after,html::before,html::after,.wrap::before,.wrap::after,footer::before,footer::after,header::before,header::after,article::before,article::after{opacity:.26}
+  body::before,body::after,html::before,html::after,.wrap::before,.wrap::after,footer::before,footer::after,header::before,header::after,article::before,article::after{
+    opacity:.58;
+    z-index:3;
+    filter:drop-shadow(0 0 6px rgba(255,255,255,.98));
+  }
+  .entry,article,header,footer,.back{position:relative;z-index:4}
+  body::before{width:26px;height:26px;left:2vw;top:9vh}
+  html::before{width:20px;height:20px;right:2vw;top:16vh}
+  header::before{width:18px;height:18px;left:3vw;top:27vh}
+  body::after{width:52px;height:42px;right:-5px;top:40vh}
+  .wrap::after{width:22px;height:22px;left:1vw;top:55vh}
+  header::after{width:30px;height:30px;right:1vw;top:69vh}
+  html::after{width:34px;height:34px;left:2vw;bottom:12vh}
+  .wrap::before{width:32px;height:32px;right:1vw;bottom:8vh}
+  footer::before{width:48px;height:38px;left:-4px;bottom:27vh}
+  footer::after{width:18px;height:18px;right:2vw;bottom:31vh}
+  article::before{width:18px;height:18px;left:2vw;top:30vh}
+  article::after{width:30px;height:30px;right:1vw;top:66vh}
 }
 @media (prefers-reduced-motion: reduce){
   body::before,body::after,html::before,html::after,.wrap::before,.wrap::after,footer::before,footer::after,header::before,header::after,article::before,article::after{animation:none}
