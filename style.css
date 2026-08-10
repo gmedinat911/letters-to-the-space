@@ -10,7 +10,7 @@
   --shadow:0 18px 50px rgba(71,55,46,.10);
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;position:relative}
 body{
   margin:0;
   color:var(--ink);
@@ -24,41 +24,79 @@ body{
   position:relative;
   overflow-x:hidden;
 }
+
+/* Sparse moving space details — intentionally kept to the edges */
 body::before,
-body::after{
+body::after,
+html::before,
+html::after{
   position:fixed;
   pointer-events:none;
   z-index:0;
-  color:rgba(158,137,184,.46);
-  font-family:Georgia,"Times New Roman",serif;
   line-height:1;
   text-shadow:0 0 10px rgba(255,255,255,.95);
 }
 body::before{
   content:"✦";
-  top:18vh;
-  left:8vw;
+  top:16vh;
+  left:7vw;
   font-size:20px;
-  animation:floatSparkleOne 14s ease-in-out infinite alternate;
+  color:rgba(158,137,184,.48);
+  animation:floatSparkleOne 15s ease-in-out infinite alternate;
 }
 body::after{
   content:"✧";
-  top:66vh;
-  right:9vw;
-  font-size:15px;
-  color:rgba(205,143,165,.40);
-  animation:floatSparkleTwo 18s ease-in-out infinite alternate;
+  top:68vh;
+  right:8vw;
+  font-size:16px;
+  color:rgba(205,143,165,.42);
+  animation:floatSparkleTwo 19s ease-in-out infinite alternate;
 }
+html::before{
+  content:"•";
+  top:34vh;
+  right:5vw;
+  width:12px;
+  height:12px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  font-size:20px;
+  color:rgba(136,166,154,.30);
+  box-shadow:0 0 0 1px rgba(136,166,154,.16),0 0 16px rgba(136,166,154,.10);
+  animation:driftPlanetOne 28s ease-in-out infinite alternate;
+}
+html::after{
+  content:"◌";
+  bottom:12vh;
+  left:5vw;
+  font-size:23px;
+  color:rgba(156,137,183,.24);
+  transform:rotate(-18deg);
+  animation:driftPlanetTwo 34s ease-in-out infinite alternate;
+}
+
 @keyframes floatSparkleOne{
-  0%{transform:translate3d(0,0,0) rotate(0deg);opacity:.28}
+  0%{transform:translate3d(0,0,0) rotate(0deg);opacity:.26}
   45%{opacity:.62}
-  100%{transform:translate3d(42px,-32px,0) rotate(18deg);opacity:.38}
+  100%{transform:translate3d(48px,-34px,0) rotate(20deg);opacity:.38}
 }
 @keyframes floatSparkleTwo{
   0%{transform:translate3d(0,0,0) rotate(0deg);opacity:.22}
-  55%{opacity:.52}
-  100%{transform:translate3d(-35px,28px,0) rotate(-14deg);opacity:.32}
+  55%{opacity:.50}
+  100%{transform:translate3d(-38px,30px,0) rotate(-16deg);opacity:.32}
 }
+@keyframes driftPlanetOne{
+  0%{transform:translate3d(0,0,0) scale(.95);opacity:.18}
+  50%{opacity:.34}
+  100%{transform:translate3d(-44px,24px,0) scale(1.04);opacity:.24}
+}
+@keyframes driftPlanetTwo{
+  0%{transform:translate3d(0,0,0) rotate(-18deg);opacity:.16}
+  50%{opacity:.28}
+  100%{transform:translate3d(34px,-22px,0) rotate(10deg);opacity:.21}
+}
+
 a{color:inherit}
 .wrap{
   width:min(920px,92vw);
@@ -131,8 +169,14 @@ footer{text-align:center;color:#8f817a;padding-top:32px;font:500 12px/1.7 -apple
   .wrap{padding-top:46px}
   .entry,article{border-radius:22px}
   .entry-top{align-items:flex-start;flex-direction:column;gap:5px}
+  body::before{left:3vw;top:13vh;font-size:16px}
+  body::after{right:3vw;font-size:13px}
+  html::before{right:2vw;opacity:.72}
+  html::after{left:2vw;opacity:.65}
 }
 @media (prefers-reduced-motion: reduce){
   body::before,
-  body::after{animation:none}
+  body::after,
+  html::before,
+  html::after{animation:none}
 }
