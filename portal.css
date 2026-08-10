@@ -40,126 +40,150 @@ body:not(.archive-page) .time-portal:focus-visible .portal-copy{opacity:1;visibi
   100%{transform:translate3d(7vw,55vh,0) rotate(0)}
 }
 
-/* Cinematic gravitational-lensing wormhole transition. */
+/* Elegant gravitational-lensing transition: bright lens, small horizon, no giant black disk. */
 .wormhole-transition{
   position:fixed;
   inset:0;
   z-index:9999;
   pointer-events:none;
   overflow:hidden;
-  background:rgba(8,6,12,0);
-  animation:spaceDarken 1.08s ease-in forwards;
   contain:layout paint style;
 }
-.gravity-field,
-.light-streaks,
-.accretion-disc,
+.space-veil{
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at var(--worm-x) var(--worm-y),rgba(231,223,245,.16),transparent 28%),
+    linear-gradient(180deg,rgba(20,15,29,0),rgba(17,12,24,.70));
+  opacity:0;
+  animation:veilIn 1.18s ease forwards;
+}
+.warp-stars{
+  position:absolute;
+  inset:-12vmax;
+  opacity:0;
+  background:
+    repeating-conic-gradient(
+      from 0deg at var(--worm-x) var(--worm-y),
+      transparent 0deg 7.5deg,
+      rgba(244,239,250,.0) 7.5deg 8deg,
+      rgba(229,218,241,.34) 8.15deg 8.45deg,
+      transparent 8.8deg 17deg
+    );
+  -webkit-mask-image:radial-gradient(circle at var(--worm-x) var(--worm-y),transparent 0 7%,#000 18%,#000 62%,transparent 88%);
+  mask-image:radial-gradient(circle at var(--worm-x) var(--worm-y),transparent 0 7%,#000 18%,#000 62%,transparent 88%);
+  transform-origin:var(--worm-x) var(--worm-y);
+  animation:starsRush 1.06s .08s cubic-bezier(.2,.68,.18,1) forwards;
+}
+.wormhole-glow,
 .event-horizon,
-.lens-flare{
+.accretion-halo,
+.accretion-line,
+.wormhole-flash{
   position:absolute;
   left:var(--worm-x);
   top:var(--worm-y);
-  transform:translate3d(-50%,-50%,0);
+  transform:translate(-50%,-50%);
   will-change:transform,opacity;
 }
-.gravity-field{
-  width:78px;
-  height:78px;
+.wormhole-glow{
+  width:84px;
+  height:84px;
   border-radius:50%;
   background:radial-gradient(circle,
-    rgba(1,1,3,1) 0 32%,
-    rgba(18,12,27,.98) 33% 45%,
-    rgba(84,60,105,.52) 52%,
-    rgba(183,156,204,.18) 63%,
-    rgba(255,255,255,0) 74%);
-  box-shadow:0 0 24px rgba(183,156,204,.24),0 0 70px rgba(231,223,245,.16);
-  animation:gravityExpand 1.1s cubic-bezier(.16,.7,.18,1) forwards;
+    rgba(255,255,255,.96) 0 3%,
+    rgba(245,238,251,.88) 8%,
+    rgba(183,156,204,.34) 30%,
+    rgba(183,156,204,.08) 52%,
+    transparent 70%);
+  filter:blur(.2px);
+  animation:glowBloom 1.1s cubic-bezier(.18,.74,.2,1) forwards;
 }
 .event-horizon{
-  width:42px;
-  height:42px;
+  width:34px;
+  height:34px;
   border-radius:50%;
-  background:#010102;
-  box-shadow:0 0 0 1px rgba(255,255,255,.08),0 0 24px rgba(183,156,204,.28);
-  animation:horizonGrow 1.08s cubic-bezier(.2,.7,.2,1) forwards;
+  background:radial-gradient(circle at 38% 32%,#0a0810 0 15%,#020204 58%,#000 100%);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.08),
+    0 0 16px rgba(183,156,204,.35),
+    0 0 34px rgba(226,214,239,.18);
+  animation:horizonLens 1.08s cubic-bezier(.16,.7,.2,1) forwards;
 }
-.accretion-disc{
+.accretion-halo{
   border-radius:50%;
-  border-style:solid;
   background:transparent;
 }
-.disc-outer{
-  width:112px;
-  height:36px;
-  border-width:3px 1px;
-  border-color:rgba(255,247,236,.92) rgba(183,156,204,.24);
-  box-shadow:0 0 12px rgba(255,245,230,.62),0 0 30px rgba(183,156,204,.34);
-  transform:translate3d(-50%,-50%,0) rotate(-10deg);
-  animation:discRushOuter 1.02s cubic-bezier(.16,.72,.18,1) forwards;
+.halo-back{
+  width:104px;
+  height:42px;
+  border:2px solid rgba(223,209,238,.72);
+  box-shadow:0 0 12px rgba(183,156,204,.45),inset 0 0 12px rgba(255,255,255,.12);
+  transform:translate(-50%,-50%) rotate(-16deg);
+  animation:haloBack 1.08s cubic-bezier(.18,.7,.18,1) forwards;
 }
-.disc-inner{
-  width:82px;
-  height:25px;
-  border-width:2px 1px;
-  border-color:rgba(231,223,245,.88) rgba(255,255,255,.15);
-  transform:translate3d(-50%,-50%,0) rotate(12deg);
-  animation:discRushInner .96s cubic-bezier(.2,.7,.2,1) forwards;
+.halo-front{
+  width:88px;
+  height:24px;
+  border-top:3px solid rgba(255,248,239,.98);
+  border-bottom:1px solid rgba(183,156,204,.48);
+  box-shadow:0 -2px 12px rgba(255,248,239,.64),0 3px 16px rgba(183,156,204,.28);
+  transform:translate(-50%,-50%) rotate(8deg);
+  animation:haloFront 1.04s cubic-bezier(.18,.72,.18,1) forwards;
 }
-.light-streaks{
-  width:110vmax;
-  height:110vmax;
-  border-radius:50%;
-  opacity:0;
-  background:repeating-conic-gradient(
-    from 12deg,
-    transparent 0deg 8deg,
-    rgba(255,255,255,.0) 8deg 9deg,
-    rgba(232,222,245,.24) 9deg 9.7deg,
-    transparent 10deg 18deg
-  );
-  mask-image:radial-gradient(circle,transparent 0 5%,#000 15%,#000 55%,transparent 78%);
-  -webkit-mask-image:radial-gradient(circle,transparent 0 5%,#000 15%,#000 55%,transparent 78%);
-  animation:streakLens .92s .12s cubic-bezier(.22,.65,.2,1) forwards;
-}
-.lens-flare{
-  width:120px;
-  height:12px;
+.accretion-line{
+  width:116px;
+  height:4px;
   border-radius:999px;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),rgba(255,247,235,.95),rgba(255,255,255,.18),transparent);
-  opacity:0;
-  animation:flarePass .68s .24s ease-out forwards;
+  background:linear-gradient(90deg,transparent,rgba(222,207,237,.42),rgba(255,250,244,.98),rgba(222,207,237,.42),transparent);
+  box-shadow:0 0 12px rgba(255,245,233,.56);
+  transform:translate(-50%,-50%) rotate(-5deg);
+  opacity:.8;
+  animation:lineStretch 1s .04s ease-out forwards;
 }
+.wormhole-flash{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:#fff;
+  box-shadow:0 0 22px #fff,0 0 54px rgba(231,223,245,.96),0 0 110px rgba(183,156,204,.56);
+  opacity:0;
+  animation:flashThrough .7s .48s ease-out forwards;
+}
+
 body.wormhole-traveling .wrap{
   transform-origin:var(--worm-x) var(--worm-y);
-  animation:pageLensPull 1.08s cubic-bezier(.24,.02,.38,1) forwards;
+  animation:pageLensPull 1.16s cubic-bezier(.24,.02,.38,1) forwards;
   will-change:transform,opacity;
 }
 
-.to-present{animation-name:spaceLighten}
-.to-present .gravity-field{animation-name:gravityReturn}
-.to-present .event-horizon{animation-name:horizonReturn}
-.to-present .disc-outer{animation-name:discReturnOuter}
-.to-present .disc-inner{animation-name:discReturnInner}
-.to-present .light-streaks{animation-name:streakReturnLens}
-.to-present .lens-flare{animation-name:flareReturn}
-body.wormhole-traveling .archive-wrap{animation-name:pageLensPull}
+.to-present .space-veil{animation:veilOut 1s ease forwards}
+.to-present .warp-stars{animation:starsReturn .9s ease-out forwards}
+.to-present .wormhole-glow{animation:glowReturn .95s ease-out forwards}
+.to-present .event-horizon{animation:horizonReturn .95s ease-out forwards}
+.to-present .halo-back{animation:haloBackReturn .95s ease-out forwards}
+.to-present .halo-front{animation:haloFrontReturn .95s ease-out forwards}
+.to-present .accretion-line{animation:lineReturn .85s ease-out forwards}
+.to-present .wormhole-flash{animation:flashReturn .6s .18s ease-out forwards}
 
-@keyframes spaceDarken{0%{background:rgba(8,6,12,0)}62%{background:rgba(8,6,12,.35)}100%{background:rgba(5,4,8,.96)}}
-@keyframes gravityExpand{0%{transform:translate3d(-50%,-50%,0) scale(.28);opacity:.15}35%{opacity:1}100%{transform:translate3d(-50%,-50%,0) scale(var(--worm-scale));opacity:1}}
-@keyframes horizonGrow{0%{transform:translate3d(-50%,-50%,0) scale(.45)}100%{transform:translate3d(-50%,-50%,0) scale(calc(var(--worm-scale) * .72))}}
-@keyframes discRushOuter{0%{transform:translate3d(-50%,-50%,0) rotate(-10deg) scale(.5);opacity:.2}30%{opacity:1}100%{transform:translate3d(-50%,-50%,0) rotate(6deg) scale(calc(var(--worm-scale) * .92));opacity:.05}}
-@keyframes discRushInner{0%{transform:translate3d(-50%,-50%,0) rotate(12deg) scale(.4);opacity:.2}36%{opacity:.95}100%{transform:translate3d(-50%,-50%,0) rotate(-8deg) scale(calc(var(--worm-scale) * .76));opacity:0}}
-@keyframes streakLens{0%{opacity:0;transform:translate3d(-50%,-50%,0) scale(.62) rotate(0deg)}32%{opacity:.42}100%{opacity:.9;transform:translate3d(-50%,-50%,0) scale(1.16) rotate(8deg)}}
-@keyframes flarePass{0%{opacity:0;transform:translate3d(-50%,-50%,0) scaleX(.2)}50%{opacity:.95}100%{opacity:0;transform:translate3d(-50%,-50%,0) scaleX(11)}}
-@keyframes pageLensPull{0%{transform:translate3d(0,0,0) scale(1);opacity:1}48%{transform:translate3d(0,0,0) scale(1.018);opacity:.94}100%{transform:translate3d(0,0,0) scale(.78);opacity:0}}
+@keyframes veilIn{0%{opacity:0}58%{opacity:.38}100%{opacity:.82}}
+@keyframes starsRush{0%{opacity:0;transform:scale(.72) rotate(0)}35%{opacity:.32}100%{opacity:.72;transform:scale(1.28) rotate(7deg)}}
+@keyframes glowBloom{0%{opacity:.25;transform:translate(-50%,-50%) scale(.45)}42%{opacity:1}100%{opacity:.62;transform:translate(-50%,-50%) scale(6.2)}}
+@keyframes horizonLens{0%{transform:translate(-50%,-50%) scale(.5);opacity:.72}48%{opacity:1}100%{transform:translate(-50%,-50%) scale(4.2);opacity:.96}}
+@keyframes haloBack{0%{transform:translate(-50%,-50%) rotate(-16deg) scale(.42);opacity:.2}34%{opacity:.96}100%{transform:translate(-50%,-50%) rotate(18deg) scale(5.8);opacity:0}}
+@keyframes haloFront{0%{transform:translate(-50%,-50%) rotate(8deg) scale(.4);opacity:.2}38%{opacity:1}100%{transform:translate(-50%,-50%) rotate(-11deg) scale(6.3);opacity:0}}
+@keyframes lineStretch{0%{transform:translate(-50%,-50%) rotate(-5deg) scaleX(.4);opacity:.2}45%{opacity:1}100%{transform:translate(-50%,-50%) rotate(3deg) scaleX(8);opacity:0}}
+@keyframes flashThrough{0%{opacity:0;transform:translate(-50%,-50%) scale(.4)}40%{opacity:1}100%{opacity:0;transform:translate(-50%,-50%) scale(34)}}
+@keyframes pageLensPull{0%{transform:scale(1);opacity:1}46%{transform:scale(1.018);opacity:.96}100%{transform:scale(.90);opacity:0}}
 
-@keyframes spaceLighten{0%{background:rgba(5,4,8,.95)}100%{background:rgba(8,6,12,0)}}
-@keyframes gravityReturn{0%{transform:translate3d(-50%,-50%,0) scale(var(--worm-scale));opacity:1}100%{transform:translate3d(-50%,-50%,0) scale(.35);opacity:0}}
-@keyframes horizonReturn{0%{transform:translate3d(-50%,-50%,0) scale(calc(var(--worm-scale) * .72))}100%{transform:translate3d(-50%,-50%,0) scale(.45);opacity:0}}
-@keyframes discReturnOuter{0%{transform:translate3d(-50%,-50%,0) rotate(6deg) scale(calc(var(--worm-scale) * .92));opacity:.08}60%{opacity:.9}100%{transform:translate3d(-50%,-50%,0) rotate(-10deg) scale(.5);opacity:0}}
-@keyframes discReturnInner{0%{transform:translate3d(-50%,-50%,0) rotate(-8deg) scale(calc(var(--worm-scale) * .76));opacity:.06}65%{opacity:.82}100%{transform:translate3d(-50%,-50%,0) rotate(12deg) scale(.4);opacity:0}}
-@keyframes streakReturnLens{0%{opacity:.8;transform:translate3d(-50%,-50%,0) scale(1.12) rotate(8deg)}100%{opacity:0;transform:translate3d(-50%,-50%,0) scale(.62) rotate(0)}}
-@keyframes flareReturn{0%{opacity:0;transform:translate3d(-50%,-50%,0) scaleX(9)}45%{opacity:.8}100%{opacity:0;transform:translate3d(-50%,-50%,0) scaleX(.25)}}
+@keyframes veilOut{0%{opacity:.80}100%{opacity:0}}
+@keyframes starsReturn{0%{opacity:.58;transform:scale(1.22) rotate(6deg)}100%{opacity:0;transform:scale(.78) rotate(0)}}
+@keyframes glowReturn{0%{opacity:.58;transform:translate(-50%,-50%) scale(5.8)}100%{opacity:0;transform:translate(-50%,-50%) scale(.5)}}
+@keyframes horizonReturn{0%{transform:translate(-50%,-50%) scale(4);opacity:.92}100%{transform:translate(-50%,-50%) scale(.45);opacity:0}}
+@keyframes haloBackReturn{0%{transform:translate(-50%,-50%) rotate(18deg) scale(5.6);opacity:0}55%{opacity:.82}100%{transform:translate(-50%,-50%) rotate(-16deg) scale(.42);opacity:0}}
+@keyframes haloFrontReturn{0%{transform:translate(-50%,-50%) rotate(-11deg) scale(6);opacity:0}58%{opacity:.92}100%{transform:translate(-50%,-50%) rotate(8deg) scale(.4);opacity:0}}
+@keyframes lineReturn{0%{transform:translate(-50%,-50%) rotate(3deg) scaleX(7);opacity:0}48%{opacity:.92}100%{transform:translate(-50%,-50%) rotate(-5deg) scaleX(.4);opacity:0}}
+@keyframes flashReturn{0%{opacity:0;transform:translate(-50%,-50%) scale(22)}48%{opacity:.9}100%{opacity:0;transform:translate(-50%,-50%) scale(.5)}}
 
 @media(max-width:700px){
   body:not(.archive-page) .time-portal{
@@ -180,14 +204,18 @@ body.wormhole-traveling .archive-wrap{animation-name:pageLensPull}
   body:not(.archive-page) .time-portal:active .portal-copy,
   body:not(.archive-page) .time-portal:focus .portal-copy{opacity:1;visibility:visible;transform:translate(0,-50%)}
 
-  /* iOS/Safari: fewer expensive layers, same visual language. */
-  .gravity-field{width:68px;height:68px;box-shadow:0 0 18px rgba(183,156,204,.22)}
-  .event-horizon{width:36px;height:36px;box-shadow:0 0 18px rgba(183,156,204,.22)}
-  .disc-outer{width:94px;height:30px}
-  .disc-inner{width:70px;height:21px}
-  .light-streaks{width:95vmax;height:95vmax;background:repeating-conic-gradient(from 12deg,transparent 0deg 13deg,rgba(232,222,245,.18) 13.2deg 13.7deg,transparent 14deg 27deg)}
-  .lens-flare{width:92px;height:8px}
-  body.wormhole-traveling .wrap{animation-duration:1.02s}
+  /* Mobile keeps the lens compact so it never becomes a giant black circle. */
+  .wormhole-glow{width:72px;height:72px}
+  .event-horizon{width:28px;height:28px}
+  .halo-back{width:88px;height:34px}
+  .halo-front{width:72px;height:20px}
+  .accretion-line{width:92px;height:3px}
+  .warp-stars{inset:-8vmax}
+  @keyframes horizonLens{0%{transform:translate(-50%,-50%) scale(.5);opacity:.72}48%{opacity:1}100%{transform:translate(-50%,-50%) scale(3.1);opacity:.9}}
+  @keyframes glowBloom{0%{opacity:.25;transform:translate(-50%,-50%) scale(.45)}42%{opacity:1}100%{opacity:.58;transform:translate(-50%,-50%) scale(4.8)}}
+  @keyframes haloBack{0%{transform:translate(-50%,-50%) rotate(-16deg) scale(.42);opacity:.2}34%{opacity:.96}100%{transform:translate(-50%,-50%) rotate(16deg) scale(4.6);opacity:0}}
+  @keyframes haloFront{0%{transform:translate(-50%,-50%) rotate(8deg) scale(.4);opacity:.2}38%{opacity:1}100%{transform:translate(-50%,-50%) rotate(-9deg) scale(5);opacity:0}}
+  @keyframes lineStretch{0%{transform:translate(-50%,-50%) rotate(-5deg) scaleX(.4);opacity:.2}45%{opacity:1}100%{transform:translate(-50%,-50%) rotate(2deg) scaleX(5.6);opacity:0}}
 
   @keyframes memoryWanderMobile{
     0%{transform:translate3d(4vw,10vh,0)}
