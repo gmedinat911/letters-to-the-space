@@ -34,31 +34,33 @@ body::after{
   background-repeat:repeat;
 }
 body::before{
-  opacity:.45;
+  opacity:.82;
   background-image:
-    radial-gradient(circle,rgba(255,255,255,.95) 0 1px,transparent 1.6px),
-    radial-gradient(circle,rgba(210,195,230,.65) 0 1.2px,transparent 1.8px),
-    radial-gradient(circle,rgba(240,205,215,.55) 0 .9px,transparent 1.5px);
-  background-size:140px 140px,220px 220px,310px 310px;
+    radial-gradient(circle,rgba(176,154,205,.78) 0 1.7px,transparent 2.3px),
+    radial-gradient(circle,rgba(221,154,177,.66) 0 1.5px,transparent 2.1px),
+    radial-gradient(circle,rgba(173,198,187,.58) 0 1.3px,transparent 1.9px);
+  background-size:128px 128px,205px 205px,292px 292px;
   background-position:18px 25px,95px 120px,160px 70px;
-  animation:starDrift 34s linear infinite;
+  filter:drop-shadow(0 0 3px rgba(255,255,255,.9));
+  animation:starDrift 28s linear infinite;
 }
 body::after{
-  opacity:.28;
+  opacity:.65;
   background-image:
-    radial-gradient(circle,rgba(255,255,255,.95) 0 1.4px,transparent 2px),
-    radial-gradient(circle,rgba(225,215,245,.7) 0 1px,transparent 1.7px);
-  background-size:260px 260px,360px 360px;
+    radial-gradient(circle,rgba(149,126,184,.65) 0 2px,transparent 2.7px),
+    radial-gradient(circle,rgba(213,145,171,.58) 0 1.6px,transparent 2.3px);
+  background-size:240px 240px,345px 345px;
   background-position:45px 80px,190px 20px;
-  animation:starFloat 48s ease-in-out infinite alternate;
+  filter:drop-shadow(0 0 4px rgba(255,255,255,.92));
+  animation:starFloat 40s ease-in-out infinite alternate;
 }
 @keyframes starDrift{
   from{transform:translate3d(0,0,0)}
-  to{transform:translate3d(70px,-55px,0)}
+  to{transform:translate3d(85px,-65px,0)}
 }
 @keyframes starFloat{
   from{transform:translate3d(-20px,10px,0) scale(1)}
-  to{transform:translate3d(35px,-28px,0) scale(1.02)}
+  to{transform:translate3d(45px,-35px,0) scale(1.035)}
 }
 a{color:inherit}
 .wrap{
