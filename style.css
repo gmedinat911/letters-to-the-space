@@ -183,6 +183,60 @@ blockquote p{font-size:17px}
 .signoff{margin-top:34px;font-style:italic}
 .back{display:inline-block;margin-top:28px;text-decoration:none;color:#766b66;font:600 13px/1.2 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
 footer{text-align:center;color:#8f817a;padding-top:32px;font:500 12px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+
+/* Time portal — a small wormhole into writing from before the Space. */
+.time-portal{
+  width:min(560px,88vw);
+  margin:8px auto 4px;
+  padding:18px 24px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:18px;
+  text-decoration:none;
+  color:#766b66;
+  position:relative;
+  z-index:5;
+  border-radius:999px;
+  transition:transform .35s ease,background .35s ease,color .35s ease;
+}
+.time-portal:hover{transform:translateY(-2px);background:rgba(255,255,255,.34);color:#655b75}
+.portal-orbit{
+  width:62px;height:62px;flex:0 0 62px;border-radius:50%;position:relative;
+  background:radial-gradient(circle at center,rgba(183,156,204,.34) 0 7%,transparent 8% 31%,rgba(183,156,204,.22) 32% 35%,transparent 36% 47%,rgba(183,156,204,.36) 48% 51%,transparent 52%);
+  box-shadow:inset 0 0 18px rgba(183,156,204,.18),0 0 24px rgba(183,156,204,.14);
+  animation:portalPulse 4.8s ease-in-out infinite;
+}
+.portal-orbit::before,.portal-orbit::after{content:"";position:absolute;border:1px solid rgba(183,156,204,.58);border-radius:50%;inset:10px;transform:rotate(24deg);animation:portalSpin 9s linear infinite}
+.portal-orbit::after{inset:18px;border-color:rgba(183,156,204,.36);animation-direction:reverse;animation-duration:6s}
+.portal-copy{text-align:left}
+.portal-copy strong{display:block;font:700 10px/1.3 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;letter-spacing:.17em;text-transform:uppercase;color:#9a8b84;margin-bottom:5px}
+.portal-copy span{font-size:15px;font-style:italic}
+@keyframes portalSpin{to{transform:rotate(384deg)}}
+@keyframes portalPulse{0%,100%{transform:scale(.96);opacity:.72}50%{transform:scale(1.04);opacity:1}}
+
+/* Archive / 2022 arrival */
+.archive-page{
+  background:
+    radial-gradient(circle at 50% -5%,rgba(183,156,204,.18),transparent 28%),
+    radial-gradient(circle at 12% 74%,rgba(245,217,223,.48),transparent 25%),
+    linear-gradient(180deg,#f9f4fb 0%,#fffaf6 38%,#fbf7f4 100%);
+}
+.archive-wrap{width:min(840px,92vw)}
+.archive-arrival{text-align:center;margin:0 auto 38px;position:relative;z-index:5}
+.archive-kicker{font:700 10px/1.3 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;letter-spacing:.22em;color:#9a8b84}
+.archive-year{font-size:clamp(58px,10vw,94px);font-weight:500;letter-spacing:-.04em;color:rgba(90,76,104,.76);margin:6px 0 0}
+.archive-arrival p{margin:8px auto 0;color:#7d707e;font-style:italic;font-size:16px}
+.cat-constellation{width:min(260px,64vw);margin:0 auto -2px;opacity:.75;animation:constellationFloat 9s ease-in-out infinite alternate}
+.cat-constellation svg{display:block;width:100%;height:auto;overflow:visible}
+.constellation-lines path{fill:none;stroke:rgba(183,156,204,.45);stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:3 5}
+.constellation-stars circle{fill:#b79ccc;filter:drop-shadow(0 0 5px rgba(183,156,204,.5))}
+@keyframes constellationFloat{from{transform:translateY(5px) rotate(-1deg)}to{transform:translateY(-7px) rotate(1deg)}}
+.archive-letter{border-color:rgba(196,178,209,.55);background:rgba(255,253,249,.91)}
+.archive-letter .meta{color:#927fa1}
+.return-present{display:block;width:max-content;max-width:100%;margin:28px auto 0;text-decoration:none;color:#776b81;font:600 13px/1.2 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;padding:12px 18px;border:1px solid rgba(183,156,204,.34);border-radius:999px;background:rgba(255,255,255,.4);transition:transform .3s ease,background .3s ease}
+.return-present:hover{transform:translateY(-2px);background:rgba(231,223,245,.45)}
+
 @media(max-width:1100px){
   body::before,body::after,html::before,html::after,.wrap::before,.wrap::after,footer::before,footer::after,header::before,header::after,article::before,article::after{opacity:.42}
 }
@@ -195,7 +249,7 @@ footer{text-align:center;color:#8f817a;padding-top:32px;font:500 12px/1.7 -apple
     z-index:3;
     filter:drop-shadow(0 0 6px rgba(255,255,255,.98));
   }
-  .entry,article,header,footer,.back{position:relative;z-index:4}
+  .entry,article,header,footer,.back,.time-portal,.archive-arrival,.return-present{position:relative;z-index:4}
   body::before{width:26px;height:26px;left:2vw;top:9vh}
   html::before{width:20px;height:20px;right:2vw;top:16vh}
   header::before{width:18px;height:18px;left:3vw;top:27vh}
@@ -208,7 +262,11 @@ footer{text-align:center;color:#8f817a;padding-top:32px;font:500 12px/1.7 -apple
   footer::after{width:18px;height:18px;right:2vw;bottom:31vh}
   article::before{width:18px;height:18px;left:2vw;top:30vh}
   article::after{width:30px;height:30px;right:1vw;top:66vh}
+  .time-portal{width:94%;padding:12px 8px;gap:12px;margin-top:-10px}
+  .portal-orbit{width:50px;height:50px;flex-basis:50px}
+  .portal-copy span{font-size:13px}
+  .archive-year{margin-top:2px}
 }
 @media (prefers-reduced-motion: reduce){
-  body::before,body::after,html::before,html::after,.wrap::before,.wrap::after,footer::before,footer::after,header::before,header::after,article::before,article::after{animation:none}
+  body::before,body::after,html::before,html::after,.wrap::before,.wrap::after,footer::before,footer::after,header::before,header::after,article::before,article::after,.portal-orbit,.portal-orbit::before,.portal-orbit::after,.cat-constellation{animation:none}
 }
