@@ -17,9 +17,25 @@ body:not(.archive-page) .time-portal{
   animation:memoryWander 44s ease-in-out infinite alternate;
 }
 body:not(.archive-page) .time-portal .portal-orbit{width:44px;height:44px;flex-basis:44px}
+body:not(.archive-page) .time-portal .portal-copy{
+  opacity:0;
+  visibility:hidden;
+  transform:translateX(-8px);
+  transition:opacity .22s ease,transform .22s ease,visibility .22s ease;
+}
 body:not(.archive-page) .time-portal .portal-copy strong{font-size:9px;white-space:nowrap}
 body:not(.archive-page) .time-portal .portal-copy span{font-size:12px;white-space:nowrap}
-body:not(.archive-page) .time-portal:hover{animation-play-state:paused;background:transparent}
+body:not(.archive-page) .time-portal:hover,
+body:not(.archive-page) .time-portal:focus-visible{
+  animation-play-state:paused;
+  background:transparent;
+}
+body:not(.archive-page) .time-portal:hover .portal-copy,
+body:not(.archive-page) .time-portal:focus-visible .portal-copy{
+  opacity:1;
+  visibility:visible;
+  transform:translateX(0);
+}
 
 @keyframes memoryWander{
   0%{transform:translate3d(5vw,12vh,0) rotate(-1deg)}
@@ -44,8 +60,21 @@ body:not(.archive-page) .time-portal:hover{animation-play-state:paused;backgroun
     animation-duration:38s;
   }
   body:not(.archive-page) .time-portal .portal-orbit{width:36px;height:36px;flex-basis:36px}
+  body:not(.archive-page) .time-portal .portal-copy{
+    position:absolute;
+    left:42px;
+    top:50%;
+    transform:translate(-8px,-50%);
+    pointer-events:none;
+  }
   body:not(.archive-page) .time-portal .portal-copy strong{font-size:7.5px;letter-spacing:.12em}
   body:not(.archive-page) .time-portal .portal-copy span{font-size:10px}
+  body:not(.archive-page) .time-portal:active .portal-copy,
+  body:not(.archive-page) .time-portal:focus .portal-copy{
+    opacity:1;
+    visibility:visible;
+    transform:translate(0,-50%);
+  }
   @keyframes memoryWanderMobile{
     0%{transform:translate3d(4vw,10vh,0)}
     18%{transform:translate3d(39vw,24vh,0)}
