@@ -26,41 +26,38 @@ body{
 }
 body::before,
 body::after{
-  content:"";
   position:fixed;
-  inset:-15vh -10vw;
   pointer-events:none;
   z-index:0;
-  background-repeat:repeat;
+  color:rgba(158,137,184,.46);
+  font-family:Georgia,"Times New Roman",serif;
+  line-height:1;
+  text-shadow:0 0 10px rgba(255,255,255,.95);
 }
 body::before{
-  opacity:.82;
-  background-image:
-    radial-gradient(circle,rgba(176,154,205,.78) 0 1.7px,transparent 2.3px),
-    radial-gradient(circle,rgba(221,154,177,.66) 0 1.5px,transparent 2.1px),
-    radial-gradient(circle,rgba(173,198,187,.58) 0 1.3px,transparent 1.9px);
-  background-size:128px 128px,205px 205px,292px 292px;
-  background-position:18px 25px,95px 120px,160px 70px;
-  filter:drop-shadow(0 0 3px rgba(255,255,255,.9));
-  animation:starDrift 28s linear infinite;
+  content:"✦";
+  top:18vh;
+  left:8vw;
+  font-size:20px;
+  animation:floatSparkleOne 14s ease-in-out infinite alternate;
 }
 body::after{
-  opacity:.65;
-  background-image:
-    radial-gradient(circle,rgba(149,126,184,.65) 0 2px,transparent 2.7px),
-    radial-gradient(circle,rgba(213,145,171,.58) 0 1.6px,transparent 2.3px);
-  background-size:240px 240px,345px 345px;
-  background-position:45px 80px,190px 20px;
-  filter:drop-shadow(0 0 4px rgba(255,255,255,.92));
-  animation:starFloat 40s ease-in-out infinite alternate;
+  content:"✧";
+  top:66vh;
+  right:9vw;
+  font-size:15px;
+  color:rgba(205,143,165,.40);
+  animation:floatSparkleTwo 18s ease-in-out infinite alternate;
 }
-@keyframes starDrift{
-  from{transform:translate3d(0,0,0)}
-  to{transform:translate3d(85px,-65px,0)}
+@keyframes floatSparkleOne{
+  0%{transform:translate3d(0,0,0) rotate(0deg);opacity:.28}
+  45%{opacity:.62}
+  100%{transform:translate3d(42px,-32px,0) rotate(18deg);opacity:.38}
 }
-@keyframes starFloat{
-  from{transform:translate3d(-20px,10px,0) scale(1)}
-  to{transform:translate3d(45px,-35px,0) scale(1.035)}
+@keyframes floatSparkleTwo{
+  0%{transform:translate3d(0,0,0) rotate(0deg);opacity:.22}
+  55%{opacity:.52}
+  100%{transform:translate3d(-35px,28px,0) rotate(-14deg);opacity:.32}
 }
 a{color:inherit}
 .wrap{
