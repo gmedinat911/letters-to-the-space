@@ -21,12 +21,52 @@ body{
     radial-gradient(circle at 15% 85%,rgba(223,238,232,.55),transparent 28%),
     linear-gradient(180deg,#fffaf6 0%,#fbf7f4 100%);
   min-height:100vh;
+  position:relative;
+  overflow-x:hidden;
+}
+body::before,
+body::after{
+  content:"";
+  position:fixed;
+  inset:-15vh -10vw;
+  pointer-events:none;
+  z-index:0;
+  background-repeat:repeat;
+}
+body::before{
+  opacity:.45;
+  background-image:
+    radial-gradient(circle,rgba(255,255,255,.95) 0 1px,transparent 1.6px),
+    radial-gradient(circle,rgba(210,195,230,.65) 0 1.2px,transparent 1.8px),
+    radial-gradient(circle,rgba(240,205,215,.55) 0 .9px,transparent 1.5px);
+  background-size:140px 140px,220px 220px,310px 310px;
+  background-position:18px 25px,95px 120px,160px 70px;
+  animation:starDrift 34s linear infinite;
+}
+body::after{
+  opacity:.28;
+  background-image:
+    radial-gradient(circle,rgba(255,255,255,.95) 0 1.4px,transparent 2px),
+    radial-gradient(circle,rgba(225,215,245,.7) 0 1px,transparent 1.7px);
+  background-size:260px 260px,360px 360px;
+  background-position:45px 80px,190px 20px;
+  animation:starFloat 48s ease-in-out infinite alternate;
+}
+@keyframes starDrift{
+  from{transform:translate3d(0,0,0)}
+  to{transform:translate3d(70px,-55px,0)}
+}
+@keyframes starFloat{
+  from{transform:translate3d(-20px,10px,0) scale(1)}
+  to{transform:translate3d(35px,-28px,0) scale(1.02)}
 }
 a{color:inherit}
 .wrap{
   width:min(920px,92vw);
   margin:0 auto;
   padding:72px 0 90px;
+  position:relative;
+  z-index:1;
 }
 header{text-align:center;margin-bottom:46px}
 .mark{
@@ -92,4 +132,8 @@ footer{text-align:center;color:#8f817a;padding-top:32px;font:500 12px/1.7 -apple
   .wrap{padding-top:46px}
   .entry,article{border-radius:22px}
   .entry-top{align-items:flex-start;flex-direction:column;gap:5px}
+}
+@media (prefers-reduced-motion: reduce){
+  body::before,
+  body::after{animation:none}
 }
