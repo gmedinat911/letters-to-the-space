@@ -23,9 +23,10 @@ body{
   min-height:100vh;
   position:relative;
   overflow-x:hidden;
+  isolation:isolate;
 }
 
-/* Floating space details — enough to feel alive, still kept off the reading area */
+/* Floating space details — visible above the background, below the reading cards */
 body::before,
 body::after,
 html::before,
@@ -38,7 +39,7 @@ footer::before,
 footer::after{
   position:fixed;
   pointer-events:none;
-  z-index:0;
+  z-index:1;
   line-height:1;
   text-shadow:0 0 10px rgba(255,255,255,.96);
 }
@@ -46,38 +47,38 @@ body::before{
   content:"✦";
   top:16vh;
   left:7vw;
-  font-size:20px;
-  color:rgba(158,137,184,.50);
+  font-size:22px;
+  color:rgba(158,137,184,.58);
   animation:floatSparkleOne 15s ease-in-out infinite alternate;
 }
 body::after{
   content:"✧";
   top:68vh;
   right:8vw;
-  font-size:16px;
-  color:rgba(205,143,165,.44);
+  font-size:18px;
+  color:rgba(205,143,165,.52);
   animation:floatSparkleTwo 19s ease-in-out infinite alternate;
 }
 html::before{
   content:"•";
   top:34vh;
   right:5vw;
-  width:12px;
-  height:12px;
+  width:14px;
+  height:14px;
   display:grid;
   place-items:center;
   border-radius:50%;
-  font-size:20px;
-  color:rgba(136,166,154,.34);
-  box-shadow:0 0 0 1px rgba(136,166,154,.18),0 0 16px rgba(136,166,154,.12);
+  font-size:22px;
+  color:rgba(136,166,154,.44);
+  box-shadow:0 0 0 1px rgba(136,166,154,.24),0 0 18px rgba(136,166,154,.18);
   animation:driftPlanetOne 28s ease-in-out infinite alternate;
 }
 html::after{
   content:"◌";
   bottom:12vh;
   left:5vw;
-  font-size:23px;
-  color:rgba(156,137,183,.27);
+  font-size:26px;
+  color:rgba(156,137,183,.36);
   transform:rotate(-18deg);
   animation:driftPlanetTwo 34s ease-in-out infinite alternate;
 }
@@ -85,41 +86,41 @@ html::after{
   content:"✶";
   top:45vh;
   left:2.5vw;
-  font-size:13px;
-  color:rgba(181,160,207,.36);
+  font-size:15px;
+  color:rgba(181,160,207,.46);
   animation:floatSparkleThree 22s ease-in-out infinite alternate;
 }
 .wrap::after{
   content:"✦";
   top:24vh;
   right:12vw;
-  font-size:10px;
-  color:rgba(211,155,177,.34);
+  font-size:12px;
+  color:rgba(211,155,177,.42);
   animation:floatSparkleFour 25s ease-in-out infinite alternate;
 }
 header::before{
   content:"◉";
   top:8vh;
   right:3vw;
-  font-size:11px;
-  color:rgba(151,177,166,.23);
-  box-shadow:0 0 12px rgba(151,177,166,.10);
+  font-size:13px;
+  color:rgba(151,177,166,.30);
+  box-shadow:0 0 12px rgba(151,177,166,.14);
   animation:driftPlanetThree 38s ease-in-out infinite alternate;
 }
 header::after{
   content:"⋆";
   top:9vh;
   left:3vw;
-  font-size:18px;
-  color:rgba(204,164,188,.33);
+  font-size:20px;
+  color:rgba(204,164,188,.42);
   animation:floatSparkleFive 17s ease-in-out infinite alternate;
 }
 footer::before{
   content:"◌";
   bottom:27vh;
   right:3.5vw;
-  font-size:16px;
-  color:rgba(164,144,190,.20);
+  font-size:18px;
+  color:rgba(164,144,190,.28);
   transform:rotate(22deg);
   animation:driftPlanetFour 42s ease-in-out infinite alternate;
 }
@@ -127,54 +128,54 @@ footer::after{
   content:"✧";
   bottom:34vh;
   left:11vw;
-  font-size:11px;
-  color:rgba(132,164,151,.28);
+  font-size:13px;
+  color:rgba(132,164,151,.36);
   animation:floatSparkleSix 27s ease-in-out infinite alternate;
 }
 
 @keyframes floatSparkleOne{
-  0%{transform:translate3d(0,0,0) rotate(0deg);opacity:.26}
-  45%{opacity:.62}
-  100%{transform:translate3d(48px,-34px,0) rotate(20deg);opacity:.38}
+  0%{transform:translate3d(0,0,0) rotate(0deg);opacity:.34}
+  45%{opacity:.72}
+  100%{transform:translate3d(48px,-34px,0) rotate(20deg);opacity:.46}
 }
 @keyframes floatSparkleTwo{
-  0%{transform:translate3d(0,0,0) rotate(0deg);opacity:.22}
-  55%{opacity:.50}
-  100%{transform:translate3d(-38px,30px,0) rotate(-16deg);opacity:.32}
+  0%{transform:translate3d(0,0,0) rotate(0deg);opacity:.30}
+  55%{opacity:.62}
+  100%{transform:translate3d(-38px,30px,0) rotate(-16deg);opacity:.42}
 }
 @keyframes floatSparkleThree{
-  from{transform:translate3d(0,0,0) rotate(-8deg);opacity:.18}
-  to{transform:translate3d(31px,42px,0) rotate(18deg);opacity:.42}
+  from{transform:translate3d(0,0,0) rotate(-8deg);opacity:.26}
+  to{transform:translate3d(31px,42px,0) rotate(18deg);opacity:.52}
 }
 @keyframes floatSparkleFour{
-  from{transform:translate3d(0,0,0);opacity:.16}
-  to{transform:translate3d(-24px,-37px,0);opacity:.38}
+  from{transform:translate3d(0,0,0);opacity:.22}
+  to{transform:translate3d(-24px,-37px,0);opacity:.48}
 }
 @keyframes floatSparkleFive{
-  from{transform:translate3d(0,0,0) rotate(0);opacity:.18}
-  to{transform:translate3d(39px,24px,0) rotate(25deg);opacity:.45}
+  from{transform:translate3d(0,0,0) rotate(0);opacity:.24}
+  to{transform:translate3d(39px,24px,0) rotate(25deg);opacity:.56}
 }
 @keyframes floatSparkleSix{
-  from{transform:translate3d(0,0,0);opacity:.16}
-  to{transform:translate3d(27px,-30px,0);opacity:.34}
+  from{transform:translate3d(0,0,0);opacity:.22}
+  to{transform:translate3d(27px,-30px,0);opacity:.44}
 }
 @keyframes driftPlanetOne{
-  0%{transform:translate3d(0,0,0) scale(.95);opacity:.18}
-  50%{opacity:.34}
-  100%{transform:translate3d(-44px,24px,0) scale(1.04);opacity:.24}
+  0%{transform:translate3d(0,0,0) scale(.95);opacity:.24}
+  50%{opacity:.44}
+  100%{transform:translate3d(-44px,24px,0) scale(1.04);opacity:.32}
 }
 @keyframes driftPlanetTwo{
-  0%{transform:translate3d(0,0,0) rotate(-18deg);opacity:.16}
-  50%{opacity:.28}
-  100%{transform:translate3d(34px,-22px,0) rotate(10deg);opacity:.21}
+  0%{transform:translate3d(0,0,0) rotate(-18deg);opacity:.22}
+  50%{opacity:.38}
+  100%{transform:translate3d(34px,-22px,0) rotate(10deg);opacity:.28}
 }
 @keyframes driftPlanetThree{
-  from{transform:translate3d(0,0,0) scale(.88);opacity:.12}
-  to{transform:translate3d(-32px,36px,0) scale(1.08);opacity:.24}
+  from{transform:translate3d(0,0,0) scale(.88);opacity:.18}
+  to{transform:translate3d(-32px,36px,0) scale(1.08);opacity:.32}
 }
 @keyframes driftPlanetFour{
-  from{transform:translate3d(0,0,0) rotate(22deg);opacity:.12}
-  to{transform:translate3d(-26px,-34px,0) rotate(-8deg);opacity:.22}
+  from{transform:translate3d(0,0,0) rotate(22deg);opacity:.18}
+  to{transform:translate3d(-26px,-34px,0) rotate(-8deg);opacity:.30}
 }
 
 a{color:inherit}
@@ -183,7 +184,7 @@ a{color:inherit}
   margin:0 auto;
   padding:72px 0 90px;
   position:relative;
-  z-index:1;
+  z-index:2;
 }
 header{text-align:center;margin-bottom:46px}
 .mark{
@@ -249,10 +250,10 @@ footer{text-align:center;color:#8f817a;padding-top:32px;font:500 12px/1.7 -apple
   .wrap{padding-top:46px}
   .entry,article{border-radius:22px}
   .entry-top{align-items:flex-start;flex-direction:column;gap:5px}
-  body::before{left:3vw;top:13vh;font-size:16px}
-  body::after{right:3vw;font-size:13px}
-  html::before{right:2vw;opacity:.72}
-  html::after{left:2vw;opacity:.65}
+  body::before{left:3vw;top:13vh;font-size:18px}
+  body::after{right:3vw;font-size:15px}
+  html::before{right:2vw}
+  html::after{left:2vw}
   .wrap::before{left:1.5vw}
   .wrap::after{right:3vw}
   header::before{right:1.5vw}
