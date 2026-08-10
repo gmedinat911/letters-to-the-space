@@ -26,7 +26,7 @@ body{
   isolation:isolate;
 }
 
-/* Two full-screen decorative layers. These sit above the page background and below the cards. */
+/* Cute floating space illustrations — intentionally placed around the margins. */
 body::before,
 body::after{
   content:"";
@@ -36,36 +36,38 @@ body::after{
   z-index:1;
   background-repeat:no-repeat;
 }
+
 body::before{
   background-image:
-    radial-gradient(circle at 5% 13%, rgba(160,139,188,.62) 0 2px, transparent 2.8px),
-    radial-gradient(circle at 10% 31%, rgba(211,155,178,.52) 0 1.6px, transparent 2.4px),
-    radial-gradient(circle at 4% 53%, rgba(137,168,156,.46) 0 2.2px, transparent 3px),
-    radial-gradient(circle at 11% 78%, rgba(166,146,194,.48) 0 1.8px, transparent 2.7px),
-    radial-gradient(circle at 95% 18%, rgba(203,151,174,.50) 0 2px, transparent 2.8px),
-    radial-gradient(circle at 90% 39%, rgba(148,175,164,.46) 0 1.8px, transparent 2.6px),
-    radial-gradient(circle at 96% 62%, rgba(161,140,190,.52) 0 2.2px, transparent 3px),
-    radial-gradient(circle at 91% 84%, rgba(211,156,178,.44) 0 1.6px, transparent 2.4px);
-  filter:drop-shadow(0 0 5px rgba(255,255,255,.9));
-  animation:spaceDriftA 24s ease-in-out infinite alternate;
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 5 C35 22 42 29 59 32 C42 35 35 42 32 59 C29 42 22 35 5 32 C22 29 29 22 32 5Z' fill='%23d7c7eb' stroke='%23b79ccc' stroke-width='2'/%3E%3Ccircle cx='32' cy='32' r='4' fill='%23fff8fc'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 90 70'%3E%3Cellipse cx='45' cy='37' rx='33' ry='11' fill='none' stroke='%23d7b7ca' stroke-width='4' transform='rotate(-12 45 37)'/%3E%3Ccircle cx='45' cy='34' r='17' fill='%23f3cfdb' stroke='%23cda5ba' stroke-width='2'/%3E%3Cpath d='M31 28 Q45 22 59 29' fill='none' stroke='%23fff5f7' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 8 C34 23 41 30 56 32 C41 34 34 41 32 56 C30 41 23 34 8 32 C23 30 30 23 32 8Z' fill='%23cfe4dc' stroke='%239fc4b6' stroke-width='2'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 74 74'%3E%3Ccircle cx='37' cy='37' r='24' fill='%23e6daf4' stroke='%23bda9d3' stroke-width='2'/%3E%3Ccircle cx='46' cy='31' r='5' fill='%23d5c5e8'/%3E%3Ccircle cx='28' cy='42' r='4' fill='%23d1c0e4'/%3E%3Ccircle cx='42' cy='49' r='3' fill='%23efe8f7'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 7 C34 23 41 30 57 32 C41 34 34 41 32 57 C30 41 23 34 7 32 C23 30 30 23 32 7Z' fill='%23f3cbd8' stroke='%23d7aabd' stroke-width='2'/%3E%3C/svg%3E");
+  background-size:34px 34px, 72px 56px, 24px 24px, 46px 46px, 28px 28px;
+  background-position:5% 14%, 3% 39%, 8% 67%, 94% 23%, 92% 76%;
+  animation:spaceFloatA 24s ease-in-out infinite alternate;
 }
+
 body::after{
   background-image:
-    radial-gradient(circle at 7% 22%, transparent 0 7px, rgba(158,138,187,.30) 7.5px 8.5px, transparent 9px),
-    radial-gradient(circle at 94% 47%, rgba(143,170,159,.24) 0 5px, transparent 5.8px),
-    radial-gradient(circle at 94% 47%, transparent 0 9px, rgba(143,170,159,.18) 9.5px 10.5px, transparent 11px),
-    radial-gradient(circle at 8% 69%, rgba(203,151,174,.20) 0 4px, transparent 4.8px),
-    radial-gradient(circle at 8% 69%, transparent 0 8px, rgba(203,151,174,.15) 8.5px 9.5px, transparent 10px),
-    radial-gradient(circle at 92% 91%, transparent 0 6px, rgba(160,140,190,.22) 6.5px 7.5px, transparent 8px);
-  animation:spaceDriftB 36s ease-in-out infinite alternate;
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 90 70'%3E%3Cellipse cx='45' cy='37' rx='32' ry='10' fill='none' stroke='%23b7d2c7' stroke-width='4' transform='rotate(13 45 37)'/%3E%3Ccircle cx='45' cy='34' r='16' fill='%23dceee7' stroke='%23a9cabd' stroke-width='2'/%3E%3Cpath d='M33 29 Q45 24 57 30' fill='none' stroke='%23f8fffc' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 74 74'%3E%3Cpath d='M49 10 C32 13 22 25 22 39 C22 51 29 60 40 64 C25 65 12 54 10 39 C8 23 20 9 36 7 C41 6 45 7 49 10Z' fill='%23f3dfb9' stroke='%23d8bd83' stroke-width='2'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 8 C34 23 41 30 56 32 C41 34 34 41 32 56 C30 41 23 34 8 32 C23 30 30 23 32 8Z' fill='%23eadcf6' stroke='%23c3acd9' stroke-width='2'/%3E%3Ccircle cx='32' cy='32' r='3.5' fill='%23fff'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 70 70'%3E%3Ccircle cx='35' cy='35' r='21' fill='%23f2d4de' stroke='%23cfaabd' stroke-width='2'/%3E%3Ccircle cx='28' cy='30' r='4' fill='%23e9c2cf'/%3E%3Ccircle cx='42' cy='41' r='5' fill='%23f8e5eb'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 10 C34 24 40 30 54 32 C40 34 34 40 32 54 C30 40 24 34 10 32 C24 30 30 24 32 10Z' fill='%23cfe5dc' stroke='%23a9c9bd' stroke-width='2'/%3E%3C/svg%3E");
+  background-size:68px 54px, 44px 44px, 30px 30px, 42px 42px, 22px 22px;
+  background-position:94% 44%, 6% 82%, 96% 10%, 95% 88%, 9% 55%;
+  animation:spaceFloatB 34s ease-in-out infinite alternate;
 }
-@keyframes spaceDriftA{
-  from{transform:translate3d(0,0,0)}
-  to{transform:translate3d(22px,-26px,0)}
-}
-@keyframes spaceDriftB{
+
+@keyframes spaceFloatA{
   from{transform:translate3d(0,0,0) rotate(0deg)}
-  to{transform:translate3d(-18px,24px,0) rotate(1deg)}
+  to{transform:translate3d(18px,-20px,0) rotate(1deg)}
+}
+@keyframes spaceFloatB{
+  from{transform:translate3d(0,0,0) rotate(0deg)}
+  to{transform:translate3d(-16px,22px,0) rotate(-1deg)}
 }
 
 a{color:inherit}
@@ -137,14 +139,13 @@ blockquote p{font-size:17px}
 .back{display:inline-block;margin-top:28px;text-decoration:none;color:#766b66;font:600 13px/1.2 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
 footer{text-align:center;color:#8f817a;padding-top:32px;font:500 12px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
 @media(max-width:1100px){
-  body::before{opacity:.8}
-  body::after{opacity:.7}
+  body::before,body::after{opacity:.82}
 }
 @media(max-width:600px){
   .wrap{padding-top:46px}
   .entry,article{border-radius:22px}
   .entry-top{align-items:flex-start;flex-direction:column;gap:5px}
-  body::before,body::after{opacity:.52}
+  body::before,body::after{opacity:.56}
 }
 @media (prefers-reduced-motion: reduce){
   body::before,body::after{animation:none}
