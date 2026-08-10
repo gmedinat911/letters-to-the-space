@@ -1,0 +1,82 @@
+/* Longer, layered wormhole journey. Loaded by wormhole.js. */
+.wormhole-transition .space-veil{animation-duration:2.45s!important}
+.wormhole-transition .warp-stars{animation-duration:2.05s!important;animation-delay:.18s!important}
+.wormhole-transition .wormhole-glow{animation-duration:1.75s!important}
+.wormhole-transition .event-horizon{animation-duration:1.7s!important}
+.wormhole-transition .halo-back{animation-duration:1.7s!important}
+.wormhole-transition .halo-front{animation-duration:1.62s!important}
+.wormhole-transition .accretion-line{animation-duration:1.55s!important;animation-delay:.08s!important}
+.wormhole-transition .wormhole-flash{animation-duration:1.2s!important;animation-delay:1.15s!important}
+body.wormhole-traveling .wrap{animation-duration:2.35s!important}
+
+.tunnel-depth{
+  position:absolute;
+  left:var(--worm-x);
+  top:var(--worm-y);
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  transform:translate(-50%,-50%) scale(.35);
+  opacity:0;
+  background:
+    repeating-radial-gradient(circle,
+      rgba(255,255,255,.0) 0 9px,
+      rgba(232,222,245,.18) 10px 11px,
+      rgba(255,255,255,.0) 12px 20px),
+    conic-gradient(from 20deg,
+      rgba(255,255,255,.0),
+      rgba(221,207,236,.18),
+      rgba(255,255,255,.0),
+      rgba(247,240,252,.24),
+      rgba(255,255,255,.0));
+  box-shadow:0 0 30px rgba(183,156,204,.16);
+  will-change:transform,opacity;
+  animation:tunnelDive 2.38s .22s cubic-bezier(.16,.72,.2,1) forwards;
+}
+.tunnel-depth::before,
+.tunnel-depth::after{
+  content:"";
+  position:absolute;
+  inset:-14px;
+  border-radius:50%;
+  border:1px solid rgba(242,235,249,.28);
+  box-shadow:0 0 14px rgba(231,223,245,.20);
+}
+.tunnel-depth::after{
+  inset:-34px;
+  border-color:rgba(183,156,204,.18);
+}
+
+@keyframes tunnelDive{
+  0%{opacity:0;transform:translate(-50%,-50%) scale(.28) rotate(0)}
+  18%{opacity:.52}
+  48%{opacity:.9;transform:translate(-50%,-50%) scale(6.5) rotate(50deg)}
+  72%{opacity:.72;transform:translate(-50%,-50%) scale(16) rotate(118deg)}
+  100%{opacity:0;transform:translate(-50%,-50%) scale(31) rotate(190deg)}
+}
+
+/* The center stays dark, but only as the event horizon. The journey is mostly light. */
+.wormhole-transition .event-horizon{max-width:38px;max-height:38px}
+@media(max-width:700px){
+  .wormhole-transition .event-horizon{max-width:30px;max-height:30px}
+  .tunnel-depth{width:28px;height:28px}
+  .tunnel-depth::before{inset:-10px}
+  .tunnel-depth::after{inset:-25px}
+  @keyframes tunnelDive{
+    0%{opacity:0;transform:translate(-50%,-50%) scale(.28) rotate(0)}
+    20%{opacity:.45}
+    50%{opacity:.82;transform:translate(-50%,-50%) scale(5.5) rotate(46deg)}
+    74%{opacity:.65;transform:translate(-50%,-50%) scale(12) rotate(108deg)}
+    100%{opacity:0;transform:translate(-50%,-50%) scale(22) rotate(170deg)}
+  }
+}
+
+.to-present .tunnel-depth{animation:tunnelReturn 2.05s ease-out forwards}
+@keyframes tunnelReturn{
+  0%{opacity:0;transform:translate(-50%,-50%) scale(22) rotate(170deg)}
+  25%{opacity:.58}
+  70%{opacity:.7;transform:translate(-50%,-50%) scale(5) rotate(46deg)}
+  100%{opacity:0;transform:translate(-50%,-50%) scale(.3) rotate(0)}
+}
+
+@media(prefers-reduced-motion:reduce){.tunnel-depth{display:none}}
