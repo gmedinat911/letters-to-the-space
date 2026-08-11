@@ -1,71 +1,85 @@
-/* Longer, layered wormhole journey. Loaded by wormhole.js. */
+/* Longer wormhole journey, optimized so desktop browsers composite instead of repainting. */
+
+/* The expensive entrance artwork finishes quickly. The lightweight tunnel carries the journey. */
 .wormhole-transition .space-veil{animation-duration:2.45s!important}
-.wormhole-transition .warp-stars{animation-duration:2.05s!important;animation-delay:.18s!important}
-.wormhole-transition .wormhole-glow{animation-duration:1.75s!important}
-.wormhole-transition .event-horizon{animation-duration:1.7s!important}
-.wormhole-transition .halo-back{animation-duration:1.7s!important}
-.wormhole-transition .halo-front{animation-duration:1.62s!important}
-.wormhole-transition .accretion-line{animation-duration:1.55s!important;animation-delay:.08s!important}
-.wormhole-transition .wormhole-flash{animation-duration:1.2s!important;animation-delay:1.15s!important}
+.wormhole-transition .warp-stars{animation-duration:1.05s!important;animation-delay:.08s!important}
+.wormhole-transition .wormhole-glow{animation-duration:1.28s!important}
+.wormhole-transition .event-horizon{animation-duration:1.25s!important}
+.wormhole-transition .halo-back{animation-duration:1.22s!important}
+.wormhole-transition .halo-front{animation-duration:1.18s!important}
+.wormhole-transition .accretion-line{animation-duration:1.12s!important;animation-delay:.04s!important}
+.wormhole-transition .wormhole-flash{animation-duration:.82s!important;animation-delay:.86s!important}
 body.wormhole-traveling .wrap{animation-duration:2.35s!important}
 
 .tunnel-depth{
   position:absolute;
   left:var(--worm-x);
   top:var(--worm-y);
-  width:34px;
-  height:34px;
+  width:42px;
+  height:42px;
   border-radius:50%;
   transform:translate3d(-50%,-50%,0) scale(.35);
   opacity:0;
-  background:
-    repeating-radial-gradient(circle,
-      rgba(255,255,255,.0) 0 10px,
-      rgba(232,222,245,.16) 11px 12px,
-      rgba(255,255,255,.0) 13px 22px),
-    conic-gradient(from 20deg,
-      transparent,
-      rgba(221,207,236,.14),
-      transparent,
-      rgba(247,240,252,.18),
-      transparent);
+  border:1px solid rgba(238,230,247,.34);
+  box-shadow:
+    0 0 0 15px rgba(213,196,229,.11),
+    0 0 0 32px rgba(238,230,247,.075),
+    0 0 0 54px rgba(183,156,204,.045);
+  background:transparent;
   will-change:transform,opacity;
   backface-visibility:hidden;
   -webkit-backface-visibility:hidden;
   transform-style:preserve-3d;
   contain:paint;
-  animation:tunnelDive 2.38s .22s cubic-bezier(.2,.55,.22,1) forwards;
+  animation:tunnelDive 2.46s .18s cubic-bezier(.22,.52,.22,1) forwards;
 }
 .tunnel-depth::before,
 .tunnel-depth::after{
   content:"";
   position:absolute;
-  inset:-14px;
   border-radius:50%;
-  border:1px solid rgba(242,235,249,.24);
+  border:1px solid rgba(244,238,250,.22);
 }
-.tunnel-depth::after{
-  inset:-34px;
-  border-color:rgba(183,156,204,.15);
-}
+.tunnel-depth::before{inset:-24px}
+.tunnel-depth::after{inset:-48px;border-color:rgba(183,156,204,.14)}
 
+/* More keyframes make the acceleration read as continuous while staying transform-only. */
 @keyframes tunnelDive{
-  0%{opacity:0;transform:translate3d(-50%,-50%,0) scale(.28) rotate(0deg)}
-  16%{opacity:.38}
-  38%{opacity:.72;transform:translate3d(-50%,-50%,0) scale(3.8) rotate(30deg)}
-  62%{opacity:.84;transform:translate3d(-50%,-50%,0) scale(8.5) rotate(76deg)}
-  82%{opacity:.52;transform:translate3d(-50%,-50%,0) scale(13.5) rotate(124deg)}
-  100%{opacity:0;transform:translate3d(-50%,-50%,0) scale(18) rotate(166deg)}
+  0%{opacity:0;transform:translate3d(-50%,-50%,0) scale(.30) rotate(0deg)}
+  12%{opacity:.24;transform:translate3d(-50%,-50%,0) scale(.62) rotate(8deg)}
+  25%{opacity:.48;transform:translate3d(-50%,-50%,0) scale(1.45) rotate(20deg)}
+  40%{opacity:.70;transform:translate3d(-50%,-50%,0) scale(3.0) rotate(38deg)}
+  56%{opacity:.78;transform:translate3d(-50%,-50%,0) scale(5.1) rotate(62deg)}
+  70%{opacity:.72;transform:translate3d(-50%,-50%,0) scale(7.8) rotate(90deg)}
+  84%{opacity:.48;transform:translate3d(-50%,-50%,0) scale(10.8) rotate(122deg)}
+  94%{opacity:.20;transform:translate3d(-50%,-50%,0) scale(13.0) rotate(146deg)}
+  100%{opacity:0;transform:translate3d(-50%,-50%,0) scale(14.2) rotate(160deg)}
 }
 
-/* The center stays dark, but only as the event horizon. The journey is mostly light. */
+/* The dark center remains compact: light/lensing carries the visual. */
 .wormhole-transition .event-horizon{max-width:38px;max-height:38px}
 
-/* Desktop compositor pass: keep all moving layers on GPU-friendly transform/opacity paths. */
 @media(min-width:701px){
-  .wormhole-transition,
+  .wormhole-transition{
+    transform:translateZ(0);
+    backface-visibility:hidden;
+    -webkit-backface-visibility:hidden;
+  }
+
+  /* This was the biggest desktop paint cost: a huge masked conic texture.
+     Keep the star rush, but rasterize a smaller unmasked layer once and only transform it. */
+  .wormhole-transition .warp-stars{
+    inset:-2vmax!important;
+    -webkit-mask-image:none!important;
+    mask-image:none!important;
+    opacity:.34!important;
+    will-change:transform,opacity;
+    transform:translateZ(0);
+    backface-visibility:hidden;
+    -webkit-backface-visibility:hidden;
+  }
+
   .wormhole-transition .space-veil,
-  .wormhole-transition .warp-stars,
   .wormhole-transition .wormhole-glow,
   .wormhole-transition .event-horizon,
   .wormhole-transition .accretion-halo,
@@ -73,47 +87,45 @@ body.wormhole-traveling .wrap{animation-duration:2.35s!important}
   .wormhole-transition .wormhole-flash,
   .wormhole-transition .tunnel-depth,
   body.wormhole-traveling .wrap{
+    will-change:transform,opacity;
     backface-visibility:hidden;
     -webkit-backface-visibility:hidden;
     transform-style:preserve-3d;
   }
-  .wormhole-transition .warp-stars{
-    will-change:transform,opacity;
-    opacity:.66;
-  }
-  .wormhole-transition .wormhole-glow,
-  .wormhole-transition .event-horizon,
-  .wormhole-transition .halo-back,
-  .wormhole-transition .halo-front,
-  .wormhole-transition .accretion-line,
-  .wormhole-transition .wormhole-flash{
-    will-change:transform,opacity;
-  }
-  body.wormhole-traveling .wrap{
-    will-change:transform,opacity;
-  }
+
+  /* Avoid tiny blur/filter work while everything is scaling. */
+  .wormhole-transition .wormhole-glow{filter:none!important}
 }
 
 @media(max-width:700px){
   .wormhole-transition .event-horizon{max-width:30px;max-height:30px}
-  .tunnel-depth{width:28px;height:28px}
-  .tunnel-depth::before{inset:-10px}
-  .tunnel-depth::after{inset:-25px}
+  .tunnel-depth{
+    width:30px;height:30px;
+    box-shadow:
+      0 0 0 11px rgba(213,196,229,.10),
+      0 0 0 24px rgba(238,230,247,.065),
+      0 0 0 40px rgba(183,156,204,.04);
+  }
+  .tunnel-depth::before{inset:-17px}
+  .tunnel-depth::after{inset:-34px}
   @keyframes tunnelDive{
-    0%{opacity:0;transform:translate3d(-50%,-50%,0) scale(.28) rotate(0deg)}
-    20%{opacity:.45}
-    50%{opacity:.82;transform:translate3d(-50%,-50%,0) scale(5.5) rotate(46deg)}
-    74%{opacity:.65;transform:translate3d(-50%,-50%,0) scale(12) rotate(108deg)}
-    100%{opacity:0;transform:translate3d(-50%,-50%,0) scale(22) rotate(170deg)}
+    0%{opacity:0;transform:translate3d(-50%,-50%,0) scale(.30) rotate(0deg)}
+    18%{opacity:.38;transform:translate3d(-50%,-50%,0) scale(1.1) rotate(15deg)}
+    40%{opacity:.68;transform:translate3d(-50%,-50%,0) scale(3.2) rotate(42deg)}
+    62%{opacity:.72;transform:translate3d(-50%,-50%,0) scale(6.2) rotate(78deg)}
+    82%{opacity:.44;transform:translate3d(-50%,-50%,0) scale(9.2) rotate(120deg)}
+    100%{opacity:0;transform:translate3d(-50%,-50%,0) scale(12) rotate(155deg)}
   }
 }
 
 .to-present .tunnel-depth{animation:tunnelReturn 2.05s cubic-bezier(.22,.55,.25,1) forwards}
 @keyframes tunnelReturn{
-  0%{opacity:0;transform:translate3d(-50%,-50%,0) scale(18) rotate(166deg)}
-  24%{opacity:.42}
-  55%{opacity:.68;transform:translate3d(-50%,-50%,0) scale(7.2) rotate(70deg)}
-  78%{opacity:.46;transform:translate3d(-50%,-50%,0) scale(2.4) rotate(24deg)}
+  0%{opacity:0;transform:translate3d(-50%,-50%,0) scale(14) rotate(160deg)}
+  16%{opacity:.22;transform:translate3d(-50%,-50%,0) scale(11) rotate(132deg)}
+  34%{opacity:.48;transform:translate3d(-50%,-50%,0) scale(8) rotate(98deg)}
+  54%{opacity:.66;transform:translate3d(-50%,-50%,0) scale(5) rotate(62deg)}
+  72%{opacity:.56;transform:translate3d(-50%,-50%,0) scale(2.6) rotate(32deg)}
+  88%{opacity:.28;transform:translate3d(-50%,-50%,0) scale(1.0) rotate(10deg)}
   100%{opacity:0;transform:translate3d(-50%,-50%,0) scale(.3) rotate(0deg)}
 }
 
