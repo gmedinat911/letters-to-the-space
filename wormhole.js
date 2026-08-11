@@ -10,6 +10,25 @@
     document.head.appendChild(longStyles);
   }
 
+  if (!document.querySelector('link[data-golden-constellation]')) {
+    const constellationStyles = document.createElement('link');
+    constellationStyles.rel = 'stylesheet';
+    constellationStyles.href = '/constellation.css';
+    constellationStyles.dataset.goldenConstellation = 'true';
+    document.head.appendChild(constellationStyles);
+  }
+
+  const portal = document.querySelector('.time-portal');
+
+  if (portal && !document.querySelector('.golden-star')) {
+    const golden = document.createElement('a');
+    golden.className = 'golden-star';
+    golden.href = '/constellations/golden/';
+    golden.setAttribute('aria-label', 'Golden — a constellation in the space between us');
+    golden.innerHTML = '<span class="golden-star__meteor" aria-hidden="true"></span><span class="golden-star__label">Golden · a constellation</span>';
+    document.body.appendChild(golden);
+  }
+
   function makeTransition(x, y, mode) {
     document.documentElement.style.setProperty('--worm-x', `${x}px`);
     document.documentElement.style.setProperty('--worm-y', `${y}px`);
@@ -41,7 +60,6 @@
     window.setTimeout(() => { window.location.href = link; }, duration);
   }
 
-  const portal = document.querySelector('.time-portal');
   if (portal) {
     portal.addEventListener('click', (event) => {
       if (reduceMotion) return;
