@@ -1,99 +1,20 @@
-/* Temporary Afterlight test portal. The page stays still; only this galaxy wanders and rotates. */
-.afterlight-galaxy{
-  position:fixed;
-  left:0;
-  top:0;
-  width:96px;
-  height:96px;
-  z-index:18;
-  text-decoration:none;
-  color:#766b66;
-  display:grid;
-  place-items:center;
-  background:transparent;
-  border:0;
-  outline:0;
-  animation:afterlightWander 56s ease-in-out infinite alternate;
-}
-.afterlight-galaxy__disc{
-  position:relative;
-  width:74px;
-  height:74px;
-  border-radius:50%;
-  transform:rotate(-18deg);
-  background:
-    radial-gradient(ellipse at center,rgba(255,255,255,.98) 0 3%,rgba(214,190,231,.84) 4% 9%,transparent 11%),
-    repeating-radial-gradient(ellipse at center,rgba(183,156,204,.44) 0 2px,transparent 3px 7px);
-  filter:drop-shadow(0 0 9px rgba(183,156,204,.34));
-  animation:afterlightSpin 20s linear infinite,afterlightBreathe 5.6s ease-in-out infinite alternate;
-}
-.afterlight-galaxy__disc::before,
-.afterlight-galaxy__disc::after{
-  content:"";
-  position:absolute;
-  inset:14px -7px;
-  border-radius:50%;
-  border:1px solid rgba(183,156,204,.42);
-  transform:rotate(18deg);
-}
-.afterlight-galaxy__disc::after{inset:24px -12px;opacity:.48}
-.afterlight-galaxy__label{
-  position:absolute;
-  top:88px;
-  left:50%;
-  transform:translateX(-50%) translateY(-4px);
-  white-space:nowrap;
-  opacity:0;
-  visibility:hidden;
-  transition:opacity .25s ease,transform .25s ease,visibility .25s ease;
-  text-align:center;
-  font:600 9px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  letter-spacing:.14em;
-  text-transform:uppercase;
-  color:#8f7f99;
-  text-shadow:0 1px 8px rgba(255,255,255,.95);
-}
-.afterlight-galaxy:hover,
-.afterlight-galaxy:focus-visible{animation-play-state:paused}
-.afterlight-galaxy:hover .afterlight-galaxy__label,
-.afterlight-galaxy:focus-visible .afterlight-galaxy__label{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
-.afterlight-galaxy:hover .afterlight-galaxy__disc,
-.afterlight-galaxy:focus-visible .afterlight-galaxy__disc{animation-play-state:paused}
-
-@keyframes afterlightWander{
-  0%{transform:translate3d(7vw,18vh,0)}
-  18%{transform:translate3d(72vw,12vh,0)}
-  38%{transform:translate3d(78vw,63vh,0)}
-  57%{transform:translate3d(18vw,72vh,0)}
-  76%{transform:translate3d(42vw,42vh,0)}
-  100%{transform:translate3d(9vw,50vh,0)}
-}
-@keyframes afterlightSpin{to{transform:rotate(342deg)}}
-@keyframes afterlightBreathe{from{opacity:.55;scale:.96}to{opacity:.9;scale:1.04}}
-
-/* Click travel: the page remains still while the galaxy enlarges into the viewport. */
-.afterlight-galaxy.is-traveling{pointer-events:none;z-index:9999;animation-play-state:paused}
-.afterlight-galaxy.is-traveling .afterlight-galaxy__disc{
-  animation:none;
-  transition:transform 1.55s cubic-bezier(.18,.72,.18,1),opacity .9s ease,filter 1.15s ease;
-  transform:rotate(155deg) scale(30);
-  opacity:1;
-  filter:drop-shadow(0 0 24px rgba(183,156,204,.78));
-}
-.afterlight-galaxy.is-traveling .afterlight-galaxy__label{opacity:0!important}
-
-@media(max-width:700px){
-  .afterlight-galaxy{width:76px;height:76px;animation-name:afterlightWanderMobile;animation-duration:48s}
-  .afterlight-galaxy__disc{width:58px;height:58px}
-  .afterlight-galaxy__label{top:70px;font-size:7px}
-  .afterlight-galaxy.is-traveling .afterlight-galaxy__disc{transform:rotate(155deg) scale(25)}
-  @keyframes afterlightWanderMobile{
-    0%{transform:translate3d(5vw,16vh,0)}
-    20%{transform:translate3d(68vw,10vh,0)}
-    42%{transform:translate3d(70vw,66vh,0)}
-    63%{transform:translate3d(6vw,70vh,0)}
-    82%{transform:translate3d(37vw,39vh,0)}
-    100%{transform:translate3d(9vw,48vh,0)}
-  }
-}
-@media(prefers-reduced-motion:reduce){.afterlight-galaxy,.afterlight-galaxy__disc{animation:none}.afterlight-galaxy{transform:translate3d(74vw,20vh,0)}}
+/* Afterlight is a distant destination in the same space, not a wandering object. */
+.afterlight-galaxy{position:fixed;right:7vw;top:17vh;width:112px;height:112px;z-index:18;text-decoration:none;color:#766b66;display:block;background:transparent;border:0;outline:0;transform:rotate(-8deg);transform-origin:50% 50%;transition:filter .5s ease,opacity .5s ease;opacity:.58}
+.afterlight-galaxy__disc{position:absolute;inset:0;display:block;filter:drop-shadow(0 0 4px rgba(183,156,204,.28));transition:filter .5s ease}
+.afterlight-galaxy__disc svg{width:100%;height:100%;overflow:visible;display:block}
+.afterlight-mini__line{fill:none;stroke:rgba(143,117,164,.42);stroke-width:1;stroke-dasharray:2.5 5;vector-effect:non-scaling-stroke;transition:stroke .4s ease,opacity .4s ease}
+.afterlight-mini__star{fill:#b79ccc;filter:drop-shadow(0 0 2px rgba(183,156,204,.65))}
+.afterlight-mini__star.anchor{fill:#f5eff8;transform-box:fill-box;transform-origin:center;animation:miniPulsar 5.6s linear infinite}
+.afterlight-mini__star.anchor.secondary{animation-duration:7.3s;animation-delay:-2.2s}.afterlight-mini__star.anchor.release{animation-duration:8.1s;animation-delay:-4.1s}
+.afterlight-galaxy__label{position:absolute;top:104px;left:50%;transform:translateX(-50%) translateY(-4px);white-space:nowrap;opacity:0;visibility:hidden;transition:opacity .3s ease,transform .3s ease,visibility .3s ease;text-align:center;font:600 8px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#8f7f99;text-shadow:0 1px 8px rgba(255,255,255,.95)}
+.afterlight-galaxy:hover,.afterlight-galaxy:focus-visible{opacity:.94;filter:drop-shadow(0 0 8px rgba(183,156,204,.22))}.afterlight-galaxy:hover .afterlight-mini__line,.afterlight-galaxy:focus-visible .afterlight-mini__line{stroke:rgba(143,117,164,.7)}.afterlight-galaxy:hover .afterlight-galaxy__label,.afterlight-galaxy:focus-visible .afterlight-galaxy__label{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+@keyframes miniPulsar{0%,9%,17%,100%{opacity:.52;transform:scale(.82)}10%{opacity:1;transform:scale(1.75)}12%{opacity:.62;transform:scale(.95)}14%{opacity:1;transform:scale(1.45)}16%{opacity:.56;transform:scale(.88)}}
+/* We travel toward the fixed constellation. It stays centered while the current space stretches away. */
+.afterlight-warp{position:fixed;inset:0;z-index:9998;pointer-events:none;overflow:hidden;background:rgba(249,245,247,0);animation:afterlightVeil 2.35s ease forwards}.afterlight-warp__stars{position:absolute;inset:-18%;background:repeating-conic-gradient(from 0deg at var(--afterlight-x) var(--afterlight-y),transparent 0deg 8deg,rgba(183,156,204,.0) 8deg 8.3deg,rgba(183,156,204,.22) 8.45deg 8.65deg,transparent 8.8deg 16deg);transform-origin:var(--afterlight-x) var(--afterlight-y);opacity:0;animation:afterlightRush 2.25s cubic-bezier(.2,.68,.18,1) forwards}.afterlight-galaxy.is-traveling{pointer-events:none;z-index:9999;opacity:1;animation:afterlightApproach 2.35s cubic-bezier(.16,.72,.18,1) forwards}.afterlight-galaxy.is-traveling .afterlight-galaxy__label{opacity:0!important}.afterlight-galaxy.is-traveling .afterlight-galaxy__disc{filter:drop-shadow(0 0 12px rgba(183,156,204,.55))}
+body.afterlight-traveling .wrap{transform-origin:var(--afterlight-x) var(--afterlight-y);animation:afterlightWorldFallaway 2.3s cubic-bezier(.24,.02,.3,1) forwards;will-change:transform,opacity,filter}
+@keyframes afterlightApproach{0%{transform:rotate(-8deg) scale(1)}35%{transform:rotate(-6deg) scale(2.4)}72%{transform:rotate(-3deg) scale(7.5)}100%{transform:rotate(0) scale(15);opacity:1}}
+@keyframes afterlightWorldFallaway{0%{transform:scale(1);opacity:1;filter:blur(0)}40%{opacity:.92}100%{transform:scale(1.22);opacity:0;filter:blur(5px)}}
+@keyframes afterlightRush{0%{opacity:0;transform:scale(.45)}30%{opacity:.18}75%{opacity:.48}100%{opacity:0;transform:scale(2.1)}}
+@keyframes afterlightVeil{0%{background:rgba(249,245,247,0)}70%{background:rgba(20,15,29,.18)}100%{background:rgba(9,7,17,.96)}}
+@media(max-width:700px){.afterlight-galaxy{right:4vw;top:14vh;width:82px;height:82px;opacity:.62}.afterlight-galaxy__label{top:78px;font-size:6.5px}.afterlight-galaxy.is-traveling{animation-name:afterlightApproachMobile}@keyframes afterlightApproachMobile{0%{transform:rotate(-8deg) scale(1)}38%{transform:rotate(-5deg) scale(2.5)}74%{transform:rotate(-2deg) scale(7)}100%{transform:rotate(0) scale(14);opacity:1}}}
+@media(prefers-reduced-motion:reduce){.afterlight-mini__star.anchor{animation:none}.afterlight-galaxy{opacity:.72}.afterlight-warp{display:none}body.afterlight-traveling .wrap{animation:none}}
