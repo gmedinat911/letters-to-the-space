@@ -5,9 +5,11 @@
   if (!document.querySelector('link[data-wormhole-long]')) { const s=document.createElement('link');s.rel='stylesheet';s.href='/wormhole-long.css';s.dataset.wormholeLong='true';document.head.appendChild(s); }
   if (!document.querySelector('link[data-golden-constellation]')) { const s=document.createElement('link');s.rel='stylesheet';s.href='/constellation.css';s.dataset.goldenConstellation='true';document.head.appendChild(s); }
   if (!document.querySelector('link[data-afterlight-portal]')) { const s=document.createElement('link');s.rel='stylesheet';s.href='/afterlight-portal.css';s.dataset.afterlightPortal='true';document.head.appendChild(s); }
+  if (!document.querySelector('link[data-supernova]')) { const s=document.createElement('link');s.rel='stylesheet';s.href='/supernova.css';s.dataset.supernova='true';document.head.appendChild(s); }
 
   const portal=document.querySelector('.time-portal');
   if(portal&&!document.querySelector('.golden-star')){const golden=document.createElement('a');golden.className='golden-star';golden.href='/constellations/golden/';golden.setAttribute('aria-label','Golden — a constellation in the space between us');golden.innerHTML='<span class="golden-star__meteor" aria-hidden="true"></span><span class="golden-star__label">Golden · a constellation</span>';document.body.appendChild(golden);}
+  if(portal&&!document.querySelector('.supernova-letter')){const n=document.createElement('a');n.className='supernova-letter';n.href='/letters/when-february-went-quiet/';n.setAttribute('aria-label','When February Went Quiet — a supernova');n.innerHTML='<span class="supernova-letter__rays" aria-hidden="true"></span><span class="supernova-letter__shell" aria-hidden="true"></span><span class="supernova-letter__core" aria-hidden="true"></span><span class="supernova-letter__label">a timeline ended here</span>';document.body.appendChild(n);}
 
   if(portal&&!document.querySelector('.afterlight-galaxy')){
     const a=document.createElement('a');a.className='afterlight-galaxy';a.href='/constellations/afterlight/';a.setAttribute('aria-label','Afterlight — a distant unfinished constellation');
