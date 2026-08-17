@@ -18,6 +18,14 @@
     document.head.appendChild(constellationStyles);
   }
 
+  if (!document.querySelector('link[data-afterlight-portal]')) {
+    const afterlightStyles = document.createElement('link');
+    afterlightStyles.rel = 'stylesheet';
+    afterlightStyles.href = '/afterlight-portal.css';
+    afterlightStyles.dataset.afterlightPortal = 'true';
+    document.head.appendChild(afterlightStyles);
+  }
+
   const portal = document.querySelector('.time-portal');
 
   if (portal && !document.querySelector('.golden-star')) {
@@ -27,6 +35,23 @@
     golden.setAttribute('aria-label', 'Golden — a constellation in the space between us');
     golden.innerHTML = '<span class="golden-star__meteor" aria-hidden="true"></span><span class="golden-star__label">Golden · a constellation</span>';
     document.body.appendChild(golden);
+  }
+
+  if (portal && !document.querySelector('.afterlight-galaxy')) {
+    const galaxy = document.createElement('a');
+    galaxy.className = 'afterlight-galaxy';
+    galaxy.href = '/constellations/afterlight/';
+    galaxy.setAttribute('aria-label', 'Afterlight — an unfinished constellation');
+    galaxy.innerHTML = '<span class="afterlight-galaxy__disc" aria-hidden="true"></span><span class="afterlight-galaxy__label">Afterlight · unfinished</span>';
+    document.body.appendChild(galaxy);
+
+    galaxy.addEventListener('click', (event) => {
+      if (reduceMotion) return;
+      event.preventDefault();
+      galaxy.style.animationPlayState = 'paused';
+      galaxy.classList.add('is-traveling');
+      window.setTimeout(() => { window.location.href = galaxy.href; }, 1550);
+    });
   }
 
   const entries = document.querySelector('.entries');
