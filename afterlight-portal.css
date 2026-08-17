@@ -1,10 +1,10 @@
-/* Temporary Afterlight test portal. Only the galaxy moves while idle. */
+/* Temporary Afterlight test portal. The page stays still; only this galaxy wanders and rotates. */
 .afterlight-galaxy{
   position:fixed;
-  right:5vw;
-  top:22vh;
-  width:92px;
-  height:92px;
+  left:0;
+  top:0;
+  width:96px;
+  height:96px;
   z-index:18;
   text-decoration:none;
   color:#766b66;
@@ -13,18 +13,19 @@
   background:transparent;
   border:0;
   outline:0;
+  animation:afterlightWander 56s ease-in-out infinite alternate;
 }
 .afterlight-galaxy__disc{
   position:relative;
-  width:72px;
-  height:72px;
+  width:74px;
+  height:74px;
   border-radius:50%;
   transform:rotate(-18deg);
   background:
-    radial-gradient(ellipse at center,rgba(255,255,255,.95) 0 3%,rgba(214,190,231,.82) 4% 9%,transparent 11%),
-    repeating-radial-gradient(ellipse at center,rgba(183,156,204,.42) 0 2px,transparent 3px 7px);
+    radial-gradient(ellipse at center,rgba(255,255,255,.98) 0 3%,rgba(214,190,231,.84) 4% 9%,transparent 11%),
+    repeating-radial-gradient(ellipse at center,rgba(183,156,204,.44) 0 2px,transparent 3px 7px);
   filter:drop-shadow(0 0 9px rgba(183,156,204,.34));
-  animation:afterlightSpin 18s linear infinite,afterlightBreathe 5.6s ease-in-out infinite alternate;
+  animation:afterlightSpin 20s linear infinite,afterlightBreathe 5.6s ease-in-out infinite alternate;
 }
 .afterlight-galaxy__disc::before,
 .afterlight-galaxy__disc::after{
@@ -35,13 +36,10 @@
   border:1px solid rgba(183,156,204,.42);
   transform:rotate(18deg);
 }
-.afterlight-galaxy__disc::after{
-  inset:24px -12px;
-  opacity:.48;
-}
+.afterlight-galaxy__disc::after{inset:24px -12px;opacity:.48}
 .afterlight-galaxy__label{
   position:absolute;
-  top:84px;
+  top:88px;
   left:50%;
   transform:translateX(-50%) translateY(-4px);
   white-space:nowrap;
@@ -55,37 +53,47 @@
   color:#8f7f99;
   text-shadow:0 1px 8px rgba(255,255,255,.95);
 }
+.afterlight-galaxy:hover,
+.afterlight-galaxy:focus-visible{animation-play-state:paused}
 .afterlight-galaxy:hover .afterlight-galaxy__label,
-.afterlight-galaxy:focus-visible .afterlight-galaxy__label{
-  opacity:1;
-  visibility:visible;
-  transform:translateX(-50%) translateY(0);
-}
+.afterlight-galaxy:focus-visible .afterlight-galaxy__label{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
 .afterlight-galaxy:hover .afterlight-galaxy__disc,
-.afterlight-galaxy:focus-visible .afterlight-galaxy__disc{
-  animation-play-state:paused;
+.afterlight-galaxy:focus-visible .afterlight-galaxy__disc{animation-play-state:paused}
+
+@keyframes afterlightWander{
+  0%{transform:translate3d(7vw,18vh,0)}
+  18%{transform:translate3d(72vw,12vh,0)}
+  38%{transform:translate3d(78vw,63vh,0)}
+  57%{transform:translate3d(18vw,72vh,0)}
+  76%{transform:translate3d(42vw,42vh,0)}
+  100%{transform:translate3d(9vw,50vh,0)}
 }
 @keyframes afterlightSpin{to{transform:rotate(342deg)}}
 @keyframes afterlightBreathe{from{opacity:.55;scale:.96}to{opacity:.9;scale:1.04}}
 
-/* Click travel: page stays still; only the galaxy itself grows into the viewport. */
-.afterlight-galaxy.is-traveling{
-  pointer-events:none;
-  z-index:9999;
-}
+/* Click travel: the page remains still while the galaxy enlarges into the viewport. */
+.afterlight-galaxy.is-traveling{pointer-events:none;z-index:9999;animation-play-state:paused}
 .afterlight-galaxy.is-traveling .afterlight-galaxy__disc{
   animation:none;
-  transition:transform 1.45s cubic-bezier(.2,.75,.2,1),opacity .9s ease,filter 1.2s ease;
-  transform:rotate(120deg) scale(28);
+  transition:transform 1.55s cubic-bezier(.18,.72,.18,1),opacity .9s ease,filter 1.15s ease;
+  transform:rotate(155deg) scale(30);
   opacity:1;
-  filter:drop-shadow(0 0 20px rgba(183,156,204,.75));
+  filter:drop-shadow(0 0 24px rgba(183,156,204,.78));
 }
 .afterlight-galaxy.is-traveling .afterlight-galaxy__label{opacity:0!important}
 
 @media(max-width:700px){
-  .afterlight-galaxy{right:2vw;top:24vh;width:74px;height:74px}
+  .afterlight-galaxy{width:76px;height:76px;animation-name:afterlightWanderMobile;animation-duration:48s}
   .afterlight-galaxy__disc{width:58px;height:58px}
-  .afterlight-galaxy__label{top:68px;font-size:7px}
-  .afterlight-galaxy.is-traveling .afterlight-galaxy__disc{transform:rotate(120deg) scale(24)}
+  .afterlight-galaxy__label{top:70px;font-size:7px}
+  .afterlight-galaxy.is-traveling .afterlight-galaxy__disc{transform:rotate(155deg) scale(25)}
+  @keyframes afterlightWanderMobile{
+    0%{transform:translate3d(5vw,16vh,0)}
+    20%{transform:translate3d(68vw,10vh,0)}
+    42%{transform:translate3d(70vw,66vh,0)}
+    63%{transform:translate3d(6vw,70vh,0)}
+    82%{transform:translate3d(37vw,39vh,0)}
+    100%{transform:translate3d(9vw,48vh,0)}
+  }
 }
-@media(prefers-reduced-motion:reduce){.afterlight-galaxy__disc{animation:none}}
+@media(prefers-reduced-motion:reduce){.afterlight-galaxy,.afterlight-galaxy__disc{animation:none}.afterlight-galaxy{transform:translate3d(74vw,20vh,0)}}
