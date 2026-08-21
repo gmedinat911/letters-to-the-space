@@ -10,7 +10,7 @@ const AFTERLIGHT={
     {id:'IV',title:'Invisible :)',href:'/letters/invisible/',weight:'present'},
     {id:'V',title:'When I’m Ready',href:'/letters/when-im-ready/',weight:'present'},
     {id:'VI',title:'Always Here',href:'/letters/always-here/',weight:'quiet'},
-    {id:'VII',title:'Golden',href:'/constellations/golden/',weight:'anchor'},
+    {id:'VII',title:'Golden',href:'/constellations/golden/?from=afterlight',weight:'anchor'},
     {id:'VIII',title:'Remember Me',href:'/letters/remember-me/',weight:'anchor'},
     {id:'IX',title:'The Goodbye You’ll Never Hear',href:'/letters/the-goodbye-youll-never-hear/',weight:'present'},
     {id:'X',title:'This Is Where I Leave the Light',href:'/letters/this-is-where-i-leave-the-light/',weight:'anchor'}
