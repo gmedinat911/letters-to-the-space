@@ -1,5 +1,5 @@
 /* AFTERLIGHT — complete.
-   Ten lights, one arc: possibility → projection → invisibility → wound → separation → ambiguity → gold → memory → goodbye → release.
+   Eleven lights, one arc: possibility → projection → invisibility → wound → separation → ambiguity → gold → memory → goodbye → release → finish.
 */
 const AFTERLIGHT={
   complete:true,
@@ -13,7 +13,8 @@ const AFTERLIGHT={
     {id:'VII',title:'Golden',href:'/constellations/golden/?from=afterlight',weight:'anchor'},
     {id:'VIII',title:'Remember Me',href:'/letters/remember-me/',weight:'anchor'},
     {id:'IX',title:'The Goodbye You’ll Never Hear',href:'/letters/the-goodbye-youll-never-hear/',weight:'present'},
-    {id:'X',title:'This Is Where I Leave the Light',href:'/letters/this-is-where-i-leave-the-light/',weight:'anchor'}
+    {id:'X',title:'This Is Where I Leave the Light',href:'/letters/this-is-where-i-leave-the-light/',weight:'anchor'},
+    {id:'XI',title:'75 Minutes',href:'/letters/75-minutes/',weight:'anchor'}
   ]
 };
 const stars=[...document.querySelectorAll('.star')];
