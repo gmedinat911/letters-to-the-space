@@ -14,9 +14,9 @@ const AFTERLIGHT={
     {id:'VIII',title:'Remember Me',href:'/letters/remember-me/',weight:'anchor'},
     {id:'IX',title:'The Goodbye You’ll Never Hear',href:'/letters/the-goodbye-youll-never-hear/',weight:'present'},
     {id:'X',title:'This Is Where I Leave the Light',href:'/letters/this-is-where-i-leave-the-light/',weight:'anchor'},
-    {id:'XI',title:'75 Minutes',href:'/letters/75-minutes/',weight:'anchor'}
+    null // XI · 75 Minutes intentionally hidden for now
   ]
 };
 const stars=[...document.querySelectorAll('.star')];
-stars.forEach((star,i)=>{const letter=AFTERLIGHT.letters[i];if(!letter)return;star.dataset.letter=letter.id;star.dataset.weight=letter.weight;star.classList.add(`weight-${letter.weight}`);star.setAttribute('aria-label',letter.title);star.setAttribute('title',letter.title);star.classList.remove('placeholder');star.style.cursor='pointer';star.addEventListener('click',()=>{document.body.classList.add('star-travel');setTimeout(()=>location.href=letter.href,700);});});
+stars.forEach((star,i)=>{const letter=AFTERLIGHT.letters[i];if(!letter){star.hidden=true;return;}star.dataset.letter=letter.id;star.dataset.weight=letter.weight;star.classList.add(`weight-${letter.weight}`);star.setAttribute('aria-label',letter.title);star.setAttribute('title',letter.title);star.classList.remove('placeholder');star.style.cursor='pointer';star.addEventListener('click',()=>{document.body.classList.add('star-travel');setTimeout(()=>location.href=letter.href,700);});});
 document.body.classList.add('constellation-complete');
