@@ -1,0 +1,172 @@
+/* A single blue-white giant, distant and quietly luminous like the other stars. */
+.blue-giant-star {
+  position: fixed;
+  left: 19vw;
+  top: 62vh;
+  width: 80px;
+  height: 80px;
+  z-index: 18;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  -webkit-tap-highlight-color: transparent;
+  animation: blueGiantWander 28s ease-in-out infinite alternate;
+}
+.blue-giant-star__glow {
+  position: absolute;
+  inset: 6px;
+  border-radius: 50%;
+  background: radial-gradient(circle at center,
+    rgba(224,246,255,.28) 0 5%,
+    rgba(150,204,243,.11) 14%,
+    rgba(115,159,211,.055) 34%,
+    transparent 70%);
+  filter: blur(1px);
+  animation: blueGiantHalo 6.7s ease-in-out infinite alternate;
+}
+.blue-giant-star__core {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 9px;
+  height: 9px;
+  transform: translate(-50%,-50%);
+  border-radius: 50%;
+  background: radial-gradient(circle at 36% 28%,#fff 0 12%,#e9f8ff 35%,#b4dafa 64%,#7fb1e9 100%);
+  box-shadow:
+    0 0 7px rgba(236,250,255,.95),
+    0 0 19px rgba(174,215,255,.67),
+    0 0 36px rgba(124,173,236,.27);
+  animation: blueGiantCore 5.2s ease-in-out infinite alternate;
+}
+.blue-giant-star__core::before,
+.blue-giant-star__core::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  pointer-events: none;
+  border-radius: 50%;
+  transform: translate(-50%,-50%);
+}
+.blue-giant-star__core::before {
+  width: 34px;
+  height: 1px;
+  background: linear-gradient(90deg,transparent,rgba(226,245,255,.38),transparent);
+}
+.blue-giant-star__core::after {
+  width: 1px;
+  height: 34px;
+  background: linear-gradient(180deg,transparent,rgba(227,245,255,.28),transparent);
+}
+.blue-giant-star__label {
+  position: absolute;
+  top: 68px;
+  left: 50%;
+  width: 244px;
+  text-align: center;
+  transform: translate(-50%,5px);
+  display: block;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .28s ease,transform .28s ease,visibility .28s ease;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  text-shadow: 0 1px 10px #0c0912;
+}
+.blue-giant-star__label strong {
+  display: block;
+  color: #c9ddec;
+  font-size: 8px;
+  line-height: 1.5;
+  letter-spacing: .15em;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.blue-giant-star__label em {
+  display: block;
+  margin-top: 4px;
+  color: #acb5c9;
+  font: italic 10px/1.45 Georgia,"Times New Roman",serif;
+}
+.blue-giant-star:hover,
+.blue-giant-star:focus-visible { animation-play-state: paused; }
+.blue-giant-star:hover .blue-giant-star__glow,
+.blue-giant-star:focus-visible .blue-giant-star__glow { filter: brightness(1.15); }
+.blue-giant-star:hover .blue-giant-star__label,
+.blue-giant-star:focus-visible .blue-giant-star__label {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%,0);
+}
+.blue-giant-star:focus-visible { outline: 1px solid rgba(199,226,243,.52); outline-offset: 2px; border-radius: 50%; }
+@keyframes blueGiantWander {
+  from { transform: translate3d(-8px,5px,0); }
+  to { transform: translate3d(17px,-12px,0); }
+}
+@keyframes blueGiantHalo {
+  from { opacity: .58; transform: scale(.9); }
+  to { opacity: .92; transform: scale(1.12); }
+}
+@keyframes blueGiantCore {
+  from { opacity: .78; filter: brightness(.93); }
+  to { opacity: 1; filter: brightness(1.13); }
+}
+/* The letter itself keeps the site's familiar reading experience. */
+body.blue-giant-letter-page {
+  background:
+    radial-gradient(circle at 19% 9%, rgba(149,103,122,.17), transparent 29%),
+    radial-gradient(circle at 85% 57%, rgba(109,90,139,.13), transparent 33%),
+    linear-gradient(180deg,#17111d 0%,#120d18 55%,#0c0912 100%);
+}
+.blue-giant-letter-page .wrap { width: min(800px,92vw); }
+.blue-giant-letter-page article {
+  position: relative;
+  padding: clamp(28px,5vw,55px);
+  border-color: rgba(226,193,202,.18);
+  background: linear-gradient(145deg,rgba(32,25,38,.94),rgba(23,18,30,.97));
+  box-shadow: 0 25px 75px rgba(0,0,0,.32), 0 0 48px rgba(218,171,186,.035);
+}
+.blue-giant-letter-page article > * { position: relative; z-index: 2; }
+.blue-giant-letter-page article .meta { color: #c6a6b8; }
+.blue-giant-letter-page article h2 { color: #f4eaf0; }
+.blue-giant-letter-page article p { color: #e9dfe8; }
+.blue-giant-letter-page article .letter-epigraph {
+  margin: -8px 0 30px;
+  color: #c8aebb;
+  font: italic clamp(16px,2.1vw,19px)/1.65 Georgia, "Times New Roman", serif;
+}
+.blue-giant-letter-page article .letter-ending {
+  margin-top: 30px;
+  font-style: italic;
+  color: #f5e6e7;
+}
+.blue-giant-letter-page .back { color: #cdb5c3; }
+.blue-giant-letter-page .letter-sky {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background-image:
+    radial-gradient(circle,rgba(250,225,209,.68) 0 .8px,transparent 1.3px),
+    radial-gradient(circle,rgba(202,180,216,.42) 0 .75px,transparent 1.2px);
+  background-size: 219px 233px,317px 293px;
+  background-position: 34px 77px,91px 154px;
+  opacity: .35;
+}
+
+@media(max-width:700px) {
+  .blue-giant-star { left: 13vw; top: 64vh; width: 80px; height: 80px; }
+  .blue-giant-star__label {
+    top: 68px;
+    left: 0;
+    width: min(244px,82vw);
+    text-align: left;
+    transform: translateY(5px);
+  }
+  .blue-giant-star:hover .blue-giant-star__label,
+  .blue-giant-star:focus-visible .blue-giant-star__label { transform: translateY(0); }
+}
+@media(prefers-reduced-motion:reduce) {
+  .blue-giant-star,.blue-giant-star__core,.blue-giant-star__glow { animation: none; }
+}
