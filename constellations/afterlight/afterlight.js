@@ -13,7 +13,7 @@ const AFTERLIGHT={
     {id:'VII',title:'Golden',href:'/constellations/golden/?from=afterlight',weight:'anchor'},
     {id:'VIII',title:'Remember Me',href:'/letters/remember-me/',weight:'anchor'},
     {id:'IX',title:'The Goodbye You’ll Never Hear',href:'/letters/the-goodbye-youll-never-hear/',weight:'present'},
-    {id:'X',title:'This Is Where I Leave the Light',href:'/letters/this-is-where-i-leave-the-light/',weight:'anchor'},
+    null, // X · This Is Where I Leave the Light intentionally hidden for now
     null // XI · 75 Minutes intentionally hidden for now
   ]
 };
