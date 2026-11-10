@@ -1,97 +1,124 @@
-/* A little group of stars slowly drifting apart, but keeping their light. */
+/* A quietly drifting group of tiny lights, scaled like the other stars in space. */
 .drifting-constellation {
   position: fixed;
   left: 19vw;
   top: 62vh;
-  width: 160px;
-  height: 134px;
+  width: 84px;
+  height: 84px;
   display: block;
   z-index: 18;
   color: inherit;
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
-  animation: constellationWander 30s ease-in-out infinite alternate;
+  animation: constellationWander 35s ease-in-out infinite alternate;
 }
 .drifting-constellation__sky {
   display: block;
-  width: 100%;
-  height: 130px;
+  width: 84px;
+  height: 84px;
   overflow: visible;
-  filter: drop-shadow(0 0 8px rgba(244,211,189,.12));
+  opacity: .82;
+  filter: drop-shadow(0 0 4px rgba(230,194,206,.16));
+  transition: opacity .3s ease, filter .3s ease;
 }
 .drifting-constellation__connections {
   fill: none;
-  stroke: #e6c8cc;
-  stroke-width: .8;
-  stroke-dasharray: 2 5;
+  stroke: rgba(226,194,214,.7);
+  stroke-width: .5;
+  stroke-dasharray: 1.5 4;
   opacity: 0;
-  transition: opacity .65s ease;
+  transition: opacity .45s ease;
 }
 .drifting-constellation__star {
-  animation: constellationSeparate 82s ease-in-out infinite alternate;
+  animation: constellationSeparate 95s ease-in-out infinite alternate;
 }
-.drifting-constellation__star:nth-of-type(1) { --drift-x: -7px; --drift-y: 5px; animation-delay: -4s; }
-.drifting-constellation__star:nth-of-type(2) { --drift-x: -4px; --drift-y: -7px; animation-delay: -14s; }
-.drifting-constellation__star:nth-of-type(3) { --drift-x: 2px; --drift-y: -2px; animation-delay: -25s; }
-.drifting-constellation__star:nth-of-type(4) { --drift-x: 8px; --drift-y: -6px; animation-delay: -9s; }
-.drifting-constellation__star:nth-of-type(5) { --drift-x: 10px; --drift-y: 6px; animation-delay: -31s; }
-.drifting-constellation__star:nth-of-type(6) { --drift-x: -1px; --drift-y: 9px; animation-delay: -19s; }
-.drifting-constellation__star .halo { fill: rgba(240,211,203,.09); }
+.drifting-constellation__star:nth-of-type(1) { --drift-x: -4px; --drift-y: 3px; animation-delay: -4s; }
+.drifting-constellation__star:nth-of-type(2) { --drift-x: -3px; --drift-y: -4px; animation-delay: -14s; }
+.drifting-constellation__star:nth-of-type(3) { --drift-x: 0px; --drift-y: 0px; animation-delay: -25s; }
+.drifting-constellation__star:nth-of-type(4) { --drift-x: 4px; --drift-y: -4px; animation-delay: -9s; }
+.drifting-constellation__star:nth-of-type(5) { --drift-x: 5px; --drift-y: 4px; animation-delay: -31s; }
+.drifting-constellation__star:nth-of-type(6) { --drift-x: -2px; --drift-y: 5px; animation-delay: -19s; }
+.drifting-constellation__star .halo { fill: rgba(232,199,210,.085); }
 .drifting-constellation__star .light {
-  fill: #f5e4dc;
-  filter: drop-shadow(0 0 3px rgba(255,245,229,.95))
-          drop-shadow(0 0 7px rgba(231,184,165,.65));
+  fill: #ead5e7;
+  filter: drop-shadow(0 0 2px rgba(255,241,234,.9))
+          drop-shadow(0 0 5px rgba(212,168,195,.48));
 }
-.drifting-constellation__star:nth-of-type(2n) .light { fill: #dfc7e7; }
-.drifting-constellation__star:nth-of-type(3n) .light { fill: #fff3e3; }
+.drifting-constellation__star:nth-of-type(2n) .light { fill: #f2ded4; }
+.drifting-constellation__star:nth-of-type(3) .light {
+  fill: #fff3e9;
+  filter: drop-shadow(0 0 3px rgba(255,245,233,.98))
+          drop-shadow(0 0 10px rgba(225,182,196,.65))
+          drop-shadow(0 0 20px rgba(190,143,185,.25));
+  transform-origin: 44px 42px;
+  animation: constellationPulse 6.5s ease-in-out infinite alternate;
+}
+.drifting-constellation__star .ray {
+  stroke: rgba(253,231,230,.48);
+  stroke-width: .6;
+  stroke-linecap: round;
+}
 .drifting-constellation__label {
   position: absolute;
-  top: 124px;
+  top: 73px;
   left: 50%;
-  width: min(290px, 80vw);
+  width: 238px;
   display: block;
   text-align: center;
   transform: translate(-50%,5px);
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: opacity .35s ease, transform .35s ease, visibility .35s ease;
+  transition: opacity .3s ease, transform .3s ease, visibility .3s ease;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  text-shadow: 0 1px 12px #0c0912;
+  text-shadow: 0 1px 9px #0c0912;
 }
 .drifting-constellation__label strong {
   display: block;
-  color: #e5cdd0;
-  font-size: 9px;
+  color: #ddc2d2;
+  font-size: 8px;
   line-height: 1.5;
   font-weight: 600;
-  letter-spacing: .12em;
+  letter-spacing: .15em;
   text-transform: uppercase;
 }
 .drifting-constellation__label em {
   display: block;
-  margin-top: 5px;
-  color: #bfaebc;
-  font: italic 12px/1.45 Georgia, "Times New Roman", serif;
+  margin-top: 4px;
+  color: #a998b1;
+  font: italic 10px/1.45 Georgia, "Times New Roman", serif;
 }
 .drifting-constellation:hover,
 .drifting-constellation:focus-visible { animation-play-state: paused; }
+.drifting-constellation:hover .drifting-constellation__sky,
+.drifting-constellation:focus-visible .drifting-constellation__sky {
+  opacity: 1;
+  filter: drop-shadow(0 0 7px rgba(230,194,206,.24));
+}
 .drifting-constellation:hover .drifting-constellation__connections,
-.drifting-constellation:focus-visible .drifting-constellation__connections { opacity: .48; }
+.drifting-constellation:focus-visible .drifting-constellation__connections { opacity: .52; }
 .drifting-constellation:hover .drifting-constellation__label,
 .drifting-constellation:focus-visible .drifting-constellation__label {
   opacity: 1;
   visibility: visible;
   transform: translate(-50%,0);
 }
-.drifting-constellation:focus-visible { outline: 1px solid rgba(232,205,219,.6); outline-offset: 5px; border-radius: 20px; }
+.drifting-constellation:focus-visible {
+  outline: 1px solid rgba(232,205,219,.55);
+  outline-offset: 2px;
+  border-radius: 50%;
+}
 @keyframes constellationWander {
-  from { transform: translate3d(-8px,4px,0); }
-  to { transform: translate3d(15px,-13px,0); }
+  from { transform: translate3d(-8px,5px,0); }
+  to { transform: translate3d(14px,-10px,0); }
 }
 @keyframes constellationSeparate {
   from { transform: translate(0,0); }
   to { transform: translate(var(--drift-x),var(--drift-y)); }
+}
+@keyframes constellationPulse {
+  from { opacity: .72; transform: scale(.9); }
+  to { opacity: 1; transform: scale(1.14); }
 }
 
 /* The letter itself keeps the site's familiar reading experience. */
@@ -137,20 +164,20 @@ body.drifting-letter-page {
   opacity: .35;
 }
 @media(max-width:700px) {
-  .drifting-constellation { left: 8vw; top: 62vh; width: 132px; height: 118px; }
-  .drifting-constellation__sky { height: 112px; }
+   .drifting-constellation { left: 12vw; top: 64vh; width: 84px; height: 84px; }
+  .drifting-constellation__sky { width: 84px; height: 84px; }
   .drifting-constellation__label {
-    top: 107px;
+    top: 71px;
     left: 0;
-    width: min(265px,85vw);
+    width: min(238px,82vw);
     text-align: left;
     transform: translateY(5px);
   }
   .drifting-constellation:hover .drifting-constellation__label,
   .drifting-constellation:focus-visible .drifting-constellation__label { transform: translateY(0); }
   .drifting-constellation__label strong { font-size: 8px; }
-  .drifting-constellation__label em { font-size: 11px; }
+  .drifting-constellation__label em { font-size: 10px; }
 }
 @media(prefers-reduced-motion:reduce) {
-  .drifting-constellation,.drifting-constellation__star { animation: none; }
+  .drifting-constellation,.drifting-constellation__star,.drifting-constellation__star .light { animation: none; }
 }
