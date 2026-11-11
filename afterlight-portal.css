@@ -23,3 +23,11 @@ body.afterlight-traveling .wrap{transform-origin:var(--afterlight-x) var(--after
 @keyframes afterlightVeil{0%{background:rgba(249,245,247,0)}70%{background:rgba(20,15,29,.18)}100%{background:rgba(9,7,17,.96)}}
 @media(max-width:700px){.afterlight-galaxy{right:4vw;top:14vh;width:82px;height:82px;opacity:.7}.afterlight-galaxy__label{top:78px;font-size:6.5px}.afterlight-galaxy.is-traveling{animation-name:afterlightApproachMobile}@keyframes afterlightApproachMobile{0%{transform:rotate(-8deg) scale(1)}38%{transform:rotate(-5deg) scale(2.5)}74%{transform:rotate(-2deg) scale(7)}100%{transform:rotate(0) scale(14);opacity:1}}}
 @media(prefers-reduced-motion:reduce){.afterlight-galaxy,.afterlight-galaxy__disc,.afterlight-mini__line,.afterlight-mini__star{animation:none}.afterlight-galaxy{opacity:.72}.afterlight-warp{display:none}body.afterlight-traveling .wrap{animation:none}}
+
+/* Make the existing star-drawn lighthouse legible without drawing a literal lighthouse. */
+.afterlight-galaxy{width:142px;height:142px;right:6vw;top:14vh;opacity:.88;color:#b9a5c8}
+.afterlight-galaxy__disc{filter:drop-shadow(0 0 9px rgba(183,156,204,.45))}
+.afterlight-mini__line{stroke:rgba(176,150,203,.68);stroke-width:1.15}
+.afterlight-mini__star{filter:drop-shadow(0 0 4px rgba(206,179,227,.9))}
+.afterlight-galaxy__label{top:135px;opacity:.86;visibility:visible;transform:translateX(-50%);color:#b39ac7;text-shadow:0 0 8px rgba(20,12,30,.45)}
+@media(max-width:700px){.afterlight-galaxy{width:105px;height:105px;right:3vw;top:12vh;opacity:.9}.afterlight-galaxy__label{top:99px;font-size:7px}}
