@@ -1,0 +1,13 @@
+/* A small, almost fading constellation on the home sky. */
+.slow-goodbye-orbit{position:fixed;left:6vw;top:25vh;width:128px;height:100px;z-index:18;display:block;text-decoration:none;color:inherit;opacity:.68;transform:rotate(-6deg);transition:opacity .35s,filter .35s;-webkit-tap-highlight-color:transparent}
+.slow-goodbye-orbit__map{position:absolute;inset:0;width:100%;height:100%;overflow:visible;animation:slowGoodbyeFloat 11s ease-in-out infinite alternate}
+.slow-goodbye-orbit__line{fill:none;stroke:rgba(220,194,162,.37);stroke-width:.9;stroke-dasharray:2 5}
+.slow-goodbye-orbit__star{fill:#e7ccaa;filter:drop-shadow(0 0 3px rgba(237,210,166,.65))}
+.slow-goodbye-orbit__star:nth-of-type(2){opacity:.82}.slow-goodbye-orbit__star:nth-of-type(3){opacity:.7}.slow-goodbye-orbit__star:nth-of-type(4){opacity:.48}.slow-goodbye-orbit__star:nth-of-type(5){opacity:.28}.slow-goodbye-orbit__star:last-of-type{opacity:.55}
+.slow-goodbye-orbit__label{position:absolute;left:99%;top:40px;width:max-content;max-width:190px;padding-left:5px;opacity:0;visibility:hidden;transform:translateX(-7px);transition:opacity .28s,transform .28s,visibility .28s;font:600 9px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#d4bdab;text-shadow:0 1px 12px #0d0913}
+.slow-goodbye-orbit__label em{display:block;font:italic 11px/1.5 Georgia,serif;letter-spacing:0;text-transform:none;color:#b1a5ad;margin-top:5px}
+.slow-goodbye-orbit:hover,.slow-goodbye-orbit:focus-visible{opacity:1;filter:drop-shadow(0 0 10px rgba(228,202,169,.24))}
+.slow-goodbye-orbit:hover .slow-goodbye-orbit__label,.slow-goodbye-orbit:focus-visible .slow-goodbye-orbit__label{opacity:1;visibility:visible;transform:translateX(0)}
+@keyframes slowGoodbyeFloat{from{transform:translate(0,0)}to{transform:translate(9px,-6px)}}
+@media(max-width:700px){.slow-goodbye-orbit{left:1vw;top:24vh;width:102px;height:85px}.slow-goodbye-orbit__label{font-size:7px;max-width:120px;top:31px}.slow-goodbye-orbit__label em{font-size:9px}}
+@media(prefers-reduced-motion:reduce){.slow-goodbye-orbit__map{animation:none}}
