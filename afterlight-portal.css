@@ -39,3 +39,11 @@ body.afterlight-traveling .wrap{transform-origin:var(--afterlight-x) var(--after
 .afterlight-mini__line{stroke:rgba(143,117,164,.44);stroke-width:1;stroke-dasharray:2.5 5}
 .afterlight-mini__star{filter:drop-shadow(0 0 3px rgba(183,156,204,.78))}
 @media(max-width:700px){.afterlight-galaxy{right:4vw;top:14vh;width:82px;height:82px;opacity:.75}}
+
+/* Afterlight belongs to the populated starfield, not the isolated upper corner. */
+.afterlight-galaxy{right:25vw;top:auto;bottom:23vh;width:112px;height:112px;opacity:.78}
+.afterlight-mini__line{stroke:rgba(176,155,206,.48);stroke-width:.78;stroke-dasharray:2 4;stroke-linecap:round}
+.afterlight-mini__star{fill:#e2d5ef;filter:drop-shadow(0 0 3px rgba(229,210,245,.95)) drop-shadow(0 0 7px rgba(181,141,214,.5))}
+.afterlight-mini__star.anchor{fill:#fff8ec;filter:drop-shadow(0 0 5px rgba(255,242,224,.95)) drop-shadow(0 0 12px rgba(211,173,224,.75))}
+.afterlight-galaxy:hover,.afterlight-galaxy:focus-visible{opacity:1;filter:drop-shadow(0 0 8px rgba(192,158,219,.32))}
+@media(max-width:700px){.afterlight-galaxy{right:27vw;top:auto;bottom:24vh;width:94px;height:94px;opacity:.8}}
