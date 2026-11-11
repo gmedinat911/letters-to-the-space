@@ -112,47 +112,72 @@
   from { opacity: .78; filter: brightness(.93); }
   to { opacity: 1; filter: brightness(1.13); }
 }
-/* The letter itself keeps the site's familiar reading experience. */
+/* The Blue Giant reading page shares the star's quiet, blue-white light. */
+html:has(> body.blue-giant-letter-page) { background: #070e1c; }
 body.blue-giant-letter-page {
+  color: #e7f1fb;
   background:
-    radial-gradient(circle at 19% 9%, rgba(149,103,122,.17), transparent 29%),
-    radial-gradient(circle at 85% 57%, rgba(109,90,139,.13), transparent 33%),
-    linear-gradient(180deg,#17111d 0%,#120d18 55%,#0c0912 100%);
+    radial-gradient(ellipse at 18% 8%,rgba(66,127,197,.27),transparent 36%),
+    radial-gradient(ellipse at 86% 37%,rgba(64,109,179,.20),transparent 34%),
+    radial-gradient(ellipse at 16% 87%,rgba(50,106,168,.16),transparent 34%),
+    linear-gradient(180deg,#101c34 0%,#0b1830 52%,#070e1d 100%);
 }
 .blue-giant-letter-page .wrap { width: min(800px,92vw); }
 .blue-giant-letter-page article {
   position: relative;
   padding: clamp(28px,5vw,55px);
-  border-color: rgba(226,193,202,.18);
-  background: linear-gradient(145deg,rgba(32,25,38,.94),rgba(23,18,30,.97));
-  box-shadow: 0 25px 75px rgba(0,0,0,.32), 0 0 48px rgba(218,171,186,.035);
+  border: 1px solid rgba(170,207,244,.24);
+  background:
+    radial-gradient(ellipse at 88% 0%,rgba(113,166,229,.10),transparent 38%),
+    linear-gradient(145deg,rgba(19,38,63,.95),rgba(12,25,46,.97));
+  box-shadow:
+    0 25px 75px rgba(1,7,22,.45),
+    0 0 55px rgba(98,159,234,.065),
+    inset 0 1px 0 rgba(221,243,255,.045);
 }
 .blue-giant-letter-page article > * { position: relative; z-index: 2; }
-.blue-giant-letter-page article .meta { color: #c6a6b8; }
-.blue-giant-letter-page article h2 { color: #f4eaf0; }
-.blue-giant-letter-page article p { color: #e9dfe8; }
+.blue-giant-letter-page article .meta { color: #98bbdc; }
+.blue-giant-letter-page article h2 {
+  color: #edf7ff;
+  text-shadow: 0 0 35px rgba(143,195,247,.13);
+}
+.blue-giant-letter-page article p { color: #dbe8f5; }
 .blue-giant-letter-page article .letter-epigraph {
   margin: -8px 0 30px;
-  color: #c8aebb;
+  color: #b3cee9;
   font: italic clamp(16px,2.1vw,19px)/1.65 Georgia, "Times New Roman", serif;
 }
 .blue-giant-letter-page article .letter-ending {
   margin-top: 30px;
   font-style: italic;
-  color: #f5e6e7;
+  color: #f1faff;
 }
-.blue-giant-letter-page .back { color: #cdb5c3; }
+.blue-giant-letter-page .back { color: #accded; }
+.blue-giant-letter-page footer { color: #89a8c8; }
+.blue-giant-letter-page::before,
+.blue-giant-letter-page::after,
+.blue-giant-letter-page .wrap::before,
+.blue-giant-letter-page .wrap::after,
+.blue-giant-letter-page article::before,
+.blue-giant-letter-page article::after,
+.blue-giant-letter-page footer::before,
+.blue-giant-letter-page footer::after,
+html:has(> body.blue-giant-letter-page)::before,
+html:has(> body.blue-giant-letter-page)::after {
+  filter: hue-rotate(-67deg) saturate(.7) brightness(1.08);
+  opacity: .48;
+}
 .blue-giant-letter-page .letter-sky {
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 1;
   background-image:
-    radial-gradient(circle,rgba(250,225,209,.68) 0 .8px,transparent 1.3px),
-    radial-gradient(circle,rgba(202,180,216,.42) 0 .75px,transparent 1.2px);
+    radial-gradient(circle,rgba(229,247,255,.81) 0 .8px,transparent 1.3px),
+    radial-gradient(circle,rgba(156,199,248,.58) 0 .75px,transparent 1.2px);
   background-size: 219px 233px,317px 293px;
   background-position: 34px 77px,91px 154px;
-  opacity: .35;
+  opacity: .36;
 }
 
 @media(max-width:700px) {
