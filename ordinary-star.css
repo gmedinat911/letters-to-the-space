@@ -1,0 +1,11 @@
+/* A single muted amber star, independent of every constellation. */
+.ordinary-star{position:fixed;left:calc(25vw - 1px);top:61vh;width:72px;height:72px;z-index:18;text-decoration:none;display:block;animation:ordinaryDrift 17s ease-in-out infinite alternate}
+.ordinary-star__glow{position:absolute;inset:4px;border-radius:50%;background:radial-gradient(circle,rgba(220,157,131,.23),rgba(210,130,105,.06) 42%,transparent 72%);animation:ordinaryBreathe 8s ease-in-out infinite}
+.ordinary-star__core{position:absolute;left:50%;top:50%;width:6px;height:6px;border-radius:50%;transform:translate(-50%,-50%);background:#f6d6c4;box-shadow:0 0 9px #f0c1aa,0 0 23px rgba(221,155,126,.7),0 0 43px rgba(185,105,90,.28)}
+.ordinary-star__label{position:absolute;left:50%;top:66px;transform:translateX(-50%) translateY(5px);width:225px;text-align:center;opacity:0;transition:opacity .3s,transform .3s;pointer-events:none;font-family:system-ui,sans-serif;color:#e8c6b7}
+.ordinary-star__label strong{display:block;font-size:9px;letter-spacing:.16em;font-weight:600}.ordinary-star__label em{display:block;font-size:10px;margin-top:5px;color:#b69b9a;font-family:Georgia,serif}
+.ordinary-star:hover .ordinary-star__label,.ordinary-star:focus-visible .ordinary-star__label{opacity:1;transform:translateX(-50%) translateY(0)}
+.ordinary-star:hover .ordinary-star__core,.ordinary-star:focus-visible .ordinary-star__core{box-shadow:0 0 12px #f9d9c7,0 0 32px rgba(221,155,126,.8),0 0 55px rgba(185,105,90,.4)}
+@keyframes ordinaryDrift{from{transform:translate(0,0)}to{transform:translate(14px,-13px)}}@keyframes ordinaryBreathe{0%,100%{opacity:.58;transform:scale(.85)}50%{opacity:1;transform:scale(1.18)}}
+@media(max-width:700px){.ordinary-star{left:calc(19vw - 1px);top:64vh}.ordinary-star__label{width:175px}}
+@media(prefers-reduced-motion:reduce){.ordinary-star,.ordinary-star__glow{animation:none}}
