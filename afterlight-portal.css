@@ -31,3 +31,11 @@ body.afterlight-traveling .wrap{transform-origin:var(--afterlight-x) var(--after
 .afterlight-mini__star{filter:drop-shadow(0 0 4px rgba(206,179,227,.9))}
 .afterlight-galaxy__label{top:135px;opacity:.86;visibility:visible;transform:translateX(-50%);color:#b39ac7;text-shadow:0 0 8px rgba(20,12,30,.45)}
 @media(max-width:700px){.afterlight-galaxy{width:105px;height:105px;right:3vw;top:12vh;opacity:.9}.afterlight-galaxy__label{top:99px;font-size:7px}}
+
+/* Like Stilllight, the main-space destination is only a quiet cluster of stars.
+   Its name remains available to assistive technology, not visually printed. */
+.afterlight-galaxy{width:112px;height:112px;right:7vw;top:17vh;opacity:.72}
+.afterlight-galaxy__disc{filter:drop-shadow(0 0 5px rgba(183,156,204,.36))}
+.afterlight-mini__line{stroke:rgba(143,117,164,.44);stroke-width:1;stroke-dasharray:2.5 5}
+.afterlight-mini__star{filter:drop-shadow(0 0 3px rgba(183,156,204,.78))}
+@media(max-width:700px){.afterlight-galaxy{right:4vw;top:14vh;width:82px;height:82px;opacity:.75}}
