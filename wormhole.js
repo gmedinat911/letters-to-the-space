@@ -20,9 +20,9 @@
   if(portal&&!document.querySelector('.slow-goodbye-orbit')){
     const s=document.createElement('a');
     s.className='slow-goodbye-orbit';
-    s.href='/constellations/the-slow-goodbye/';
-    s.setAttribute('aria-label','The Slow Goodbye — six letters about someone slowly fading away');
-    s.innerHTML='<svg class="slow-goodbye-orbit__map" viewBox="0 0 150 92" aria-hidden="true"><path class="slow-goodbye-orbit__line" d="M8 66 L36 23 L66 48 L94 14 L120 41 L143 69"/><circle class="slow-goodbye-orbit__star" cx="8" cy="66" r="3.2"/><circle class="slow-goodbye-orbit__star" cx="36" cy="23" r="2.8"/><circle class="slow-goodbye-orbit__star" cx="66" cy="48" r="2.5"/><circle class="slow-goodbye-orbit__star" cx="94" cy="14" r="2.2"/><circle class="slow-goodbye-orbit__star" cx="120" cy="41" r="2"/><circle class="slow-goodbye-orbit__star" cx="143" cy="69" r="2.3"/></svg><span class="slow-goodbye-orbit__label">THE SLOW GOODBYE<em>six letters · a fading connection</em></span>';
+    s.href='/constellations/almost/';
+    s.setAttribute('aria-label','Almost — six letters about a connection slowly changing');
+    s.innerHTML='<svg class="slow-goodbye-orbit__map" viewBox="0 0 150 92" aria-hidden="true"><path class="slow-goodbye-orbit__line" d="M8 66 L36 23 L66 48 L94 14 L120 41 L143 69"/><circle class="slow-goodbye-orbit__star" cx="8" cy="66" r="3.2"/><circle class="slow-goodbye-orbit__star" cx="36" cy="23" r="2.8"/><circle class="slow-goodbye-orbit__star" cx="66" cy="48" r="2.5"/><circle class="slow-goodbye-orbit__star" cx="94" cy="14" r="2.2"/><circle class="slow-goodbye-orbit__star" cx="120" cy="41" r="2"/><circle class="slow-goodbye-orbit__star" cx="143" cy="69" r="2.3"/></svg><span class="slow-goodbye-orbit__label">ALMOST<em>six letters · things left unsaid</em></span>';
     document.body.appendChild(s);
   }
   // A single amber light for the quiet grief of feeling ordinary to someone extraordinary.
