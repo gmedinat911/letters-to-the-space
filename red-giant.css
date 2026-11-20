@@ -1,0 +1,103 @@
+/* A warm, quietly enduring Red Giant for the friendships that stayed. */
+.red-giant-star{
+  position:fixed;left:calc(73vw - 46px);top:50vh;width:92px;height:92px;
+  z-index:18;display:block;text-decoration:none;color:inherit;
+  -webkit-tap-highlight-color:transparent;
+  animation:redGiantWander 25s ease-in-out infinite alternate;
+}
+.red-giant-star__glow{
+  position:absolute;inset:0;border-radius:50%;
+  background:radial-gradient(circle,
+    rgba(255,213,159,.31) 0 6%,
+    rgba(240,116,83,.18) 18%,
+    rgba(180,55,72,.095) 39%,
+    transparent 70%);
+  filter:blur(1px);animation:redGiantHalo 7.4s ease-in-out infinite alternate;
+}
+.red-giant-star__core{
+  position:absolute;left:50%;top:50%;width:13px;height:13px;
+  transform:translate(-50%,-50%);border-radius:50%;
+  background:radial-gradient(circle at 36% 26%,#fff0d4 0 13%,#ffbd89 36%,#e76e64 68%,#a54355 100%);
+  box-shadow:0 0 8px rgba(255,216,166,.88),0 0 20px rgba(240,128,99,.72),0 0 40px rgba(204,74,91,.36),0 0 64px rgba(173,53,83,.12);
+  animation:redGiantCore 5.8s ease-in-out infinite alternate;
+}
+.red-giant-star__core::before,.red-giant-star__core::after{
+  content:"";position:absolute;left:50%;top:50%;pointer-events:none;transform:translate(-50%,-50%);
+}
+.red-giant-star__core::before{
+  width:37px;height:1px;background:linear-gradient(90deg,transparent,rgba(255,187,157,.32),transparent);
+}
+.red-giant-star__core::after{
+  width:1px;height:37px;background:linear-gradient(180deg,transparent,rgba(255,182,150,.27),transparent);
+}
+.red-giant-star__label{
+  position:absolute;left:50%;top:76px;width:242px;text-align:center;
+  transform:translate(-50%,5px);display:block;opacity:0;visibility:hidden;
+  pointer-events:none;transition:opacity .28s ease,transform .28s ease,visibility .28s ease;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  text-shadow:0 1px 10px #140b12;
+}
+.red-giant-star__label strong{
+  display:block;color:#f4c5ab;font-size:8px;line-height:1.5;
+  letter-spacing:.16em;font-weight:600;text-transform:uppercase;
+}
+.red-giant-star__label em{
+  display:block;margin-top:4px;color:#d3a9ad;
+  font:italic 10px/1.45 Georgia,"Times New Roman",serif;
+}
+.red-giant-star:hover,.red-giant-star:focus-visible{animation-play-state:paused}
+.red-giant-star:hover .red-giant-star__glow,.red-giant-star:focus-visible .red-giant-star__glow{filter:brightness(1.2)}
+.red-giant-star:hover .red-giant-star__label,.red-giant-star:focus-visible .red-giant-star__label{
+  opacity:1;visibility:visible;transform:translate(-50%,0);
+}
+.red-giant-star:focus-visible{outline:1px solid rgba(255,193,161,.55);outline-offset:2px;border-radius:50%}
+@keyframes redGiantWander{from{transform:translate3d(-12px,7px,0)}to{transform:translate3d(16px,-11px,0)}}
+@keyframes redGiantHalo{from{opacity:.65;transform:scale(.9)}to{opacity:1;transform:scale(1.16)}}
+@keyframes redGiantCore{from{opacity:.85;filter:brightness(.96)}to{opacity:1;filter:brightness(1.14)}}
+
+/* Matching the established standalone letter design, but lit with red-gold warmth. */
+html:has(> body.red-giant-letter-page){background:#150b13}
+body.red-giant-letter-page{
+  color:#f8e9e4;
+  background:
+    radial-gradient(ellipse at 20% 8%,rgba(184,72,78,.22),transparent 37%),
+    radial-gradient(ellipse at 86% 36%,rgba(171,88,76,.17),transparent 36%),
+    radial-gradient(ellipse at 15% 90%,rgba(176,79,95,.12),transparent 33%),
+    linear-gradient(180deg,#22121c 0%,#1a1019 52%,#110b13 100%);
+}
+.red-giant-letter-page .wrap{width:min(800px,92vw)}
+.red-giant-letter-page article{
+  position:relative;padding:clamp(28px,5vw,55px);
+  border:1px solid rgba(239,172,157,.22);
+  background:
+    radial-gradient(ellipse at 90% 0%,rgba(214,107,89,.10),transparent 40%),
+    linear-gradient(145deg,rgba(54,30,39,.94),rgba(31,21,31,.97));
+  box-shadow:0 25px 75px rgba(9,3,9,.45),0 0 55px rgba(219,94,86,.06),inset 0 1px 0 rgba(255,236,223,.05);
+}
+.red-giant-letter-page article > *{position:relative;z-index:2}
+.red-giant-letter-page article .meta{color:#e3a89a}
+.red-giant-letter-page article h2{color:#fff3e9;text-shadow:0 0 38px rgba(255,166,130,.14)}
+.red-giant-letter-page article p{color:#eedbd9}
+.red-giant-letter-page article .letter-epigraph{
+  margin:-8px 0 30px;color:#e3b7aa;
+  font:italic clamp(16px,2.1vw,19px)/1.65 Georgia,"Times New Roman",serif;
+}
+.red-giant-letter-page .back{color:#e8b8aa}
+.red-giant-letter-page footer{color:#bf999c}
+.red-giant-letter-page .letter-sky{
+  position:fixed;inset:0;pointer-events:none;z-index:1;
+  background-image:
+    radial-gradient(circle,rgba(255,237,225,.75) 0 .8px,transparent 1.3px),
+    radial-gradient(circle,rgba(239,167,156,.53) 0 .7px,transparent 1.2px);
+  background-size:219px 233px,317px 293px;
+  background-position:34px 77px,91px 154px;opacity:.34;
+}
+@media(max-width:700px){
+  .red-giant-star{left:calc(71vw - 46px);top:53vh}
+  .red-giant-star__label{top:77px;left:auto;right:0;width:min(220px,73vw);text-align:right;transform:translateY(5px)}
+  .red-giant-star:hover .red-giant-star__label,.red-giant-star:focus-visible .red-giant-star__label{transform:translateY(0)}
+  .red-giant-star:active .red-giant-star__label{opacity:1;visibility:visible}
+}
+@media(prefers-reduced-motion:reduce){
+  .red-giant-star,.red-giant-star__core,.red-giant-star__glow{animation:none}
+}
