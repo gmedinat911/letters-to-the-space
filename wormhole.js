@@ -16,8 +16,9 @@
     star.innerHTML='<span class="blue-giant-star__glow" aria-hidden="true"></span><span class="blue-giant-star__core" aria-hidden="true"></span><span class="blue-giant-star__label"><strong>FOR ALL THE PEOPLE I COULDN\'T KEEP</strong><em>Some constellations are only meant to hold for a little while.</em></span>';
     document.body.appendChild(star);
   }
-  // Six connected lights for a goodbye that happens a little at a time.
-  if(portal&&!document.querySelector('.slow-goodbye-orbit')){
+  // Keep the Almost constellation and its letters published, but hide its entry from the main space.
+  const showAlmostInSpace = false;
+  if(showAlmostInSpace && portal && !document.querySelector('.slow-goodbye-orbit')){
     const s=document.createElement('a');
     s.className='slow-goodbye-orbit';
     s.href='/constellations/almost/';
