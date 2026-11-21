@@ -1,0 +1,134 @@
+/* Too Much: a stationary antique-gold variable star. Only luminosity changes. */
+.too-much-star{
+  position:fixed;
+  left:calc(47vw - 43px);
+  top:57vh;
+  width:86px;
+  height:86px;
+  z-index:18;
+  display:block;
+  text-decoration:none;
+  color:inherit;
+  -webkit-tap-highlight-color:transparent;
+}
+.too-much-star__glow{
+  position:absolute;inset:0;border-radius:50%;
+  background:radial-gradient(circle,
+    rgba(255,238,193,.28) 0 5%,
+    rgba(226,173,102,.17) 18%,
+    rgba(186,130,75,.075) 39%,
+    transparent 72%);
+  filter:blur(1px);
+  animation:tooMuchGlow 8.5s ease-in-out infinite;
+}
+.too-much-star__core{
+  position:absolute;left:50%;top:50%;
+  width:10px;height:10px;
+  transform:translate(-50%,-50%);
+  border-radius:50%;
+  background:radial-gradient(circle at 37% 29%,
+    #fff6db 0 15%,#f7dca7 31%,#d9a65e 63%,#95663d 100%);
+  box-shadow:
+    0 0 8px rgba(255,232,179,.9),
+    0 0 21px rgba(236,181,97,.65),
+    0 0 40px rgba(196,129,61,.25);
+  animation:tooMuchCore 8.5s ease-in-out infinite;
+}
+.too-much-star__core::before,
+.too-much-star__core::after{
+  content:"";position:absolute;left:50%;top:50%;
+  transform:translate(-50%,-50%);
+  pointer-events:none;
+}
+.too-much-star__core::before{
+  width:31px;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(245,212,148,.34),transparent);
+}
+.too-much-star__core::after{
+  width:1px;height:31px;
+  background:linear-gradient(180deg,transparent,rgba(245,212,148,.27),transparent);
+}
+.too-much-star__label{
+  position:absolute;left:50%;top:69px;
+  transform:translate(-50%,5px);
+  width:210px;text-align:center;
+  opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity .28s ease,transform .28s ease,visibility .28s ease;
+  text-shadow:0 1px 9px #130e15;
+}
+.too-much-star__label strong{
+  display:block;color:#f0d5a2;
+  font:600 9px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  letter-spacing:.17em;text-transform:uppercase;
+}
+.too-much-star__label em{
+  display:block;margin-top:4px;color:#bfa789;
+  font:italic 11px/1.4 Georgia,"Times New Roman",serif;
+}
+.too-much-star:hover .too-much-star__label,
+.too-much-star:focus-visible .too-much-star__label{
+  opacity:1;visibility:visible;transform:translate(-50%,0);
+}
+.too-much-star:hover .too-much-star__core,
+.too-much-star:focus-visible .too-much-star__core{
+  filter:brightness(1.18);
+}
+.too-much-star:focus-visible{
+  outline:1px solid rgba(238,199,132,.65);
+  outline-offset:2px;border-radius:50%;
+}
+/* Luminosity changes but neither the core nor its position moves. */
+@keyframes tooMuchGlow{
+  0%,100%{opacity:.56}
+  50%{opacity:1}
+}
+@keyframes tooMuchCore{
+  0%,100%{filter:brightness(.91)}
+  50%{filter:brightness(1.12)}
+}
+
+/* Keep the shared standalone-letter layout, softly warmed to match the star. */
+html:has(> body.too-much-letter-page){background:#130f16}
+body.too-much-letter-page{
+  color:#f2e9dd;
+  background:
+    radial-gradient(ellipse at 18% 10%,rgba(174,117,59,.15),transparent 38%),
+    radial-gradient(ellipse at 85% 35%,rgba(146,99,60,.13),transparent 37%),
+    linear-gradient(180deg,#211a20 0%,#18141b 53%,#110e15 100%);
+}
+.too-much-letter-page .wrap{width:min(800px,92vw)}
+.too-much-letter-page article{
+  position:relative;
+  padding:clamp(28px,5vw,55px);
+  border:1px solid rgba(213,177,119,.21);
+  background:
+    radial-gradient(ellipse at 90% 0%,rgba(217,164,84,.09),transparent 40%),
+    linear-gradient(145deg,rgba(47,35,38,.95),rgba(27,23,31,.97));
+  box-shadow:0 25px 75px rgba(6,4,9,.45),0 0 45px rgba(218,156,82,.045);
+}
+.too-much-letter-page article > *{position:relative;z-index:2}
+.too-much-letter-page article .meta{color:#d2af78}
+.too-much-letter-page article h2{
+  color:#fdf3e4;
+  text-shadow:0 0 34px rgba(255,218,153,.12);
+}
+.too-much-letter-page article p{color:#e8dbd0}
+.too-much-letter-page .back{color:#e1bf91}
+.too-much-letter-page footer{color:#b7a491}
+.too-much-letter-sky{
+  position:fixed;inset:0;z-index:1;pointer-events:none;
+  background-image:
+    radial-gradient(circle,rgba(255,229,177,.63) 0 .7px,transparent 1.3px),
+    radial-gradient(circle,rgba(230,200,150,.38) 0 .6px,transparent 1.1px);
+  background-size:233px 251px,307px 293px;
+  background-position:27px 81px,106px 157px;
+  opacity:.29;
+}
+@media(max-width:700px){
+  /* Below Ordinary and away from the Afterlight cluster on narrow screens. */
+  .too-much-star{left:calc(49vw - 43px);top:78vh}
+  .too-much-star__label{top:auto;bottom:77px;width:min(195px,80vw)}
+}
+@media(prefers-reduced-motion:reduce){
+  .too-much-star__glow,.too-much-star__core{animation:none}
+}
