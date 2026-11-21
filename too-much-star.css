@@ -1,9 +1,10 @@
-/* Too Much: the still-glowing aftermath of a quiet golden explosion.
-   Fixed in the same part of the space; only its light changes, never its position. */
+/* Too Much: a quiet golden supernova remnant in an open part of the sky.
+   It remains fixed; only its luminosity changes. */
 .too-much-star{
   position:fixed;
-  left:calc(47vw - 48px);
-  top:57vh;
+  /* The left-middle void sits between the upper and lower star groups. */
+  left:calc(12vw - 48px);
+  top:45vh;
   width:96px;
   height:96px;
   z-index:18;
@@ -102,8 +103,17 @@
   50%{filter:brightness(1.12)}
 }
 @media(max-width:700px){
-  /* Maintain the elevated mobile location from the previous iteration. */
-  .too-much-star{left:calc(44vw - 48px);top:59vh}
+  /* Alone to the left of the footer copy, above the lower star cluster. */
+  .too-much-star{
+    left:calc(12vw - 48px);
+    top:46vh;
+    transform:scale(.70);
+    transform-origin:center center;
+  }
+}
+@media(max-width:360px){
+  /* Keep the remnant fully within especially narrow phone screens. */
+  .too-much-star{transform:scale(.62)}
 }
 @media(prefers-reduced-motion:reduce){
   .too-much-star__glow,.too-much-star__core{animation:none}
@@ -135,6 +145,12 @@ body.too-much-letter-page{
   text-shadow:0 0 34px rgba(255,218,153,.12);
 }
 .too-much-letter-page article p{color:#e8dbd0}
+/* The small introductory description mirrors the quiet epigraph on other letters. */
+.too-much-letter-page article .too-much-epigraph{
+  margin:-7px 0 30px;
+  color:#cbb497;
+  font:italic clamp(15px,2vw,18px)/1.65 Georgia,"Times New Roman",serif;
+}
 .too-much-letter-page .back{color:#e1bf91}
 .too-much-letter-page footer{color:#b7a491}
 .too-much-letter-sky{
