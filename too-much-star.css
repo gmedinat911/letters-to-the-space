@@ -40,13 +40,16 @@
   transform:translate(-50%,-50%);
   pointer-events:none;
 }
+/* Soft, unmoving concentric halos distinguish this star from the pointed stars. */
 .too-much-star__core::before{
-  width:31px;height:1px;
-  background:linear-gradient(90deg,transparent,rgba(245,212,148,.34),transparent);
+  width:47px;height:47px;border-radius:50%;
+  border:1px solid rgba(235,187,108,.19);
+  box-shadow:0 0 17px rgba(211,143,70,.12),inset 0 0 12px rgba(230,166,84,.1);
 }
 .too-much-star__core::after{
-  width:1px;height:31px;
-  background:linear-gradient(180deg,transparent,rgba(245,212,148,.27),transparent);
+  width:27px;height:27px;border-radius:50%;
+  border:1px solid rgba(253,218,158,.24);
+  background:radial-gradient(circle,rgba(242,185,108,.075),transparent 70%);
 }
 .too-much-star__label{
   position:absolute;left:50%;top:69px;
@@ -125,9 +128,14 @@ body.too-much-letter-page{
   opacity:.29;
 }
 @media(max-width:700px){
-  /* Below Ordinary and away from the Afterlight cluster on narrow screens. */
-  .too-much-star{left:calc(49vw - 43px);top:78vh}
-  .too-much-star__label{top:auto;bottom:77px;width:min(195px,80vw)}
+  /* Midway between Ordinary (left/lower) and the Red Giant (right/higher). */
+  .too-much-star{left:calc(44vw - 43px);top:59vh}
+  /* A quiet visible title helps readers identify this fixed star on touch screens. */
+  .too-much-star__label{
+    top:72px;bottom:auto;width:min(190px,65vw);
+    opacity:.85;visibility:visible;transform:translate(-50%,0);
+  }
+  .too-much-star__label em{display:none}
 }
 @media(prefers-reduced-motion:reduce){
   .too-much-star__glow,.too-much-star__core{animation:none}
