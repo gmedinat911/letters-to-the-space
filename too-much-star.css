@@ -1,8 +1,7 @@
-/* Too Much: a quiet golden supernova remnant in an open part of the sky.
-   It remains fixed; only its luminosity changes. */
+/* Too Much — a golden pulsar.
+   Stay quietly isolated in the left-hand void. No travel or drift. */
 .too-much-star{
   position:fixed;
-  /* The left-middle void sits between the upper and lower star groups. */
   left:calc(12vw - 48px);
   top:45vh;
   width:96px;
@@ -12,111 +11,112 @@
   text-decoration:none;
   color:inherit;
   -webkit-tap-highlight-color:transparent;
+  isolation:isolate;
 }
-.too-much-star__glow{
+/* Gentle gold around the dense, luminous center. */
+.too-much-star__haze{
   position:absolute;inset:0;
-  border-radius:48% 52% 46% 54%;
+  border-radius:50%;
   background:
-    radial-gradient(ellipse at 43% 49%,rgba(255,227,166,.28) 0 6%,rgba(232,165,91,.16) 23%,transparent 64%),
-    radial-gradient(ellipse at 73% 36%,rgba(241,181,123,.20),transparent 35%),
-    radial-gradient(ellipse at 29% 70%,rgba(208,116,93,.14),transparent 38%),
-    radial-gradient(ellipse at 65% 77%,rgba(235,154,79,.12),transparent 32%);
+    radial-gradient(circle at 50% 50%,rgba(255,241,192,.32) 0 5%,rgba(241,183,99,.24) 13%,rgba(217,139,80,.105) 31%,transparent 67%),
+    radial-gradient(ellipse at 62% 43%,rgba(255,207,126,.13),transparent 66%);
   filter:blur(2px);
-  animation:tooMuchRemnantGlow 10s ease-in-out infinite;
+  animation:tooMuchPulsarGlow 6.8s ease-in-out infinite;
 }
-/* Broken, asymmetric outer shell: arcs, not the former neat halo or cross-shaped rays. */
-.too-much-star__shell{
-  position:absolute;inset:13px 11px 16px 15px;
-  border-radius:57% 43% 60% 40% / 38% 60% 40% 62%;
-  transform:rotate(-21deg);
-  border:1.5px solid transparent;
-  border-top-color:rgba(255,205,130,.54);
-  border-right-color:rgba(220,137,88,.20);
-  border-bottom-color:rgba(233,162,98,.40);
-  box-shadow:0 -3px 12px rgba(246,176,99,.11),0 4px 18px rgba(180,98,90,.08);
-  opacity:.9;
+/* Very faint magnetic-field rings distinguish it from an explosion shell. */
+.too-much-star__magnetosphere{
+  position:absolute;
+  inset:23px 18px;
+  border:1px solid rgba(242,197,125,.17);
+  border-radius:50%;
+  transform:rotate(-31deg) scaleY(.68);
+  box-shadow:0 0 13px rgba(242,172,93,.10),inset 0 0 12px rgba(255,210,134,.08);
+  pointer-events:none;
 }
-.too-much-star__shell::before,
-.too-much-star__shell::after{
-  content:"";position:absolute;pointer-events:none;
-  border-radius:61% 39% 53% 47% / 53% 41% 59% 47%;
-}
-.too-much-star__shell::before{
-  inset:7px 3px 5px 8px;
-  transform:rotate(37deg);
+.too-much-star__magnetosphere::before{
+  content:"";position:absolute;inset:-9px -13px;
+  border-radius:50%;
   border:1px solid transparent;
-  border-left-color:rgba(248,198,126,.38);
-  border-bottom-color:rgba(227,131,90,.17);
+  border-top-color:rgba(240,192,122,.13);
+  border-bottom-color:rgba(236,169,105,.10);
 }
-.too-much-star__shell::after{
-  inset:-6px 8px 9px -5px;
-  transform:rotate(-32deg);
-  border:1px solid transparent;
-  border-right-color:rgba(255,202,129,.32);
-  border-top-color:rgba(252,211,154,.14);
+/* Two opposing, feathered beams across the core, like a distant signal.
+   Their orientation is static: only their intensity fluctuates. */
+.too-much-star__beam{
+  position:absolute;
+  left:50%;top:50%;
+  width:3px;height:130px;
+  transform:translate(-50%,-50%) rotate(38deg);
+  transform-origin:center;
+  border-radius:100%;
+  background:linear-gradient(180deg,
+    transparent 0%,
+    rgba(244,190,120,.02) 11%,
+    rgba(249,209,146,.19) 29%,
+    rgba(255,233,185,.84) 48%,
+    rgba(255,243,219,.98) 50%,
+    rgba(255,227,178,.83) 52%,
+    rgba(246,195,129,.19) 71%,
+    rgba(244,190,120,.02) 89%,
+    transparent 100%);
+  filter:drop-shadow(0 0 7px rgba(246,190,108,.48));
+  animation:tooMuchPulsarBeam 6.8s ease-in-out infinite;
+  pointer-events:none;
+}
+.too-much-star__beam::after{
+  content:"";position:absolute;
+  left:50%;top:50%;width:10px;height:119px;
+  transform:translate(-50%,-50%);
+  background:linear-gradient(180deg,transparent 0%,rgba(234,155,94,.09) 26%,rgba(255,221,155,.20) 50%,rgba(234,155,94,.09) 74%,transparent 100%);
+  filter:blur(4px);
 }
 .too-much-star__core{
-  position:absolute;left:48%;top:51%;
+  position:absolute;left:50%;top:50%;
   width:10px;height:10px;
   transform:translate(-50%,-50%);
-  border-radius:46% 54% 56% 44%;
-  background:radial-gradient(circle at 37% 28%,
-    #fff9e8 0 16%,#ffe0a6 38%,#dca55a 70%,#ad6c4d 100%);
+  border-radius:50%;
+  background:radial-gradient(circle at 35% 28%,#ffffff 0 15%,#fff2cc 38%,#ffcf83 72%,#ce8b50 100%);
   box-shadow:
-    0 0 8px rgba(255,235,189,.90),
-    0 0 18px rgba(245,180,92,.68),
-    0 0 37px rgba(217,126,75,.30);
-  animation:tooMuchRemnantCore 10s ease-in-out infinite;
+    0 0 5px rgba(255,255,241,.96),
+    0 0 12px rgba(255,223,153,.92),
+    0 0 26px rgba(244,175,89,.70),
+    0 0 44px rgba(198,127,71,.29);
+  animation:tooMuchPulsarCore 6.8s ease-in-out infinite;
 }
-/* Scattered debris and delicate outward filaments are static, not drifting. */
-.too-much-star__fragment{
-  position:absolute;display:block;
-  border-radius:45% 55% 35% 65%;
-  background:#e8b57f;
-  box-shadow:0 0 5px rgba(252,197,132,.74),0 0 13px rgba(225,138,83,.30);
+.too-much-star:hover .too-much-star__core,
+.too-much-star:focus-visible .too-much-star__core{
+  box-shadow:0 0 7px rgba(255,255,241,1),0 0 17px rgba(255,227,160,.95),0 0 33px rgba(242,173,92,.74);
 }
-.too-much-star .fragment-one{left:19px;top:34px;width:3px;height:2px;transform:rotate(-31deg)}
-.too-much-star .fragment-two{left:77px;top:25px;width:2px;height:3px;transform:rotate(36deg);background:#f5cd99}
-.too-much-star .fragment-three{left:76px;top:69px;width:4px;height:2px;transform:rotate(16deg);background:#ce8b71}
-.too-much-star .fragment-four{left:30px;top:79px;width:2px;height:3px;transform:rotate(-16deg);opacity:.72}
-.too-much-star .fragment-five{left:12px;top:58px;width:2px;height:2px;opacity:.5}
-.too-much-star__filament{
-  position:absolute;height:1px;pointer-events:none;
-  background:linear-gradient(90deg,transparent,rgba(248,202,135,.29),transparent);
-  transform-origin:center;
-}
-.too-much-star .filament-one{left:18px;top:29px;width:25px;transform:rotate(35deg)}
-.too-much-star .filament-two{left:58px;top:74px;width:27px;transform:rotate(-34deg);opacity:.67}
-.too-much-star:hover .too-much-star__glow,
-.too-much-star:focus-visible .too-much-star__glow{filter:blur(2px) brightness(1.18)}
 .too-much-star:focus-visible{
-  outline:1px solid rgba(238,199,132,.65);
+  outline:1px solid rgba(238,199,132,.60);
   outline-offset:2px;border-radius:50%;
 }
-/* Breathe by changing luminosity only: no translation, rotation or scale animations. */
-@keyframes tooMuchRemnantGlow{
-  0%,100%{opacity:.68}
+@keyframes tooMuchPulsarGlow{
+  0%,100%{opacity:.58}
   50%{opacity:1}
 }
-@keyframes tooMuchRemnantCore{
-  0%,100%{filter:brightness(.94)}
-  50%{filter:brightness(1.12)}
+@keyframes tooMuchPulsarBeam{
+  0%,100%{opacity:.48}
+  50%{opacity:.90}
+}
+@keyframes tooMuchPulsarCore{
+  0%,100%{filter:brightness(.95)}
+  50%{filter:brightness(1.15)}
 }
 @media(max-width:700px){
-  /* Alone to the left of the footer copy, above the lower star cluster. */
+  /* Preserve its quiet, independent position on small screens. */
   .too-much-star{
     left:calc(12vw - 48px);
     top:46vh;
     transform:scale(.70);
-    transform-origin:center center;
+    transform-origin:center;
   }
 }
 @media(max-width:360px){
-  /* Keep the remnant fully within especially narrow phone screens. */
   .too-much-star{transform:scale(.62)}
 }
 @media(prefers-reduced-motion:reduce){
-  .too-much-star__glow,.too-much-star__core{animation:none}
+  .too-much-star__haze,.too-much-star__beam,.too-much-star__core{animation:none}
 }
 
 /* Keep the shared standalone-letter layout, softly warmed to match the star. */
