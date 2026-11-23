@@ -1,5 +1,14 @@
-/* Preview candidate: destination artwork, behind all original content and controls. */
-body.ltts-arrival-art{position:relative;isolation:isolate}
-body.ltts-arrival-art:before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,rgba(7,8,18,.24),rgba(7,8,18,.72) 67%,rgba(7,8,18,.94)),var(--ltts-art) center top/cover no-repeat;opacity:.82}
-body.ltts-arrival-art .wrap,body.ltts-arrival-art .constellation-shell{position:relative}
-@media(max-width:700px){body.ltts-arrival-art:before{background-position:center top}}
+/* Art-first destinations: retain original letter content and constellation geometry. */
+body.ltts-arrival-art{
+  background-image:linear-gradient(180deg,rgba(6,8,19,.08) 0%,rgba(6,8,19,.16) 40%,rgba(6,8,19,.38) 100%),var(--ltts-art)!important;
+  background-size:cover!important;
+  background-position:center top!important;
+  background-repeat:no-repeat!important;
+  background-attachment:fixed!important;
+}
+body.ltts-arrival-art::before{opacity:.18}
+body.ltts-arrival-art .wrap,body.ltts-arrival-art .constellation-shell{position:relative;z-index:3}
+body.ltts-arrival-art article{position:relative}
+body.ltts-arrival-art article:not(.archive-letter){text-shadow:0 1px 10px rgba(5,7,16,.5)}
+@media(max-width:700px){body.ltts-arrival-art{background-attachment:scroll!important;background-position:center top!important}}
+@media(prefers-reduced-motion:reduce){body.ltts-arrival-art{background-attachment:scroll!important}}
