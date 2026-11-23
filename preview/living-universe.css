@@ -44,3 +44,23 @@ body{background:radial-gradient(ellipse at 38% 5%,#22142f 0%,transparent 34%),ra
 
 .celestial:hover .light,.celestial:focus-visible .light{filter:brightness(1.45)}
 @media(max-width:700px){.memory-portal{left:57%;top:62%;transform:scale(.54)}.grace{left:54%;top:9%;transform:scale(.52)}.bluegiant{left:2%;top:57%;transform:scale(.64)}.rememberer{right:1%;top:65%;transform:scale(.5)}.celestial .object-label{max-width:145px;font-size:12px}}
+
+/* Organic cosmos: turbulence-displaced filaments, layered starlight, restrained halos. */
+.organic-nebula{position:fixed;inset:-8%;pointer-events:none;z-index:0;background:url('/preview/organic-nebula.svg') center 42%/cover no-repeat;opacity:.74;mix-blend-mode:screen;filter:saturate(.88)}
+.nebula{opacity:.13!important;filter:blur(115px)}
+.galactic-ribbon{opacity:.09}
+.cosmic-veil{background:radial-gradient(ellipse at 50% 48%,transparent 23%,rgba(2,3,12,.42) 100%)}
+.celestial .light{isolation:isolate}
+.celestial .light:before{content:"";position:absolute;inset:-18px;border-radius:50%;background:conic-gradient(from 30deg,transparent,rgba(255,255,255,.07),transparent,rgba(255,255,255,.03),transparent);filter:blur(8px);opacity:.7;animation:stellar-corona 15s ease-in-out infinite alternate;pointer-events:none}
+.celestial .light:after{content:"";position:absolute;left:50%;top:50%;width:40px;height:1px;transform:translate(-50%,-50%) rotate(-17deg);background:linear-gradient(90deg,transparent,rgba(255,244,234,.4),transparent);opacity:.48;pointer-events:none}
+.golden .light{background:radial-gradient(circle at 35% 28%,#fff8df 0%,#ffe5b1 30%,#d39a66 72%,#8c4f62 100%);box-shadow:0 0 9px 3px #ffe5b7b0,0 0 28px 12px #dfae8066,0 0 105px 42px #9c6b7933}
+.bluegiant .light{background:radial-gradient(circle at 32% 28%,#fff 0%,#e3f3ff 30%,#8bbbdc 65%,#5369ad 100%);box-shadow:0 0 11px 4px #d2eaffac,0 0 33px 14px #89b7de77,0 0 112px 47px #5263a53b}
+.giant .light{background:radial-gradient(circle at 35% 28%,#fff0d8 0%,#f9bb9b 35%,#ce746e 70%,#813f65 100%);box-shadow:0 0 16px 8px #f3b09599,0 0 54px 25px #ce7a8066,0 0 160px 80px #994e6b2e}
+.dwarf .light{background:radial-gradient(circle at 30% 25%,#fff1c9,#e59c76 48%,#ad4b58 80%,#65385d);box-shadow:0 0 8px 3px #efa47b8f,0 0 26px 12px #b65a6655,0 0 74px 32px #6b64832b}
+.dwarf .orbit{border-top-color:#dba7a6;border-bottom-color:#7b95b7;filter:drop-shadow(0 0 5px #c07c9a55);transform:rotate(-34deg) scaleX(1.12)}
+.afterlight .lighthouse{filter:drop-shadow(0 0 5px #ac9bc78a) drop-shadow(0 0 18px #8b7db840)}
+.stilllight .light{background:radial-gradient(circle,#f7fbff,#b9d6ee 45%,#7082b0);box-shadow:0 0 10px 4px #b6d8fa99,0 0 50px 23px #7e9ac14d}
+.pulsar .light{background:radial-gradient(circle,#fffef0,#f6dba6 45%,#c38b6e);box-shadow:0 0 11px 4px #fff0c5aa,0 0 48px 19px #cba47755}
+@keyframes stellar-corona{from{transform:rotate(-12deg) scale(.85);opacity:.4}to{transform:rotate(18deg) scale(1.15);opacity:.75}}
+@media(max-width:700px){.organic-nebula{background-size:auto 100%;background-position:47% center;opacity:.52}.celestial .light:before{filter:blur(5px)}}
+@media(prefers-reduced-motion:reduce){.celestial .light:before{animation:none}}
