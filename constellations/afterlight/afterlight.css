@@ -5,3 +5,11 @@ body{font-family:'EB Garamond',Georgia,serif}
 h1,h2,h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;letter-spacing:-.015em}
 .subtitle,.opening p,.afterlight-line{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-weight:500}
 .meta,.date,.eyebrow,.archive-kicker{font-family:'Inter',system-ui,sans-serif;font-weight:500}
+
+/* Keep the actual cosmic artwork unobstructed. */
+body.ltts-arrival-art::before,body.ltts-arrival-art::after{content:none!important;animation:none!important;display:none!important}
+body.ltts-arrival-art{background-attachment:fixed!important;background-position:center center!important}
+.galaxy{animation:none;opacity:.22}
+.lines path{stroke-dashoffset:0;animation:none;stroke:rgba(206,181,224,.42);stroke-dasharray:3 7}
+.lines .beam-line{stroke:rgba(225,204,235,.34)}
+.star[hidden]{display:none!important}
