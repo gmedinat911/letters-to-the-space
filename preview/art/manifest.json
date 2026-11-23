@@ -1,0 +1,301 @@
+[
+  {
+    "file": "cosmic-hero.webp",
+    "source": "cosmic-hero",
+    "variant": 0,
+    "native_cropped_resolution": [
+      1672,
+      940
+    ],
+    "export_resolution": [
+      3840,
+      2160
+    ]
+  },
+  {
+    "file": "afterlight.webp",
+    "source": "afterlight",
+    "variant": 0,
+    "native_cropped_resolution": [
+      1672,
+      940
+    ],
+    "export_resolution": [
+      3840,
+      2160
+    ]
+  },
+  {
+    "file": "stilllight.webp",
+    "source": "stilllight",
+    "variant": 0,
+    "native_cropped_resolution": [
+      1672,
+      940
+    ],
+    "export_resolution": [
+      3840,
+      2160
+    ]
+  },
+  {
+    "file": "golden.webp",
+    "source": "golden",
+    "variant": 0,
+    "native_cropped_resolution": [
+      1672,
+      940
+    ],
+    "export_resolution": [
+      3840,
+      2160
+    ]
+  },
+  {
+    "file": "going-rogue.webp",
+    "source": "going-rogue",
+    "variant": 0,
+    "native_cropped_resolution": [
+      1672,
+      940
+    ],
+    "export_resolution": [
+      3840,
+      2160
+    ]
+  },
+  {
+    "file": "for-the-people-who-stayed.webp",
+    "source": "for-the-people-who-stayed",
+    "variant": 0,
+    "native_cropped_resolution": [
+      1672,
+      940
+    ],
+    "export_resolution": [
+      3840,
+      2160
+    ]
+  },
+  {
+    "file": "for-all-the-people-i-couldnt-keep.webp",
+    "source": "blue",
+    "variant": 0,
+    "native_cropped_resolution": [
+      1566,
+      881
+    ],
+    "export_resolution": [
+      3840,
+      2160
+    ]
+  },
+  {
+    "file": "ordinary.webp",
+    "source": "stilllight",
+    "variant": 1,
+    "native_cropped_resolution": [
+      1672,
+      940
+    ],
+    "export_resolution": [
+      3840,
+      2160
+    ]
+  },
+  {
+    "file": "too-much.webp",
+    "source": "for-the-people-who-stayed",
+    "variant": 1,
+    "native_cropped_resolution": [
+      1672,
+      940
+    ],
+    "export_resolution": [
+      3840,
+      2160
+    ]
+  },
+  {
+    "file": "someone-who-remembers.webp",
+    "source": "afterlight",
+    "variant": 1,
+    "native_cropped_resolution": [
+      1672,
+      940
+    ],
+    "export_resolution": [
+      3840,
+      2160
+    ]
+  },
+  {
+    "file": "the-raffle.webp",
+    "source": "golden",
+    "variant": 1,
+    "native_cropped_resolution": [
+      1672,
+      940
+    ],
+    "export_resolution": [
+      3840,
+      2160
+    ]
+  },
+  {
+    "file": "always-here.webp",
+    "source": "blue",
+    "variant": 1,
+    "native_cropped_resolution": [
+      1566,
+      881
+    ],
+    "export_resolution": [
+      3840,
+      2160
+    ]
+  },
+  {
+    "file": "remember-me.webp",
+    "source": "afterlight",
+    "variant": 2,
+    "native_cropped_resolution": [
+      1672,
+      940
+    ],
+    "export_resolution": [
+      3840,
+      2160
+    ]
+  },
+  {
+    "file": "if-a-leaf-falls-quietly.webp",
+    "source": "stilllight",
+    "variant": 2,
+    "native_cropped_resolution": [
+      1672,
+      940
+    ],
+    "export_resolution": [
+      3840,
+      2160
+    ]
+  },
+  {
+    "file": "invisible.webp",
+    "source": "going-rogue",
+    "variant": 1,
+    "native_cropped_resolution": [
+      1672,
+      940
+    ],
+    "export_resolution": [
+      3840,
+      2160
+    ]
+  },
+  {
+    "file": "the-future-i-had-already-met.webp",
+    "source": "golden",
+    "variant": 2,
+    "native_cropped_resolution": [
+      1672,
+      940
+    ],
+    "export_resolution": [
+      3840,
+      2160
+    ]
+  },
+  {
+    "file": "the-goodbye-youll-never-hear.webp",
+    "source": "going-rogue",
+    "variant": 2,
+    "native_cropped_resolution": [
+      1672,
+      940
+    ],
+    "export_resolution": [
+      3840,
+      2160
+    ]
+  },
+  {
+    "file": "the-space-between-our-words.webp",
+    "source": "blue",
+    "variant": 2,
+    "native_cropped_resolution": [
+      1566,
+      881
+    ],
+    "export_resolution": [
+      3840,
+      2160
+    ]
+  },
+  {
+    "file": "this-is-where-i-leave-the-light.webp",
+    "source": "afterlight",
+    "variant": 3,
+    "native_cropped_resolution": [
+      1672,
+      940
+    ],
+    "export_resolution": [
+      3840,
+      2160
+    ]
+  },
+  {
+    "file": "three-dots.webp",
+    "source": "stilllight",
+    "variant": 3,
+    "native_cropped_resolution": [
+      1672,
+      940
+    ],
+    "export_resolution": [
+      3840,
+      2160
+    ]
+  },
+  {
+    "file": "when-february-went-quiet.webp",
+    "source": "going-rogue",
+    "variant": 3,
+    "native_cropped_resolution": [
+      1672,
+      940
+    ],
+    "export_resolution": [
+      3840,
+      2160
+    ]
+  },
+  {
+    "file": "when-im-ready.webp",
+    "source": "blue",
+    "variant": 3,
+    "native_cropped_resolution": [
+      1566,
+      881
+    ],
+    "export_resolution": [
+      3840,
+      2160
+    ]
+  },
+  {
+    "file": "75-minutes.webp",
+    "source": "stilllight",
+    "variant": 4,
+    "native_cropped_resolution": [
+      1672,
+      940
+    ],
+    "export_resolution": [
+      3840,
+      2160
+    ]
+  }
+]
