@@ -1,0 +1,40 @@
+{
+  "hero": "cosmic-hero.webp",
+  "constellations": [
+    "afterlight",
+    "stilllight",
+    "golden"
+  ],
+  "letters": [
+    "going-rogue",
+    "for-the-people-who-stayed",
+    "for-all-the-people-i-couldnt-keep",
+    "too-much",
+    "ordinary",
+    "someone-who-remembers",
+    "the-raffle",
+    "the-future-i-had-already-met",
+    "the-space-between-our-words",
+    "if-a-leaf-falls-quietly",
+    "invisible",
+    "three-dots",
+    "when-im-ready",
+    "always-here",
+    "remember-me",
+    "when-february-went-quiet",
+    "the-goodbye-youll-never-hear",
+    "this-is-where-i-leave-the-light",
+    "75-minutes"
+  ],
+  "visibility": {
+    "homepage_excluded": [
+      "75-minutes",
+      "this-is-where-i-leave-the-light",
+      "almost"
+    ],
+    "constellation_membership": {
+      "this-is-where-i-leave-the-light": "afterlight"
+    }
+  },
+  "note": "Preview expects artwork files in /preview/art. This manifest does not make constellation-member letters standalone homepage stars."
+}
