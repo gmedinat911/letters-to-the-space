@@ -1,0 +1,5 @@
+/* Preview candidate: destination artwork, behind all original content and controls. */
+body.ltts-arrival-art{position:relative;isolation:isolate}
+body.ltts-arrival-art:before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,rgba(7,8,18,.24),rgba(7,8,18,.72) 67%,rgba(7,8,18,.94)),var(--ltts-art) center top/cover no-repeat;opacity:.82}
+body.ltts-arrival-art .wrap,body.ltts-arrival-art .constellation-shell{position:relative}
+@media(max-width:700px){body.ltts-arrival-art:before{background-position:center top}}
