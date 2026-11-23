@@ -84,3 +84,16 @@ h1,h2,h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;letter-s
 
 .opening h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;letter-spacing:-.025em}
 .opening p{font-size:clamp(1.15rem,2.2vw,1.45rem)}
+
+/* iOS Safari: allow the artwork to bleed behind changing browser chrome.
+   Avoid a transformed/filtered fixed layer, which WebKit can clip during scroll. */
+@media (max-width: 900px), (pointer: coarse) {
+  html { background-color:#080812; }
+  .artwork-sky {
+    position:fixed; inset:-120px 0 -120px 0;
+    width:auto; height:auto; min-height:calc(100lvh + 240px);
+    transform:none; filter:none; background-size:cover;
+    background-position:47% center; background-repeat:no-repeat;
+  }
+  .cosmic-veil { inset:-120px 0; height:auto; min-height:calc(100lvh + 240px); }
+}
