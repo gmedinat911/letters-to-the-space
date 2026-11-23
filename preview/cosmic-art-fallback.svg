@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice"><defs>
+<linearGradient id="void" x2=".85" y2="1"><stop stop-color="#080916"/><stop offset=".45" stop-color="#130d22"/><stop offset="1" stop-color="#070d1b"/></linearGradient>
+<radialGradient id="amethyst"><stop stop-color="#c180bd" stop-opacity=".48"/><stop offset=".25" stop-color="#86529e" stop-opacity=".34"/><stop offset=".7" stop-color="#3b255b" stop-opacity=".17"/><stop offset="1" stop-color="#100d25" stop-opacity="0"/></radialGradient>
+<radialGradient id="azure"><stop stop-color="#b7d6fa" stop-opacity=".5"/><stop offset=".22" stop-color="#628fcf" stop-opacity=".35"/><stop offset=".65" stop-color="#273a75" stop-opacity=".17"/><stop offset="1" stop-color="#0d1933" stop-opacity="0"/></radialGradient>
+<radialGradient id="ember"><stop stop-color="#e8a69b" stop-opacity=".4"/><stop offset=".35" stop-color="#9c4d7d" stop-opacity=".2"/><stop offset="1" stop-color="#3e204d" stop-opacity="0"/></radialGradient>
+<filter id="cloud" x="-40%" y="-40%" width="180%" height="180%"><feTurbulence type="fractalNoise" baseFrequency=".004 .011" numOctaves="5" seed="24" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="165"/><feGaussianBlur stdDeviation="24"/></filter>
+<filter id="threads" x="-40%" y="-40%" width="180%" height="180%"><feTurbulence type="fractalNoise" baseFrequency=".013 .025" numOctaves="4" seed="8" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="95"/><feGaussianBlur stdDeviation="6"/></filter>
+<filter id="stars"><feGaussianBlur stdDeviation="3"/></filter>
+<linearGradient id="filament" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e5a3c0" stop-opacity="0"/><stop offset=".22" stop-color="#d9a0c6" stop-opacity=".45"/><stop offset=".5" stop-color="#a7a6ed" stop-opacity=".2"/><stop offset=".8" stop-color="#a2d5fc" stop-opacity=".5"/><stop offset="1" stop-color="#87bce6" stop-opacity="0"/></linearGradient>
+<radialGradient id="dark"><stop stop-color="#060817" stop-opacity=".9"/><stop offset="1" stop-color="#070a18" stop-opacity="0"/></radialGradient></defs>
+<rect width="1920" height="1080" fill="url(#void)"/>
+<g filter="url(#cloud)"><ellipse cx="280" cy="120" rx="830" ry="370" transform="rotate(-24 280 120)" fill="url(#amethyst)"/><ellipse cx="1710" cy="780" rx="850" ry="410" transform="rotate(-27 1710 780)" fill="url(#azure)"/><ellipse cx="880" cy="1030" rx="750" ry="310" transform="rotate(-18 880 1030)" fill="url(#ember)"/></g>
+<g filter="url(#threads)" fill="none" stroke="url(#filament)" stroke-linecap="round"><path d="M-190 320 C170 230 310 70 540 100 S820 -50 1160 -150" stroke-width="75"/><path d="M-130 360 C140 280 360 115 565 155 S880 0 1180 -100" stroke-width="18"/><path d="M680 1180 C1000 930 1190 1020 1390 770 S1790 630 2140 420" stroke-width="82"/><path d="M680 1220 C1000 1000 1200 1040 1420 820 S1820 680 2130 490" stroke-width="22"/></g>
+<ellipse cx="950" cy="490" rx="580" ry="370" fill="url(#dark)" opacity=".6"/>
+<g id="stars"></g></svg>

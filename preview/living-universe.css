@@ -44,3 +44,14 @@ body{background:radial-gradient(ellipse at 38% 5%,#22142f 0%,transparent 34%),ra
 
 .celestial:hover .light,.celestial:focus-visible .light{filter:brightness(1.45)}
 @media(max-width:700px){.memory-portal{left:57%;top:62%;transform:scale(.54)}.grace{left:54%;top:9%;transform:scale(.52)}.bluegiant{left:2%;top:57%;transform:scale(.64)}.rememberer{right:1%;top:65%;transform:scale(.5)}.celestial .object-label{max-width:145px;font-size:12px}}
+
+/* Art-first preview: the primary visual is an image, not a stack of CSS circles. */
+.artwork-sky{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:url('/preview/cosmic-art-fallback.svg');background-size:cover;background-position:center;filter:saturate(.95) contrast(1.06)}
+body.has-painted-cosmos .artwork-sky{background-image:url('/preview/cosmic-hero.webp')}
+.nebula,.cosmic-dust,.galactic-ribbon,.organic-nebula{display:none!important}
+.cosmic-veil{background:linear-gradient(180deg,rgba(6,5,16,.1),rgba(5,5,13,.18)),radial-gradient(ellipse at 50% 47%,rgba(4,5,14,.38),transparent 65%)}
+#cosmos{opacity:.47}
+.opening{position:relative;text-shadow:0 2px 26px #080814}
+.opening h1{font-weight:400;text-shadow:0 2px 24px #080814,0 0 65px #070615}
+.region:before{opacity:.15}
+@media(max-width:700px){.artwork-sky{background-position:47% center}#cosmos{opacity:.35}}
