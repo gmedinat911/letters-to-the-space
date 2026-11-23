@@ -66,3 +66,11 @@ body.is-journeying .journey{opacity:1}
 body.is-journeying .journey__light{transform:translate(-50%,-50%) scale(95)}
 body.is-journeying .journey__cloud{opacity:1;transform:scale(1)}
 @media(prefers-reduced-motion:reduce){.journey{display:none!important}}
+
+/* Mobile browser chrome can resize the visible viewport during scroll.
+   Overscan the fixed sky to the largest viewport, without stretching the art. */
+@media (max-width: 900px), (pointer: coarse) {
+  .artwork-sky { inset: -2px 0 auto; width: 100%; height: calc(100vh + 4px); height: calc(100lvh + 4px); min-height: 100dvh; background-size: cover; background-repeat: no-repeat; transform: translateZ(0); }
+  #cosmos, .cosmic-veil { bottom: auto; height: 100vh; height: 100lvh; }
+  html { overscroll-behavior-y: none; }
+}
