@@ -41,8 +41,6 @@ body{background:radial-gradient(ellipse at 38% 5%,#22142f 0%,transparent 34%),ra
 .bluegiant .light{width:14px;height:14px;background:#d2ebff;box-shadow:0 0 22px 7px #a2cbef88,0 0 86px 35px #668ccf2f}
 .rememberer{right:13%;top:62%;transform:scale(.62)}
 .rememberer .light{width:7px;height:7px;background:#f7faff;box-shadow:0 0 11px 5px #d1e6ff88,0 0 44px 20px #91a9d32c}
-.solitary{transform:scale(.56)}
-.solitary .light{width:6px;height:6px;background:#eed3cb;box-shadow:0 0 10px 3px #dcb1ad77,0 0 37px 12px #b77d9926}
-.solitary-a{left:52%;top:12%}.solitary-b{right:13%;top:68%}
+
 .celestial:hover .light,.celestial:focus-visible .light{filter:brightness(1.45)}
-@media(max-width:700px){.memory-portal{left:57%;top:62%;transform:scale(.54)}.grace{left:54%;top:9%;transform:scale(.52)}.bluegiant{left:2%;top:57%;transform:scale(.64)}.rememberer{right:1%;top:65%;transform:scale(.5)}.solitary-a{left:47%;top:7%;transform:scale(.45)}.solitary-b{right:0%;top:72%;transform:scale(.43)}.celestial .object-label{max-width:145px;font-size:12px}}
+@media(max-width:700px){.memory-portal{left:57%;top:62%;transform:scale(.54)}.grace{left:54%;top:9%;transform:scale(.52)}.bluegiant{left:2%;top:57%;transform:scale(.64)}.rememberer{right:1%;top:65%;transform:scale(.5)}.celestial .object-label{max-width:145px;font-size:12px}}
