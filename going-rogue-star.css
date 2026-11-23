@@ -1,9 +1,13 @@
-.going-rogue-star{position:absolute;z-index:4;top:390px;right:9%;width:120px;height:120px;display:block;text-decoration:none;color:#e7b9a8;isolation:isolate}
-.going-rogue-star__halo{position:absolute;inset:28px;border-radius:50%;background:radial-gradient(circle,#e9a27d25 10%,#a44e4745 38%,#66738b30 58%,transparent 73%);box-shadow:0 0 35px 15px #ad56401c,0 0 60px 25px #73819a0e;animation:rogue-pulse 9s ease-in-out infinite alternate}
-.going-rogue-star__core{position:absolute;left:54px;top:54px;width:12px;height:12px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#ffdab2,#da7756 58%,#913c3d);box-shadow:0 0 11px 4px #d87a6080,0 0 25px 9px #aa56434d}
+/* Going Rogue: a small, enduring ember with a fractured, icy orbital halo. */
+.going-rogue-star{position:absolute;z-index:4;top:390px;right:9%;width:108px;height:108px;display:block;text-decoration:none;color:#e7b9a8;isolation:isolate}
+.going-rogue-star__halo{position:absolute;inset:0;border-radius:50%;background:radial-gradient(ellipse at center,rgba(230,114,79,.11) 0 10%,rgba(174,79,70,.07) 22%,transparent 55%);filter:drop-shadow(0 0 6px rgba(196,99,82,.22));animation:rogue-breathe 8s ease-in-out infinite alternate}
+.going-rogue-star__halo::before{content:"";position:absolute;left:18px;top:39px;width:74px;height:29px;border-radius:50%;border:1px solid rgba(220,137,112,.42);border-left-color:rgba(240,171,119,.68);border-right-color:rgba(120,149,179,.27);transform:rotate(-31deg);box-shadow:0 0 8px rgba(195,103,89,.12)}
+.going-rogue-star__halo::after{content:"";position:absolute;left:24px;top:24px;width:61px;height:60px;border-radius:50%;border:1px solid transparent;border-top-color:rgba(127,156,190,.42);border-bottom-color:rgba(222,121,96,.36);transform:rotate(34deg) scaleX(1.25);filter:drop-shadow(0 0 3px rgba(142,153,195,.35))}
+.going-rogue-star__core{position:absolute;left:49px;top:49px;width:10px;height:10px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffe2b3 0%,#f2a36c 35%,#c55346 72%,#8c3543 100%);box-shadow:0 0 6px 2px rgba(239,131,89,.6),0 0 16px 6px rgba(197,80,65,.24),0 0 34px 13px rgba(102,119,163,.10)}
 .going-rogue-star__label{position:absolute;left:50%;top:100px;transform:translateX(-50%);width:190px;text-align:center;opacity:0;transition:opacity .25s;font:12px Georgia,serif;pointer-events:none}
 .going-rogue-star__label strong,.going-rogue-star__label em{display:block;margin:4px}
 .going-rogue-star:hover .going-rogue-star__label,.going-rogue-star:focus-visible .going-rogue-star__label{opacity:1}
-@keyframes rogue-pulse{from{opacity:.65;transform:scale(.92)}to{opacity:1;transform:scale(1.1)}}
-@media(max-width:700px){.going-rogue-star{top:340px;right:2%;transform:scale(.8)}}
+.going-rogue-star:hover .going-rogue-star__halo{filter:drop-shadow(0 0 10px rgba(230,133,101,.42))}
+@keyframes rogue-breathe{from{opacity:.7;transform:rotate(-4deg) scale(.96)}to{opacity:1;transform:rotate(4deg) scale(1.04)}}
+@media(max-width:700px){.going-rogue-star{top:340px;right:2%;transform:scale(.86)}}
 @media(prefers-reduced-motion:reduce){.going-rogue-star__halo{animation:none}}
