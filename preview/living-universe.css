@@ -100,3 +100,6 @@ h1,h2,h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;letter-s
 
 /* Born Again — an isolated, forming star. */
 .becoming{height:65vh;min-height:420px}.protostar{left:62%;top:28%}.protostar .light{width:10px;height:10px;background:#fff0c8;box-shadow:0 0 15px 5px #eeb66c99,0 0 55px 20px #b46d4144;animation:birth-breathe 6s ease-in-out infinite}.birth-cloud{position:absolute;inset:22%;border-radius:50%;background:radial-gradient(ellipse,#e9a55b35, #b86c3822 35%,transparent 72%);transform:rotate(-28deg) scale(1.35,.8);filter:blur(5px);pointer-events:none}@keyframes birth-breathe{50%{opacity:.72;box-shadow:0 0 11px 4px #eeb66c88,0 0 45px 16px #b46d4133}}@media(max-width:700px){.protostar{left:42%;top:25%}.becoming{min-height:360px;height:55vh}}@media(prefers-reduced-motion:reduce){.protostar .light{animation:none}}
+
+/* Organic protostar artwork, without the generic discovery ring. */
+.protostar .birth-cloud{inset:0;background:url('/preview/art/protostar.svg') center/contain no-repeat;filter:none;transform:none;border-radius:0;animation:protostar-cloud 7s ease-in-out infinite}.protostar .light{width:5px;height:5px;box-shadow:0 0 9px 3px #ffd49499,0 0 22px 7px #d9915144}.protostar:after{display:none}@keyframes protostar-cloud{50%{opacity:.78;transform:scale(.97)}}@media(prefers-reduced-motion:reduce){.protostar .birth-cloud{animation:none}}
