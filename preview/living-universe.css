@@ -117,15 +117,15 @@ h1,h2,h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;letter-s
 .seventy-five-star .object-label{left:0;right:auto;text-align:left;color:#cec6de;width:max-content;font-size:12px}
 @media(max-width:700px),(pointer:coarse){.far-away-star{width:44px;height:44px;transform:none}.far-away-star .object-label{width:150px;font-size:13px}.seventy-five-star .object-label{width:max-content;font-size:12px}}
 
-/* Far Away — Afterlight rests in the dark gap between the nebulae.
-   More recognizable than the two Far, Far Away Easter eggs, still stationary. */
-.far-away-star.distant-afterlight{left:58%;top:24%;width:76px;height:70px;transform:translate(-50%,-50%);display:grid;place-items:center}
-.distant-lighthouse{display:block;width:63px;height:56px;overflow:visible;pointer-events:none}
-.distant-lighthouse-lines{stroke:#c6bcdd;stroke-width:.65;opacity:.36}
-.distant-lighthouse-stars{fill:#e4ddf1;opacity:.78}
-.distant-lighthouse-stars .lantern{fill:#e9cf9d}
-.distant-afterlight:is(:hover,:focus-visible,.is-discovered) .distant-lighthouse-lines{opacity:.78}
-.distant-afterlight:is(:hover,:focus-visible,.is-discovered) .distant-lighthouse-stars{opacity:1}
-.far-away-star.distant-afterlight .object-label{left:50%;right:auto;transform:translate(-50%,7px);width:max-content;max-width:calc(100vw - 70px);text-align:center;color:#cec6de;font-size:13px}
+/* Far Away — a quiet pattern among ordinary background stars. */
+.far-away-star.distant-afterlight{left:58%;top:24%;width:62px;height:58px;transform:translate(-50%,-50%);display:grid;place-items:center}
+.distant-lighthouse{display:block;width:50px;height:44px;overflow:visible;pointer-events:none}
+.distant-lighthouse-lines{stroke:#bfb6d8;stroke-width:.5;opacity:.12}
+.distant-lighthouse-stars{fill:#cdc6df;opacity:.34}
+.distant-lighthouse-stars .lantern{fill:#dcc294;opacity:.72}
+.distant-afterlight:is(:hover,:focus-visible,.is-discovered) .distant-lighthouse-lines{opacity:.42}
+.distant-afterlight:is(:hover,:focus-visible,.is-discovered) .distant-lighthouse-stars{opacity:.78}
+.distant-afterlight:is(:hover,:focus-visible,.is-discovered) .distant-lighthouse-stars .lantern{opacity:1}
+.far-away-star.distant-afterlight .object-label{left:50%;right:auto;transform:translate(-50%,7px);width:max-content;max-width:calc(100vw - 70px);text-align:center;color:#c9c1da;font-size:12px}
 .far-away-star.distant-afterlight:is(:hover,:focus-visible,.is-discovered) .object-label{transform:translate(-50%,0)}
-@media(max-width:700px),(pointer:coarse){.far-away-star.distant-afterlight{left:57%;top:24%;width:64px;height:60px;transform:translate(-50%,-50%)}.distant-lighthouse{width:54px;height:48px}}
+@media(max-width:700px),(pointer:coarse){.far-away-star.distant-afterlight{left:57%;top:24%;width:56px;height:52px;transform:translate(-50%,-50%)}.distant-lighthouse{width:45px;height:40px}}
