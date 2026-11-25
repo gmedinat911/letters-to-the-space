@@ -37,21 +37,59 @@
   history.scrollRestoration='manual';
   history.replaceState({ltts:true,...current},'',current.route);
   // The soundtrack stays outside the reading frame and survives navigation.
+  // Use the canonical playlist permalink, without share-tracking parameters.
+  const soundcloudShare='https://soundcloud.com/user-480173754/sets/ltts-sounds';
+  const spotifyFallback='https://open.spotify.com/playlist/2vusU3UUDPgrhDHlMw04nB';
   const sound=document.createElement('div');sound.id='ltts-sound';
   const ui=sound.attachShadow({mode:'open'});
-  ui.innerHTML='<style>:host{font-family:Georgia,serif}*{box-sizing:border-box}aside{display:flex;flex-direction:column;align-items:flex-end;gap:10px}button{color:inherit;cursor:pointer}#toggle{width:44px;height:44px;border:1px solid #ffffff30;border-radius:50%;background:#11141de8;display:grid;place-items:center}#toggle:hover,#toggle:focus-visible{box-shadow:0 0 18px #b6caff40}#panel{width:min(300px,calc(100vw - 32px));background:#11141df5;border:1px solid #ffffff24;border-radius:14px;padding:10px;box-shadow:0 12px 40px #0008}#panel[hidden]{display:none}header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;font:11px Georgia,serif;letter-spacing:1.4px;text-transform:uppercase}#close{background:none;border:0;font-size:22px}a{color:#c4c8d3;font:12px Georgia,serif}iframe{display:block;width:100%;border:0;border-radius:10px}</style><aside aria-label="Soundtrack"><section id="panel" hidden><header>The Sound of the Space<button id="close" aria-label="Collapse music player">×</button></header><div id="player"></div><a href="https://open.spotify.com/playlist/2vusU3UUDPgrhDHlMw04nB" target="_blank" rel="noopener noreferrer">Open in Spotify</a></section><button id="toggle" aria-label="Open soundtrack" aria-expanded="false" aria-controls="panel"><svg width="23" height="23" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="currentColor"/><path d="M6 9 Q12 6 18 10 M7 12 Q12 9.5 17 13 M8 15 Q12 13 16 16" stroke="#11141d" stroke-width="1.6" stroke-linecap="round" fill="none"/></svg></button></aside>';
+  ui.innerHTML='<style>:host{font-family:Georgia,serif}*{box-sizing:border-box}aside{display:flex;flex-direction:column;align-items:flex-end;gap:10px}button{color:inherit;cursor:pointer}#toggle{width:44px;height:44px;border:1px solid #ffffff30;border-radius:50%;background:#11141de8;display:grid;place-items:center}#toggle:hover,#toggle:focus-visible{box-shadow:0 0 18px #b6caff40}#panel{width:min(320px,calc(100vw - 32px));max-height:calc(100dvh - 100px);overflow:auto;background:#11141df5;border:1px solid #ffffff24;border-radius:14px;padding:10px;box-shadow:0 12px 40px #0008}#panel[hidden],#status[hidden],#retry[hidden]{display:none}header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;font:11px Georgia,serif;letter-spacing:1.4px;text-transform:uppercase}#close{background:none;border:0;font-size:22px}a{color:#c4c8d3;font:12px Georgia,serif}iframe{display:block;width:100%;border:0;border-radius:10px;background:#11141d}#status{font:13px/1.5 Georgia,serif;color:#c4c8d3;padding:8px 2px;margin:0}#retry{background:#252331;border:1px solid #ffffff24;border-radius:6px;padding:6px 10px;font:12px Georgia,serif;margin:0 0 8px}footer{display:flex;justify-content:space-between;gap:10px;padding-top:8px;flex-wrap:wrap}</style><aside aria-label="Soundtrack"><section id="panel" hidden><header>The Sound of the Space<button id="close" aria-label="Collapse music player">×</button></header><p id="status" role="status" hidden></p><div id="player"></div><button id="retry" hidden>Try again</button><footer><a id="soundcloud-link" target="_blank" rel="noopener noreferrer">Open in SoundCloud</a><a id="spotify-link" target="_blank" rel="noopener noreferrer">Spotify alternative</a></footer></section><button id="toggle" aria-label="Open soundtrack" aria-expanded="false" aria-controls="panel"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V6l10-2v12M9 9l10-2"/><ellipse cx="6" cy="18" rx="3" ry="2.4"/><ellipse cx="16" cy="16" rx="3" ry="2.4"/></svg></button></aside>';
   document.body.appendChild(sound);
   const panel=ui.getElementById('panel'),toggle=ui.getElementById('toggle'),player=ui.getElementById('player');
-  let musicLoaded=false;
-  function showSound(open){
-    if(open&&!musicLoaded){
-      const music=document.createElement('iframe');
-      music.title='Spotify soundtrack';music.src='https://open.spotify.com/embed/playlist/2vusU3UUDPgrhDHlMw04nB?theme=0';
-      music.height='152';music.allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture';
-      player.append(music);musicLoaded=true;
-    }
-    panel.hidden=!open;toggle.setAttribute('aria-expanded',String(open));toggle.setAttribute('aria-label',open?'Collapse soundtrack':'Open soundtrack');
+  const status=ui.getElementById('status'),retry=ui.getElementById('retry');
+  ui.getElementById('soundcloud-link').href=soundcloudShare;
+  ui.getElementById('spotify-link').href=spotifyFallback;
+  let musicLoaded=false,musicLoading=false;
+  function mountSound(widget){
+    widget.protocol='https:';
+    for(const [key,value] of Object.entries({auto_play:'false',visual:'false',show_artwork:'false',show_comments:'false',show_playcount:'false',buying:'false',download:'false',color:'#b7a7ca'}))widget.searchParams.set(key,value);
+    const music=document.createElement('iframe');
+    music.title='SoundCloud soundtrack';music.src=widget.href;
+    music.height='300';music.setAttribute('scrolling','no');music.allow='autoplay; encrypted-media';
+    player.replaceChildren(music);
+    musicLoaded=true;
   }
+  async function loadSound(){
+    if(musicLoaded||musicLoading)return;
+    musicLoading=true;retry.hidden=true;status.hidden=false;status.textContent='Finding the soundtrack…';
+    const abort=new AbortController();
+    const timeout=setTimeout(()=>abort.abort(),5000);
+    try{
+      const endpoint=new URL('https://soundcloud.com/oembed');
+      endpoint.search=new URLSearchParams({format:'json',url:soundcloudShare,maxheight:'300',color:'b7a7ca',auto_play:'false',show_comments:'false'});
+      const response=await fetch(endpoint.href,{signal:abort.signal,credentials:'omit'});
+      if(!response.ok)throw Error('SoundCloud lookup failed');
+      const data=await response.json();
+      const source=new DOMParser().parseFromString(String(data.html||''),'text/html').querySelector('iframe[src]')?.getAttribute('src');
+      if(!source)throw Error('SoundCloud did not return a player');
+      const widget=new URL(source,'https://w.soundcloud.com');
+      if(widget.hostname!=='w.soundcloud.com'||widget.port||widget.username||widget.password||widget.pathname!=='/player/'||!widget.searchParams.has('url')||!['https:','http:'].includes(widget.protocol))throw Error('Unexpected embed URL');
+      mountSound(widget);
+      status.hidden=true;
+    }catch{
+      // If the metadata request is blocked, try the official widget with the
+      // canonical playlist permalink. The external link remains available.
+      const widget=new URL('https://w.soundcloud.com/player/');
+      widget.searchParams.set('url',soundcloudShare);
+      mountSound(widget);
+      status.textContent='If the player does not load, open the playlist in SoundCloud or try again.';
+      retry.hidden=false;
+    }finally{clearTimeout(timeout);musicLoading=false;}
+  }
+  function showSound(open){
+    panel.hidden=!open;toggle.setAttribute('aria-expanded',String(open));toggle.setAttribute('aria-label',open?'Collapse soundtrack':'Open soundtrack');
+    if(open)loadSound();
+  }
+  retry.addEventListener('click',()=>{if(musicLoading)return;musicLoaded=false;player.replaceChildren();loadSound();});
   toggle.addEventListener('click',()=>showSound(panel.hidden));
   ui.getElementById('close').addEventListener('click',()=>{showSound(false);toggle.focus();});
   function escapeSound(event){if(event.key==='Escape'&&!panel.hidden){showSound(false);toggle.focus();}}
