@@ -116,3 +116,14 @@ h1,h2,h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;letter-s
 .seventy-five-star{left:clamp(4px,2.2vw,18px);bottom:11%;--hidden-opacity:.34;--hidden-light:#d8d0ee;--hidden-glow:#a998d522;width:42px;height:42px}
 .seventy-five-star .object-label{left:0;right:auto;text-align:left;color:#cec6de;width:max-content;font-size:12px}
 @media(max-width:700px),(pointer:coarse){.far-away-star{width:44px;height:44px;transform:none}.far-away-star .object-label{width:150px;font-size:13px}.seventy-five-star .object-label{width:max-content;font-size:12px}}
+
+/* Afterlight — a distant lighthouse, fixed among the Far, Far Away lights. */
+.far-away-star.distant-afterlight{left:clamp(12px,5.2vw,74px);top:14%;width:44px;height:44px;display:grid;place-items:center}
+.distant-lighthouse{display:block;width:36px;height:32px;overflow:visible;pointer-events:none}
+.distant-lighthouse-lines{stroke:#c6bcdd;stroke-width:.65;opacity:.14}
+.distant-lighthouse-stars{fill:#d8d0ed;opacity:.49}
+.distant-lighthouse-stars .lantern{fill:#e9cf9d}
+.distant-afterlight:is(:hover,:focus-visible,.is-discovered) .distant-lighthouse-lines{opacity:.64}
+.distant-afterlight:is(:hover,:focus-visible,.is-discovered) .distant-lighthouse-stars{opacity:.93}
+.far-away-star.distant-afterlight .object-label{left:0;right:auto;width:max-content;max-width:calc(100vw - 70px);text-align:left;color:#cec6de;font-size:12px}
+@media(max-width:700px),(pointer:coarse){.far-away-star.distant-afterlight{left:clamp(10px,4.5vw,34px)}.distant-lighthouse{width:33px;height:30px}}
