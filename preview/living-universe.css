@@ -113,6 +113,6 @@ h1,h2,h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;letter-s
 .far-away-star:hover .light,.far-away-star:focus-visible .light,.far-away-star.is-discovered .light{opacity:1}
 .far-away-star:focus-visible{outline-color:#d9c6a5}
 .author-star{right:clamp(12px,6vw,88px);top:22%}
-.seventy-five-star{left:clamp(12px,6vw,88px);bottom:24%;--hidden-opacity:.54;--hidden-light:#e0d8f5;--hidden-glow:#b6a8df38}
-.seventy-five-star .object-label{left:0;right:auto;text-align:left;color:#d4cce5;width:max-content}
-@media(max-width:700px),(pointer:coarse){.far-away-star{width:44px;height:44px;transform:none}.far-away-star .object-label{width:150px;font-size:13px}.seventy-five-star .object-label{width:max-content}}
+.seventy-five-star{left:clamp(4px,2.2vw,18px);bottom:11%;--hidden-opacity:.34;--hidden-light:#d8d0ee;--hidden-glow:#a998d522;width:42px;height:42px}
+.seventy-five-star .object-label{left:0;right:auto;text-align:left;color:#cec6de;width:max-content;font-size:12px}
+@media(max-width:700px),(pointer:coarse){.far-away-star{width:44px;height:44px;transform:none}.far-away-star .object-label{width:150px;font-size:13px}.seventy-five-star .object-label{width:max-content;font-size:12px}}
