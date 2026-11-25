@@ -104,12 +104,15 @@ h1,h2,h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;letter-s
 /* Organic protostar artwork, without the generic discovery ring. */
 .protostar .birth-cloud{inset:0;background:url('/preview/art/protostar.svg') center/contain no-repeat;filter:none;transform:none;border-radius:0;animation:protostar-cloud 7s ease-in-out infinite}.protostar .light{width:5px;height:5px;box-shadow:0 0 9px 3px #ffd49499,0 0 22px 7px #d9915144}.protostar:after{display:none}@keyframes protostar-cloud{50%{opacity:.78;transform:scale(.97)}}@media(prefers-reduced-motion:reduce){.protostar .birth-cloud{animation:none}}
 
-/* The author's light belongs to the background, not the scrolling constellations. */
-.author-star{position:fixed;left:auto;right:clamp(12px,6vw,88px);top:22%;width:32px;height:32px;transform:none;outline-offset:2px;z-index:4}
-.author-star .light{width:2px;height:2px;opacity:.66;background:#fff4e1;box-shadow:0 0 3px 1px #e9d7b044;animation:none}
-.author-star:after{display:none}
-.author-star .object-label{top:calc(100% + 2px);left:auto;right:0;transform:translateY(7px);width:208px;max-width:calc(100vw - 80px);text-align:right;font:italic 15px/1.45 'EB Garamond',Georgia,serif;color:#e9d9bd;letter-spacing:0;text-shadow:0 1px 8px #080812,0 1px 14px #080812}
-.author-star:hover .object-label,.author-star:focus-visible .object-label,.author-star.is-discovered .object-label{transform:translateY(0)}
-.author-star:hover .light,.author-star:focus-visible .light,.author-star.is-discovered .light{opacity:1}
-.author-star:focus-visible{outline-color:#d9c6a5}
-@media(max-width:700px),(pointer:coarse){.author-star{width:44px;height:44px;transform:none}.author-star .object-label{width:150px;font-size:13px}}
+/* Far, Far Away — hidden, stationary lights, independent of the scrolling constellations. */
+.far-away-star{position:fixed;left:auto;right:auto;top:auto;bottom:auto;width:32px;height:32px;transform:none;outline-offset:2px;z-index:4}
+.far-away-star .light{width:2px;height:2px;opacity:var(--hidden-opacity,.66);background:var(--hidden-light,#fff4e1);box-shadow:0 0 3px 1px var(--hidden-glow,#e9d7b044);animation:none}
+.far-away-star:after{display:none}
+.far-away-star .object-label{top:calc(100% + 2px);left:auto;right:0;transform:translateY(7px);width:208px;max-width:calc(100vw - 80px);text-align:right;font:italic 15px/1.45 'EB Garamond',Georgia,serif;color:#e9d9bd;letter-spacing:0;text-shadow:0 1px 8px #080812,0 1px 14px #080812}
+.far-away-star:hover .object-label,.far-away-star:focus-visible .object-label,.far-away-star.is-discovered .object-label{transform:translateY(0)}
+.far-away-star:hover .light,.far-away-star:focus-visible .light,.far-away-star.is-discovered .light{opacity:1}
+.far-away-star:focus-visible{outline-color:#d9c6a5}
+.author-star{right:clamp(12px,6vw,88px);top:22%}
+.seventy-five-star{left:clamp(12px,6vw,88px);bottom:24%;--hidden-opacity:.54;--hidden-light:#e0d8f5;--hidden-glow:#b6a8df38}
+.seventy-five-star .object-label{left:0;right:auto;text-align:left;color:#d4cce5;width:max-content}
+@media(max-width:700px),(pointer:coarse){.far-away-star{width:44px;height:44px;transform:none}.far-away-star .object-label{width:150px;font-size:13px}.seventy-five-star .object-label{width:max-content}}
