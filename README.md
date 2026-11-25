@@ -28,7 +28,7 @@ Static HTML/CSS source for **letterstothespace.com**.
 - [This Is Where I Leave the Light](letters/this-is-where-i-leave-the-light/index.html)
 - [Three Dots](letters/three-dots/index.html)
 - [Too Much](letters/too-much/index.html)
-- [When February Went Quiet](letters/when-february-went-quiet/index.html)
+- [When the Future Went Quiet](letters/when-the-future-went-quiet/index.html)
 - [When I'm Ready](letters/when-im-ready/index.html)
 
 ## Visibility
