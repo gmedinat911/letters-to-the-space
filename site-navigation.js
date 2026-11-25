@@ -37,8 +37,8 @@
   history.scrollRestoration='manual';
   history.replaceState({ltts:true,...current},'',current.route);
   // The soundtrack stays outside the reading frame and survives navigation.
-  // SoundCloud's oEmbed service resolves the supplied share URL on first use.
-  const soundcloudShare='https://on.soundcloud.com/sUwqsqovcVM6HplctV';
+  // Use the canonical playlist permalink, without share-tracking parameters.
+  const soundcloudShare='https://soundcloud.com/user-480173754/sets/ltts-sounds';
   const spotifyFallback='https://open.spotify.com/playlist/2vusU3UUDPgrhDHlMw04nB';
   const sound=document.createElement('div');sound.id='ltts-sound';
   const ui=sound.attachShadow({mode:'open'});
@@ -49,11 +49,20 @@
   ui.getElementById('soundcloud-link').href=soundcloudShare;
   ui.getElementById('spotify-link').href=spotifyFallback;
   let musicLoaded=false,musicLoading=false;
+  function mountSound(widget){
+    widget.protocol='https:';
+    for(const [key,value] of Object.entries({auto_play:'false',visual:'false',show_artwork:'false',show_comments:'false',show_playcount:'false',buying:'false',download:'false',color:'#b7a7ca'}))widget.searchParams.set(key,value);
+    const music=document.createElement('iframe');
+    music.title='SoundCloud soundtrack';music.src=widget.href;
+    music.height='300';music.setAttribute('scrolling','no');music.allow='autoplay; encrypted-media';
+    player.replaceChildren(music);
+    musicLoaded=true;
+  }
   async function loadSound(){
     if(musicLoaded||musicLoading)return;
     musicLoading=true;retry.hidden=true;status.hidden=false;status.textContent='Finding the soundtrack…';
     const abort=new AbortController();
-    const timeout=setTimeout(()=>abort.abort(),12000);
+    const timeout=setTimeout(()=>abort.abort(),5000);
     try{
       const endpoint=new URL('https://soundcloud.com/oembed');
       endpoint.search=new URLSearchParams({format:'json',url:soundcloudShare,maxheight:'300',color:'b7a7ca',auto_play:'false',show_comments:'false'});
@@ -64,15 +73,15 @@
       if(!source)throw Error('SoundCloud did not return a player');
       const widget=new URL(source,'https://w.soundcloud.com');
       if(widget.hostname!=='w.soundcloud.com'||widget.port||widget.username||widget.password||widget.pathname!=='/player/'||!widget.searchParams.has('url')||!['https:','http:'].includes(widget.protocol))throw Error('Unexpected embed URL');
-      widget.protocol='https:';
-      for(const [key,value] of Object.entries({auto_play:'false',visual:'false',show_artwork:'false',show_comments:'false',show_playcount:'false',buying:'false',download:'false',color:'#b7a7ca'}))widget.searchParams.set(key,value);
-      const music=document.createElement('iframe');
-      music.title='SoundCloud soundtrack';music.src=widget.href;
-      music.height='300';music.setAttribute('scrolling','no');music.allow='autoplay; encrypted-media';
-      player.replaceChildren(music);
-      musicLoaded=true;status.hidden=true;
+      mountSound(widget);
+      status.hidden=true;
     }catch{
-      status.textContent='The soundtrack could not be loaded here. Open the playlist on SoundCloud or try again.';
+      // If the metadata request is blocked, try the official widget with the
+      // canonical playlist permalink. The external link remains available.
+      const widget=new URL('https://w.soundcloud.com/player/');
+      widget.searchParams.set('url',soundcloudShare);
+      mountSound(widget);
+      status.textContent='If the player does not load, open the playlist in SoundCloud or try again.';
       retry.hidden=false;
     }finally{clearTimeout(timeout);musicLoading=false;}
   }
@@ -80,7 +89,7 @@
     panel.hidden=!open;toggle.setAttribute('aria-expanded',String(open));toggle.setAttribute('aria-label',open?'Collapse soundtrack':'Open soundtrack');
     if(open)loadSound();
   }
-  retry.addEventListener('click',loadSound);
+  retry.addEventListener('click',()=>{if(musicLoading)return;musicLoaded=false;player.replaceChildren();loadSound();});
   toggle.addEventListener('click',()=>showSound(panel.hidden));
   ui.getElementById('close').addEventListener('click',()=>{showSound(false);toggle.focus();});
   function escapeSound(event){if(event.key==='Escape'&&!panel.hidden){showSound(false);toggle.focus();}}
