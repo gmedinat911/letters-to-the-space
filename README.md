@@ -3,15 +3,16 @@
 Static HTML/CSS source for **letterstothespace.com**.
 
 ## Structure
-- `index.html` — existing visual universe (unchanged)
+- `index.html` — persistent soundtrack shell; `space-view.html` — visual universe
+- `site-navigation.js` — real route URLs, history and scroll restoration
 - `wormhole.js` — existing star and constellation behavior (unchanged)
 - `letters/index.html` — static index of published standalone letters
 - `letters/*/index.html` — individual letter pages (unchanged)
 - `sitemap.xml` and `robots.txt` — machine-readable discovery
 
 ## Published standalone letters (19)
-- [75 Minutes](letters/75-minutes/index.html)
 - [Always Here](letters/always-here/index.html)
+- [Born Again](letters/born-again/index.html)
 - [For All the People I Couldn't Keep](letters/for-all-the-people-i-couldnt-keep/index.html)
 - [For the People Who Stayed](letters/for-the-people-who-stayed/index.html)
 - [Going Rogue](letters/going-rogue/index.html)
@@ -31,7 +32,7 @@ Static HTML/CSS source for **letterstothespace.com**.
 - [When I'm Ready](letters/when-im-ready/index.html)
 
 ## Visibility
-The **Almost** constellation remains intentionally hidden from the main space and is excluded from this index and sitemap. Its direct URL is unchanged. This update does not modify existing stars, constellations, animations, or letter prose.
+The **Almost** constellation remains intentionally hidden from the main space and is excluded from this index and sitemap. Its direct URL is unchanged. Far, Far Away Easter eggs remain unlisted in the public letter index and sitemap. The original letter prose remains canonical.
 
 ## Deployment
 Deploy the repository contents to the hosting document root. All files are UTF-8. The prose is canonical and must not be rewritten without permission.
