@@ -141,3 +141,6 @@ h1,h2,h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;letter-s
 .far-away-star.distant-afterlight:is(:hover,:focus-visible,.is-discovered) .object-label{transform:translate(-50%,0)}
 @media(max-width:900px),(pointer:coarse){.far-away-star.distant-afterlight{left:54%;top:19%;width:74px;height:68px;transform:translate(-50%,-50%)}.distant-lighthouse{width:60px;height:53px}}
 @media(prefers-reduced-motion:reduce){.distant-lighthouse-lines,.distant-lighthouse-stars{transition:none}}
+
+/* Once the full artwork is ready, avoid painting the fallback underneath it. */
+body.has-painted-cosmos .artwork-sky{background-image:url('/preview/art/cosmic-hero.webp')}
