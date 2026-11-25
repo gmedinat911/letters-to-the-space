@@ -117,25 +117,27 @@ h1,h2,h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;letter-s
 .seventy-five-star .object-label{left:0;right:auto;text-align:left;color:#cec6de;width:max-content;font-size:12px}
 @media(max-width:700px),(pointer:coarse){.far-away-star{width:44px;height:44px;transform:none}.far-away-star .object-label{width:150px;font-size:13px}.seventy-five-star .object-label{width:max-content;font-size:12px}}
 
-/* Far Away — larger individual stars, in the dark pocket marked by the author.
-   Desktop anchor tracks the centered, cover-sized artwork rather than the purple edge.
-   The lighthouse's geometry is revealed by connecting lines only on discovery. */
-.far-away-star.distant-afterlight{left:15%;top:16.5%;width:88px;height:80px;transform:translate(-50%,-50%);display:grid;place-items:center}
-.distant-lighthouse{display:block;width:72px;height:64px;overflow:visible;pointer-events:none}
-.distant-lighthouse-lines{stroke:#bfb6d8;stroke-width:.5;opacity:0;transition:opacity .3s ease}
-.distant-lighthouse-stars{fill:#d5dbef;opacity:.68;transition:opacity .3s ease}
-.distant-lighthouse-stars circle:nth-child(3n+1){opacity:.56;r:1.12px}
-.distant-lighthouse-stars circle:nth-child(3n+2){opacity:.78;r:1.28px}
-.distant-lighthouse-stars circle:nth-child(3n){opacity:.90;r:1.42px}
-.distant-lighthouse-stars .lantern{fill:#e0cfb5;opacity:.88;r:1.55px}
-.distant-afterlight:is(:hover,:focus-visible,.is-discovered) .distant-lighthouse-lines{opacity:.42}
-.distant-afterlight:is(:hover,:focus-visible,.is-discovered) .distant-lighthouse-stars{opacity:.95}
+/* Far Away — Afterlight lives inside the black void, not the purple edge.
+   At rest the ten points read like the nearby background stars. */
+.far-away-star.distant-afterlight{left:24%;top:18%;width:86px;height:78px;transform:translate(-50%,-50%);display:grid;place-items:center}
+.distant-lighthouse{display:block;width:70px;height:62px;overflow:visible;pointer-events:none}
+.distant-lighthouse-lines{stroke:#bfc6de;stroke-width:.48;opacity:0;transition:opacity .28s ease}
+.distant-lighthouse-stars{fill:#d7dcef;opacity:.72;transition:opacity .28s ease}
+.distant-lighthouse-stars circle:nth-child(1){r:1.15px;opacity:.66}
+.distant-lighthouse-stars circle:nth-child(2){r:1.45px;opacity:.88}
+.distant-lighthouse-stars circle:nth-child(3){r:1.05px;opacity:.56}
+.distant-lighthouse-stars circle:nth-child(4){r:1.32px;opacity:.82}
+.distant-lighthouse-stars circle:nth-child(5){r:1.12px;opacity:.64}
+.distant-lighthouse-stars circle:nth-child(6){r:1.52px;opacity:.92}
+.distant-lighthouse-stars circle:nth-child(7){r:1.65px;opacity:.96}
+.distant-lighthouse-stars circle:nth-child(8){r:1.18px;opacity:.70}
+.distant-lighthouse-stars circle:nth-child(9){r:1.38px;opacity:.84}
+.distant-lighthouse-stars circle:nth-child(10){r:1.08px;opacity:.60}
+.distant-lighthouse-stars .lantern{fill:#ddd5c4;opacity:.92}
+.distant-afterlight:is(:hover,:focus-visible,.is-discovered) .distant-lighthouse-lines{opacity:.38}
+.distant-afterlight:is(:hover,:focus-visible,.is-discovered) .distant-lighthouse-stars{opacity:.96}
 .distant-afterlight:is(:hover,:focus-visible,.is-discovered) .distant-lighthouse-stars circle{opacity:1}
-.far-away-star.distant-afterlight .object-label{left:50%;right:auto;transform:translate(-50%,7px);width:max-content;max-width:calc(100vw - 70px);text-align:center;color:#c9c1da;font-size:12px}
+.far-away-star.distant-afterlight .object-label{left:50%;right:auto;transform:translate(-50%,7px);width:max-content;max-width:calc(100vw - 70px);text-align:center;color:#c9cfe2;font-size:12px}
 .far-away-star.distant-afterlight:is(:hover,:focus-visible,.is-discovered) .object-label{transform:translate(-50%,0)}
-/* On wide desktop crops, keep the constellation in the artwork's left-hand dark pocket. */
-@media(min-width:901px) and (min-aspect-ratio:16/9){.far-away-star.distant-afterlight{left:15%;top:clamp(10%,calc(50% - 18vw),18%)}}
-/* On narrow screens the original left-hand pocket is cropped out. Use the
-   dark gap nearer the artwork's center, above the title, rather than the purple cloud. */
-@media(max-width:900px),(pointer:coarse){.far-away-star.distant-afterlight{left:57%;top:18%;width:74px;height:68px;transform:translate(-50%,-50%)}.distant-lighthouse{width:60px;height:53px}}
+@media(max-width:900px),(pointer:coarse){.far-away-star.distant-afterlight{left:54%;top:19%;width:74px;height:68px;transform:translate(-50%,-50%)}.distant-lighthouse{width:60px;height:53px}}
 @media(prefers-reduced-motion:reduce){.distant-lighthouse-lines,.distant-lighthouse-stars{transition:none}}
