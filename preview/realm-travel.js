@@ -44,7 +44,22 @@
     ++flightSequence;clearPress();const stop=stopFlight;stopFlight=null;busy=false;suppressClick=false;stop?.();
   }
   window.LTTSRealm={setRealm,cancelFlight,current:realm,openStar};
-  const blocked='a,button,input,select,textarea,label,[role="button"],[contenteditable],h1,h2,h3,p,small,footer,.object-label,svg';
+  const blocked='a,button,input,select,textarea,label,[role="button"],[contenteditable],h1,h2,h3,p,small,footer,.object-label,svg,#ltts-sound';
+  const editable='input,textarea,select,[contenteditable],#ltts-sound';
+  const touchScreen=matchMedia('(hover:none),(pointer:coarse)');
+  const skyActive=()=>!dead&&!html.classList.contains('ltts-shell');
+  function clearSkySelection(){
+    // Called only for a recognized touch hold on the sky. Do not interfere
+    // with selection inside controls or other documents.
+    const selection=window.getSelection?.();
+    if(selection&&!selection.isCollapsed&&
+       !selection.anchorNode?.parentElement?.closest(editable)&&
+       !selection.focusNode?.parentElement?.closest(editable))selection.removeAllRanges();
+  }
+  function guardSelection(e){
+    if(skyActive()&&touchScreen.matches&&!e.target?.closest?.(editable)&&e.cancelable)e.preventDefault();
+  }
+  document.addEventListener('selectstart',guardSelection,true);
   function empty(target){return target?.nodeType===1&&!target.closest(blocked);}
   function getRouter(){
     try{return window.top===window?window.LTTSNavigation:window.parent.LTTSNavigation;}catch{return null;}
@@ -91,14 +106,16 @@
   }
   function down(e){
     if(press){clearPress();return;} // A second finger/pointer cancels the hold.
-    if(busy||dead)return;
+    if(busy||!skyActive())return;
     suppressClick=false;
     if(e.button!==0||!e.isPrimary||e.altKey||e.ctrlKey||e.metaKey||e.shiftKey||!empty(e.target))return;
     const hold={id:e.pointerId,x:e.clientX,y:e.clientY,touch:e.pointerType==='touch'};
+    if(hold.touch)clearSkySelection();
     const point={x:hold.x/Math.max(1,innerWidth),y:hold.y/Math.max(1,innerHeight)};
     hold.warm=setTimeout(()=>warm(destination(realm(),point)),300);
     hold.timer=setTimeout(()=>{
       if(press!==hold)return;
+      if(hold.touch)clearSkySelection();
       clearPress();go(point,{held:true});
     },1500);
     press=hold;
@@ -112,7 +129,15 @@
   window.addEventListener('scroll',clearPress,{passive:true,capture:true});
   window.addEventListener('blur',clearPress);
   document.addEventListener('visibilitychange',()=>{if(document.hidden)clearPress();});
-  document.addEventListener('contextmenu',e=>{if(empty(e.target)&&(press?.touch||suppressClick)&&e.button!==2)e.preventDefault();});
+  document.addEventListener('contextmenu',e=>{
+    // A mobile callout can precede the timer (and may arrive after the
+    // pointer has been cancelled). Keep the guard independent of press.
+    // Preserve normal desktop right-click and native editing controls.
+    if(skyActive()&&!e.target?.closest?.(editable)&&
+       (e.pointerType==='touch'||press?.touch||((e.pointerType!=='mouse')&&touchScreen.matches))&&e.cancelable){
+      e.preventDefault();
+    }
+  },true);
   document.addEventListener('click',e=>{if(busy||(suppressClick&&e.detail!==0)){e.preventDefault();e.stopImmediatePropagation();suppressClick=false;}},true);
   document.addEventListener('keydown',e=>{
     if(e.altKey&&e.shiftKey&&!e.repeat&&empty(document.activeElement)&&['Space','ArrowUp','ArrowDown'].includes(e.code)){
