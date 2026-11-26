@@ -57,8 +57,8 @@
     "light": "#cbdcff"
   },
   "ordinary": {
-    "farAwayAfter": null,
-    "destination": "far-far-away",
+    "farAwayAfter": "2026-11-26T14:45:31.224Z",
+    "destination": "far-away",
     "position": [
       70,
       46
