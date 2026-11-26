@@ -1,0 +1,32 @@
+/* Lifecycle layer: stationary lights, separate from the scrolling universe.
+   The established 75 Minutes, Afterlight and author-star rules remain unchanged. */
+#far-away-layer{position:fixed;inset:0;z-index:4;pointer-events:none}
+#far-away-layer>.celestial{pointer-events:auto}
+.lifecycle-distant{left:var(--distant-x);top:var(--distant-y);right:auto;bottom:auto;transform:translate(-50%,-50%);width:34px;height:34px;--hidden-glow:#b9c7e62c;--hidden-opacity:.34}
+.lifecycle-distant[data-lifecycle-state="far-away"]{--hidden-opacity:.72;--hidden-glow:#b9c7e64a}
+.lifecycle-distant[data-lifecycle-state="far-away"] .light{width:3px;height:3px}
+.lifecycle-distant[data-lifecycle-state="far-far-away"] .light{width:2px;height:2px}
+.lifecycle-distant>:not(.light):not(.object-label),.lifecycle-distant .object-label small{display:none!important}
+.far-away-star.lifecycle-distant .object-label{left:50%;right:auto;top:calc(100% + 2px);width:max-content;max-width:min(150px,calc(100vw - 70px));text-align:center;transform:translate(-50%,7px);font-size:12px;color:#d5d0e2;white-space:normal}
+.far-away-star.lifecycle-distant:is(:hover,:focus-visible,.is-discovered) .object-label{transform:translate(-50%,0)}
+.far-away-star.lifecycle-distant[data-distant-edge="left"] .object-label{left:0;right:auto;text-align:left;transform:translateY(7px)}
+.far-away-star.lifecycle-distant[data-distant-edge="right"] .object-label{left:auto;right:0;text-align:right;transform:translateY(7px)}
+.far-away-star.lifecycle-distant:is([data-distant-edge="left"],[data-distant-edge="right"]):is(:hover,:focus-visible,.is-discovered) .object-label{transform:translateY(0)}
+.far-away-star.lifecycle-distant[data-distant-vertical="above"] .object-label{top:auto;bottom:calc(100% + 2px)}
+/* Existing retired stars can also return to active if their timer is removed. */
+.lifecycle-active-seventy-five{right:20%;top:58%;transform:scale(.68)}
+.lifecycle-active-seventy-five .light{width:7px;height:7px;background:#d8d0ee;box-shadow:0 0 12px 4px #d8d0ee66,0 0 42px 16px #a998d52a}
+.lifecycle-active-lighthouse{display:grid;place-items:center;width:150px;height:150px}
+.lifecycle-active-lighthouse .distant-lighthouse{width:120px;height:108px}
+.lifecycle-active-lighthouse .distant-lighthouse-lines{opacity:.28}
+.lifecycle-active-lighthouse .distant-lighthouse-stars{opacity:.94}
+.lifecycle-active-lighthouse:is(:hover,:focus-visible,.is-discovered) .distant-lighthouse-lines{opacity:.55}
+.far-away-star.seventy-five-star[data-lifecycle-state="far-away"]{--hidden-opacity:.72}
+.far-away-star.seventy-five-star[data-lifecycle-state="far-away"] .light{width:3px;height:3px}
+.far-away-star.distant-afterlight[data-lifecycle-state="far-far-away"] .distant-lighthouse{width:48px;height:43px}
+.far-away-star.distant-afterlight[data-lifecycle-state="far-far-away"] .distant-lighthouse-stars{opacity:.38}
+.far-away-star.distant-afterlight[data-lifecycle-state="far-far-away"]:is(:hover,:focus-visible,.is-discovered) .distant-lighthouse-stars{opacity:.96}
+.lifecycle-arrival{animation:lifecycle-arrival 1.2s ease-out both}
+@keyframes lifecycle-arrival{from{opacity:0}to{opacity:1}}
+@media(max-width:900px),(pointer:coarse){.far-away-star.lifecycle-distant{width:44px;height:44px}.lifecycle-active-seventy-five{right:5%;top:58%;transform:scale(.55)}.lifecycle-active-lighthouse{right:5%}}
+@media(prefers-reduced-motion:reduce){.lifecycle-arrival{animation:none}}
