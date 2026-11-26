@@ -22,3 +22,7 @@ The public schedule is data, not secret information, and remains readable in the
 ## Verification
 
 Test the admin interface at the actual HTTPS domain after deployment. Preview hosts cannot accept credentials. Test unlock, edit, preview, publish, reload, and lock; then check the resulting commit and the deployed public site. Never use a real credential in a test or on an untrusted preview.
+
+## Hidden destinations
+
+A star's distant state now also determines which hidden realm contains it. The main Space still shows all distant stars at their configured positions. The Observatory controls the same schedule and needs no new credential or data migration. The two destination pages are not linked publicly. These remain discovery-based visual experiences, not access control.

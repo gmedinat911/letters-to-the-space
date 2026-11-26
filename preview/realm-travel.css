@@ -1,0 +1,29 @@
+/* The main universe is untouched. Distant destinations are unannounced, separate skies. */
+html[data-realm="far-away"],html[data-realm="far-far-away"]{height:100%;background:#050710;scroll-behavior:auto}
+html[data-realm="far-away"] body,html[data-realm="far-far-away"] body{min-height:100%;height:100%;overflow:hidden;background:#050710}
+html[data-realm]:not([data-realm="main"]) main{display:none}
+html[data-realm="far-away"] body .artwork-sky{background-image:url('/preview/art/far-away.webp'),url('/preview/art/far-away.svg');background-color:#060914;filter:none;background-position:center}
+html[data-realm="far-far-away"] body .artwork-sky{background-image:url('/preview/art/far-far-away.webp'),url('/preview/art/far-far-away.svg');background-color:#04050b;filter:none;background-position:center}
+html[data-realm]:not([data-realm="main"]) .cosmic-veil{background:radial-gradient(ellipse at center,transparent 42%,#02030a44)}
+html[data-realm="far-away"] #cosmos{opacity:.36}
+html[data-realm="far-far-away"] #cosmos{opacity:.17}
+html[data-realm="far-away"] #far-away-layer>.celestial:not([data-lifecycle-state="far-away"]),html[data-realm="far-far-away"] #far-away-layer>.celestial:not([data-lifecycle-state="far-far-away"]){display:none!important}
+html[data-realm]:not([data-realm="main"]) .lifecycle-distant{--hidden-opacity:.82;--hidden-glow:#b9c7e64a}
+html[data-realm]:not([data-realm="main"]) .lifecycle-distant .light{width:4px;height:4px}
+html[data-realm="far-far-away"] .lifecycle-distant{--hidden-opacity:.63}
+html[data-realm="far-far-away"] .lifecycle-distant .light{width:3px;height:3px}
+html[data-realm]:not([data-realm="main"]) .far-away-star.distant-afterlight{left:43%;top:47%;width:154px;height:136px}
+html[data-realm]:not([data-realm="main"]) .distant-afterlight .distant-lighthouse{width:126px;height:112px}
+html[data-realm]:not([data-realm="main"]) .distant-afterlight .distant-lighthouse-stars{opacity:.9}
+html[data-realm="far-far-away"] .distant-afterlight .distant-lighthouse{width:90px;height:80px}
+html[data-realm]:not([data-realm="main"]) .seventy-five-star{left:16%;bottom:23%;--hidden-opacity:.69}
+html[data-realm]:not([data-realm="main"]) .seventy-five-star .light{width:3px;height:3px}
+html[data-realm="far-far-away"] .author-star{right:12%;top:25%;--hidden-opacity:.75}
+.realm-flight-overlay{position:fixed;inset:0;width:100%;height:100%;z-index:950;pointer-events:auto}
+html.realm-in-flight{cursor:default}
+@media(max-width:700px),(pointer:coarse){
+  html[data-realm]:not([data-realm="main"]) .far-away-star.distant-afterlight{left:50%;top:43%;width:120px;height:110px}
+  html[data-realm]:not([data-realm="main"]) .distant-afterlight .distant-lighthouse{width:96px;height:86px}
+  html[data-realm="far-far-away"] .distant-afterlight .distant-lighthouse{width:76px;height:68px}
+}
+@media(prefers-reduced-motion:reduce){.realm-flight-overlay{display:none!important}}

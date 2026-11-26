@@ -8,15 +8,27 @@
       const u=new URL(value,origin);
       if(u.origin!==origin)return null;
       let p=u.pathname.replace(/\/index\.html$/,'/');
-      if(p==='/space-view.html')p='/';
+      if(p==='/space-view.html'){
+        const realm=u.searchParams.get('realm');
+        p=realm==='far-away'||realm==='far-far-away'?'/'+realm+'/':'/';
+        u.searchParams.delete('realm');
+      }
       if(!p.endsWith('/')&&!/\.[a-z0-9]+$/i.test(p))p+='/';
       if(p==='/constellations/the-slow-goodbye/')p='/constellations/almost/';
-      if(p!=='/'&&p!=='/a-tale-of-the-author/'&&!/^\/(?:letters|constellations|archive)\/(?:[a-z0-9-]+\/)?$/.test(p))return null;
+      if(!['/','/far-away/','/far-far-away/'].includes(p)&&p!=='/a-tale-of-the-author/'&&!/^\/(?:letters|constellations|archive)\/(?:[a-z0-9-]+\/)?$/.test(p))return null;
       return p+u.search+u.hash;
     }catch{return null;}
   };
-  const isHome=route=>route.split(/[?#]/)[0]==='/';
-  const framePath=route=>isHome(route)?'/space-view.html'+route.slice(1):route;
+  const pathOf=route=>route.split(/[?#]/)[0];
+  const realmPaths=['/','/far-away/','/far-far-away/'];
+  const isRealm=route=>realmPaths.includes(pathOf(route));
+  const realmKey=route=>pathOf(route)==='/'?'main':pathOf(route).slice(1,-1);
+  const framePath=route=>{
+    if(!isRealm(route))return route;
+    const url=new URL(route,origin);
+    if(realmKey(route)!=='main')url.searchParams.set('realm',realmKey(route));
+    return '/space-view.html'+url.search+url.hash;
+  };
   const initial=routeOf(location.href);
   if(!initial)return;
   const motion=matchMedia('(prefers-reduced-motion: reduce)');
@@ -30,7 +42,7 @@
   let serial=0;
   const newKey=()=>Date.now().toString(36)+'-'+(++serial);
   const previous=history.state;
-  let current={route:initial,key:previous?.ltts&&previous.route===initial?previous.key:newKey()};
+  let current={route:initial,key:previous?.ltts&&previous.route===initial?previous.key:newKey(),returnRealm:isRealm(initial)?pathOf(initial):previous?.ltts&&previous.route===initial&&realmPaths.includes(previous.returnRealm)?previous.returnRealm:'/'};
   let frame=document.getElementById('space');
   let activeDoc=null,activeRoute=null,pending=null,timer=0,generation=0;
   const attached=new WeakSet();
@@ -106,19 +118,19 @@
     const win=activeDoc.defaultView;
     const pos={y:win.scrollY||0};
     const star=source?.closest?.('a.celestial[href]');
-    if(star&&isHome(current.route)){
+    if(star&&isRealm(current.route)){
       pos.star=routeOf(star.href);pos.offset=star.getBoundingClientRect().top;pos.keyboard=keyboard;
-    }else if(isHome(current.route)&&last['/']?.star&&Math.abs(last['/'].y-pos.y)<8){
-      Object.assign(pos,{star:last['/'].star,offset:last['/'].offset,keyboard:last['/'].keyboard});
+    }else if(isRealm(current.route)&&last[current.route]?.star&&Math.abs(last[current.route].y-pos.y)<8){
+      Object.assign(pos,{star:last[current.route].star,offset:last[current.route].offset,keyboard:last[current.route].keyboard});
     }
-    entries[current.key]=pos;last[current.route]=pos;if(isHome(current.route))last['/']=pos;
+    entries[current.key]=pos;last[current.route]=pos;if(isRealm(current.route))last[pathOf(current.route)]=pos;
     persist();
   }
   function restore(doc,pos){
     if(!pos||!doc.defaultView)return;
     const win=doc.defaultView;
     let y=Number(pos.y)||0,star=null;
-    if(pos.star&&isHome(current.route)){
+    if(pos.star&&isRealm(current.route)){
       star=[...doc.querySelectorAll('a.celestial[href]')].find(a=>routeOf(a.href)===pos.star);
       if(star&&win.getComputedStyle(star).position!=='fixed')y=win.scrollY+star.getBoundingClientRect().top-(Number(pos.offset)||0);
     }
@@ -138,6 +150,9 @@
       const route=routeOf(a.href);
       if(!route)return;
       event.preventDefault();
+      // On touch, living-universe.js prevents the first discovery tap before
+      // this listener runs. The second tap follows the same route as a mouse.
+      if(isRealm(current.route)&&activeDoc===doc&&doc.defaultView?.LTTSRealm?.openStar(a,{keyboard:event.detail===0}))return;
       navigate(route,{source:a,keyboard:event.detail===0,returning:a.matches('.back,.return-present')});
     });
     if(doc!==document)doc.addEventListener('keydown',escapeSound);
@@ -162,16 +177,16 @@
       const request=pending;
       if(request.token!==generation||request.frame!==candidate)return;
       if(actual!==request.route){
-        current={route:actual,key:current.key};
+        current={...current,route:actual,returnRealm:isRealm(actual)?pathOf(actual):current.returnRealm};
         history.replaceState({ltts:true,...current},'',actual);
       }
       finish(doc,actual,actual===request.route?request.pos:null);
     }else{
       if(actual!==current.route){
-        current={route:actual,key:current.key};
+        current={...current,route:actual,returnRealm:isRealm(actual)?pathOf(actual):current.returnRealm};
         history.replaceState({ltts:true,...current},'',actual);
       }
-      finish(doc,actual,isHome(actual)?last['/']:entries[current.key]);
+      finish(doc,actual,isRealm(actual)?entries[current.key]||last[pathOf(actual)]:entries[current.key]);
     }
   }
   function observeFrame(candidate){candidate.addEventListener('load',()=>frameLoaded(candidate));}
@@ -205,23 +220,46 @@
     if(fade)timer=setTimeout(()=>mount(route,token),150);else mount(route,token);
   }
   function navigate(value,options={}){
-    const route=routeOf(value);
+    if(options.sourceDoc&&options.sourceDoc!==activeDoc)return false;
+    let route=routeOf(value);
     if(!route)return false;
+    if(options.returning&&pathOf(route)==='/'&&!isRealm(current.route)&&realmPaths.includes(current.returnRealm))route=current.returnRealm;
     if(pending)return true;
     if(route===current.route)return true;
     snapshot(options.source,options.keyboard);
-    const pos=isHome(route)?last['/']:options.returning?last[route]:null;
-    current={route,key:newKey()};
+    const pos=isRealm(route)?last[pathOf(route)]:options.returning?last[route]:null;
+    current={route,key:newKey(),returnRealm:isRealm(route)?pathOf(route):isRealm(current.route)?pathOf(current.route):current.returnRealm};
     history.pushState({ltts:true,...current},'',route);
     load(route,pos);
     return true;
   }
-  window.LTTSNavigation={navigate};
+  // Keep the same realm document and soundtrack alive through the cinematic swap.
+  function travelRealm(value,sourceDoc,options={}){
+    const route=routeOf(value);
+    if(!route||!isRealm(route)||!isRealm(current.route)||pending||!activeDoc||sourceDoc!==activeDoc)return false;
+    if(route===current.route)return false;
+    const realm=activeDoc.defaultView?.LTTSRealm;
+    if(!realm?.setRealm)return false;
+    snapshot(options.source,options.keyboard);
+    current={route,key:newKey(),returnRealm:pathOf(route)};
+    history.pushState({ltts:true,...current},'',route);
+    realm.setRealm(realmKey(route));activeRoute=route;
+    restore(activeDoc,last[pathOf(route)]||{y:0});
+    return true;
+  }
+  window.LTTSNavigation={navigate,travelRealm};
   window.addEventListener('popstate',event=>{
+    activeDoc?.defaultView?.LTTSRealm?.cancelFlight();
     snapshot();
     const route=routeOf(location.href);if(!route)return;
-    current={route,key:event.state?.key||newKey()};
-    load(route,entries[current.key]||(isHome(route)?last['/']:null),false);
+    const previousRealm=isRealm(current.route);
+    current={route,key:event.state?.key||newKey(),returnRealm:isRealm(route)?pathOf(route):realmPaths.includes(event.state?.returnRealm)?event.state.returnRealm:'/'};
+    const pos=entries[current.key]||(isRealm(route)?last[pathOf(route)]:null);
+    if(!pending&&previousRealm&&isRealm(route)&&activeDoc?.defaultView?.LTTSRealm){
+      const realm=activeDoc.defaultView.LTTSRealm;realm.setRealm(realmKey(route));activeRoute=route;
+      restore(activeDoc,pos||{y:0});return;
+    }
+    load(route,pos,false);
   });
   window.addEventListener('pagehide',()=>snapshot());
   if(frame){
