@@ -36,3 +36,9 @@ The **Almost** constellation remains intentionally hidden from the main space an
 
 ## Deployment
 Deploy the repository contents to the hosting document root. All files are UTF-8. The prose is canonical and must not be rewritten without permission.
+
+## Star lifecycles
+
+`preview/star-lifecycles.js` is the single schedule for homepage stars. Set `farAwayAfter` to an ISO 8601 timestamp with a timezone (e.g. `2027-01-01T00:00:00-05:00`), or leave it `null` to keep a star active indefinitely. Choose `destination: 'far-away'` for a modest distant light or `destination: 'far-far-away'` for a faint one. The two existing distant stars use the initial example cutoffs; these are configuration values, not historical event dates. The author's tale stays an independent Easter egg. All other timers start disabled.
+
+When a timer expires, the same clickable anchor moves into the fixed background layer; no letter is deleted, duplicated, or automatically removed from the sitemap. Existing distant star positions are preserved. Other stars have reserved viewport positions and retain their tint. The schedule uses the visitor's device clock and checks again when a page is resumed. Changing a timer to `null` restores the foreground star on the next page load. No timer, countdown, or label is displayed to readers. Test via a deployment preview by temporarily giving an active star an already-past date.
