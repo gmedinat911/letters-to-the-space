@@ -1,29 +1,26 @@
 /* Letters to the Space — a star's distance changes, not its meaning.
+ * The Observatory publishes preview/star-lifecycles.json.
  * A null farAwayAfter means the star has no timer and stays active.
  * Use an ISO 8601 date/time with an explicit UTC offset, or Z.
  * Existing distant stars use the initial example cutoffs, not claimed event dates.
  * Positions are percentages of the viewport; reserved slots never shift.
  */
-(() => {
+(async () => {
   'use strict';
-  const STAR_LIFECYCLES = {
-    'memory': { farAwayAfter: null, destination: 'far-far-away', position: [8, 8], light: '#e7bfdc' },
-    'the-raffle': { farAwayAfter: null, destination: 'far-far-away', position: [37, 9], light: '#fff3df' },
-    'golden': { farAwayAfter: null, destination: 'far-away', position: [70, 8], light: '#ffe5ae' },
-    'for-all-the-people-i-couldnt-keep': { farAwayAfter: null, destination: 'far-far-away', position: [91, 43], light: '#d2ebff' },
-    'someone-who-remembers': { farAwayAfter: null, destination: 'far-far-away', position: [8, 32], light: '#f7faff' },
-    'stilllight': { farAwayAfter: null, destination: 'far-away', position: [28, 37], light: '#cbdcff' },
-    'ordinary': { farAwayAfter: null, destination: 'far-far-away', position: [70, 46], light: '#f0c08a' },
-    'too-much': { farAwayAfter: null, destination: 'far-far-away', position: [12, 59], light: '#fff1be' },
-    'going-rogue': { farAwayAfter: null, destination: 'far-far-away', position: [90, 61], light: '#ffd5a6' },
-    'for-the-people-who-stayed': { farAwayAfter: null, destination: 'far-far-away', position: [45, 76], light: '#ffceae' },
-    'born-again': { farAwayAfter: null, destination: 'far-far-away', position: [68, 84], light: '#fff0c8' },
-    '75-minutes': { farAwayAfter: '2026-09-06T23:59:59-04:00', destination: 'far-far-away' },
-    'afterlight': { farAwayAfter: '2026-11-20T00:00:00-05:00', destination: 'far-away' },
-    // The author's tale is a permanent, independent Easter egg; no timer.
-  };
+  let STAR_LIFECYCLES = window.LTTSStarModel.defaults();
+  // The Observatory publishes data only. A failed or malformed request never
+  // hides a letter: the original known-good configuration remains available.
+  try {
+    const controller=new AbortController();
+    const limit=setTimeout(()=>controller.abort(),3500);
+    try {
+      const response=await fetch('/preview/star-lifecycles.json',{cache:'no-store',signal:controller.signal});
+      if(!response.ok)throw Error('Schedule unavailable');
+      STAR_LIFECYCLES=window.LTTSStarModel.validate(await response.json());
+    } finally {clearTimeout(limit);}
+  } catch(error) {console.warn('LTTS: using fallback star schedule',error);}
   const layer = document.getElementById('far-away-layer');
-  if (!layer) return;
+  if (!layer || !layer.isConnected) return;
   const validDestinations = new Set(['far-away', 'far-far-away']);
   const explicitZone = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(?::\d{2}(?:\.\d{1,3})?)?(?:Z|[+-]\d{2}:\d{2})$/i;
   const special = {

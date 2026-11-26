@@ -1,0 +1,109 @@
+{
+  "memory": {
+    "farAwayAfter": null,
+    "destination": "far-far-away",
+    "position": [
+      8,
+      8
+    ],
+    "light": "#e7bfdc"
+  },
+  "the-raffle": {
+    "farAwayAfter": null,
+    "destination": "far-far-away",
+    "position": [
+      37,
+      9
+    ],
+    "light": "#fff3df"
+  },
+  "golden": {
+    "farAwayAfter": null,
+    "destination": "far-away",
+    "position": [
+      70,
+      8
+    ],
+    "light": "#ffe5ae"
+  },
+  "for-all-the-people-i-couldnt-keep": {
+    "farAwayAfter": null,
+    "destination": "far-far-away",
+    "position": [
+      91,
+      43
+    ],
+    "light": "#d2ebff"
+  },
+  "someone-who-remembers": {
+    "farAwayAfter": null,
+    "destination": "far-far-away",
+    "position": [
+      8,
+      32
+    ],
+    "light": "#f7faff"
+  },
+  "stilllight": {
+    "farAwayAfter": null,
+    "destination": "far-away",
+    "position": [
+      28,
+      37
+    ],
+    "light": "#cbdcff"
+  },
+  "ordinary": {
+    "farAwayAfter": null,
+    "destination": "far-far-away",
+    "position": [
+      70,
+      46
+    ],
+    "light": "#f0c08a"
+  },
+  "too-much": {
+    "farAwayAfter": null,
+    "destination": "far-far-away",
+    "position": [
+      12,
+      59
+    ],
+    "light": "#fff1be"
+  },
+  "going-rogue": {
+    "farAwayAfter": null,
+    "destination": "far-far-away",
+    "position": [
+      90,
+      61
+    ],
+    "light": "#ffd5a6"
+  },
+  "for-the-people-who-stayed": {
+    "farAwayAfter": null,
+    "destination": "far-far-away",
+    "position": [
+      45,
+      76
+    ],
+    "light": "#ffceae"
+  },
+  "born-again": {
+    "farAwayAfter": null,
+    "destination": "far-far-away",
+    "position": [
+      68,
+      84
+    ],
+    "light": "#fff0c8"
+  },
+  "75-minutes": {
+    "farAwayAfter": "2026-09-06T23:59:59-04:00",
+    "destination": "far-far-away"
+  },
+  "afterlight": {
+    "farAwayAfter": "2026-11-20T00:00:00-05:00",
+    "destination": "far-away"
+  }
+}
