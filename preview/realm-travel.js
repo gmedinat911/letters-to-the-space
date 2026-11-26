@@ -13,7 +13,7 @@
   function flightKind(from,to){
     return realmOrder.indexOf(to)<realmOrder.indexOf(from)?'return':to==='far-far-away'?'deep':'away';
   }
-  const artwork={'main':'/preview/art/cosmic-hero.webp','far-away':'/preview/art/far-away.webp','far-far-away':'/preview/art/far-far-away.webp'};
+  const artwork={'main':'/preview/cosmic-hero.webp','far-away':'/preview/art/far-away.webp','far-far-away':'/preview/art/far-far-away.webp'};
   let press=null,busy=false,stopFlight=null,suppressClick=false,dead=false,flightSequence=0;
   const cache=new Map();
   const realm=()=>html.dataset.realm||'main';

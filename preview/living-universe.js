@@ -7,7 +7,7 @@
 (()=>{
   const artwork=new Image();
   artwork.onload=()=>document.body.classList.add('has-painted-cosmos');
-  artwork.src='/preview/art/cosmic-hero.webp';
+  artwork.src='/preview/cosmic-hero.webp';
 })();
 (()=>{
   'use strict';
