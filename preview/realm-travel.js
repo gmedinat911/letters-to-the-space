@@ -4,13 +4,15 @@
   const html=document.documentElement;
   const routes={'main':'/','far-away':'/far-away/','far-far-away':'/far-far-away/'};
   const nextRealm={'main':'far-away','far-away':'far-far-away','far-far-away':'main'};
-  const artwork={'main':'/preview/art/cosmic-hero.webp','far-away':'/preview/art/far-away.svg','far-far-away':'/preview/art/far-far-away.svg'};
+  const artwork={'main':'/preview/art/cosmic-hero.webp','far-away':'/preview/art/far-away.webp','far-far-away':'/preview/art/far-far-away.webp'};
   let press=null,busy=false,stopFlight=null,suppressClick=false,dead=false;
   const cache=new Map();
   const realm=()=>html.dataset.realm||'main';
   function warm(key){
     if(cache.has(key))return;
-    const img=new Image();img.src=artwork[key];cache.set(key,img);img.decode?.().catch(()=>{});
+    const img=new Image();cache.set(key,img);
+    if(key!=='main')img.addEventListener('error',()=>{if(img.src.endsWith('.webp'))img.src='/preview/art/'+key+'.svg';},{once:true});
+    img.src=artwork[key];img.decode?.().catch(()=>{});
   }
   function setRealm(key){
     if(!Object.hasOwn(routes,key))return false;

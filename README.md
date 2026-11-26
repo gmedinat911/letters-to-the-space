@@ -46,3 +46,7 @@ A `null` deadline leaves a star active; ISO 8601 timestamps with an explicit off
 ## Hidden journeys
 
 The main Space keeps every distant star visible and clickable. A stationary 1.5-second primary-pointer hold on empty sky cycles main → Far Away → Far, Far Away → main; movement, scroll, release, multitouch and cancellation abort the hold. No public link, hint, route label or wheel/swipe override is added. Alt+Shift+Space on an unfocused sky is an undocumented keyboard equivalent. The distant pages are noindex and not in the sitemap. Both use the same Observatory schedule and display only their own stars; the independent author Easter egg belongs to Far, Far Away. The original positions and art remain intact on main. Returning from a letter restores its originating realm. The soundtrack lives in the persistent shell. Reduced-motion mode switches without the cinematic flight.
+
+### Cinematic realm artwork
+
+The preferred distant backgrounds are `preview/art/far-away.webp` and `preview/art/far-far-away.webp`. The new photographic-style assets must be uploaded to those exact paths; they are 3840 × 2160 exports upscaled from the original generated artwork. Until they are present, the existing SVG backgrounds remain functional fallbacks. Only the distant realm styles and their prewarming use these paths. The main Space retains `preview/art/cosmic-hero.webp` unchanged.
