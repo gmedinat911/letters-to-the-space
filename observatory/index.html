@@ -8,10 +8,11 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'self' https://api.github.com; font-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
   <title>The Observatory — Letters to the Space</title>
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/observatory/observatory.css">
+  <link rel="stylesheet" href="/observatory/observatory.css?v=2">
   <script defer src="/preview/star-model.js"></script>
   <script defer src="/observatory/observatory-api.js"></script>
-  <script defer src="/observatory/observatory.js"></script>
+  <script defer src="/preview/star-forms.js"></script>
+  <script defer src="/observatory/observatory.js?v=2"></script>
 </head>
 <body>
   <main class="shell">
@@ -54,8 +55,9 @@
           <section class="panel preview-panel" aria-labelledby="preview-title">
             <div class="eyebrow">UNPUBLISHED PREVIEW</div><h2 id="preview-title">Distant sky</h2>
             <div class="preview-switch"><button type="button" id="desktop-view" aria-pressed="true">Desktop</button><button type="button" id="mobile-view" aria-pressed="false">Mobile</button></div>
-            <div id="sky" class="sky" aria-label="Schematic preview of distant star positions"></div>
-            <p id="sky-note" class="muted">Solid points are distant now. Outlined points are scheduled for the future. Positions are approximate; this is a planning preview, not the live universe.</p>
+            <label class="preview-realm-label">Destination<select id="preview-realm"><option value="main">Main Space</option><option value="far-away">Far Away</option><option value="far-far-away">Far, Far Away</option></select></label>
+            <div id="sky" class="sky" data-realm="main" aria-label="Schematic preview of distant star positions"></div>
+            <p id="sky-note" class="muted">Preview each destination. Distant forms keep their original design at a smaller scale; scheduled stars have a dashed outline. Positions and scale are approximate in this planning preview.</p>
           </section>
           <section class="panel save-panel">
             <div class="eyebrow">PUBLISH</div><h2>Changes to the Space</h2>

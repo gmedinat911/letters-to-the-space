@@ -26,3 +26,7 @@ Test the admin interface at the actual HTTPS domain after deployment. Preview ho
 ## Hidden destinations
 
 A star's distant state now also determines which hidden realm contains it. The main Space still shows all distant stars at their configured positions. The Observatory controls the same schedule and needs no new credential or data migration. The two destination pages are not linked publicly. These remain discovery-based visual experiences, not access control.
+
+### Preserving star forms
+
+The destination preview can switch between the main Space, Far Away and Far, Far Away. A regular star keeps its original shape, colors, glow, rings, rays, and cloud artwork inside its assigned destination; only the overall scale changes. The main Space still uses subtle distant dots so discovery remains intact. Existing bespoke Afterlight, 75 Minutes and author Easter egg designs are unchanged. The preview is schematic and uses smaller copies of the same foreground CSS, not independently redesigned icons. No schedule migration is required.

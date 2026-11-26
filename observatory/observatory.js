@@ -84,6 +84,7 @@
     for(const key of model.keys){
       const row=draft[key],card=create('section','star-card'),head=create('div','star-head');
       const dot=create('span','star-symbol');dot.setAttribute('aria-hidden','true');dot.style.setProperty('--star-color',row.light||(key==='afterlight'?'#d7dcef':'#d8d0ee'));
+      if(window.LTTSStarForms?.has(key))window.LTTSStarForms.mount(dot,key);
       const desc=create('div');desc.append(create('h3','',model.titles[key]));const state=create('div','state');desc.append(state);head.append(dot,desc);card.append(head);
       const fields=create('div','card-fields');
       const destination=create('select');
@@ -131,17 +132,22 @@
   }
   function drawSky(){
     if(!draft)return;
-    const sky=$('sky');sky.replaceChildren();sky.classList.toggle('mobile',layout==='mobile');
+    const sky=$('sky'),realm=$('preview-realm').value;sky.replaceChildren();sky.dataset.realm=realm;sky.classList.toggle('mobile',layout==='mobile');
     $('desktop-view').setAttribute('aria-pressed',String(layout==='desktop'));$('mobile-view').setAttribute('aria-pressed',String(layout==='mobile'));
     for(const key of [...model.keys,'a-tale-of-the-author']){
       const permanent=key==='a-tale-of-the-author',row=draft[key],s=permanent?'permanent':model.state(row);
       if(s==='active')continue;
-      const position=permanent?[91,25]:key==='afterlight'?(layout==='mobile'?[54,19]:[24,18]):key==='75-minutes'?[5,86]:row.position;
+      const assigned=permanent?'far-far-away':row.destination;
+      if(realm!=='main'&&assigned!==realm)continue;
+      const position=permanent?(realm==='main'?[91,25]:[88,25]):key==='afterlight'?
+        (realm==='main'?(layout==='mobile'?[54,19]:[24,18]):(layout==='mobile'?[50,43]:[43,47])):
+        key==='75-minutes'?(realm==='main'?[5,86]:[16,74]):row.position;
       const dot=create('button','sky-point'+(key==='afterlight'?' lighthouse':''));
       dot.type='button';dot.dataset.state=s;dot.style.setProperty('--x',position[0]+'%');dot.style.setProperty('--y',position[1]+'%');dot.style.setProperty('--star-color',row?.light||'#d7dcef');
       const name=(permanent?'A Tale of the Author':model.titles[key])+' — '+labels[s];
       dot.title=name;dot.setAttribute('aria-label',name);
       if(key==='afterlight')dot.append(lighthouse());
+      else if(realm!=='main'&&window.LTTSStarForms?.has(key))window.LTTSStarForms.mount(dot,key);
       dot.addEventListener('click',()=>{$('filter').value='all';refresh();cards.get(key)?.card.scrollIntoView({block:'center',behavior:'auto'});});
       sky.append(dot);
     }
@@ -201,6 +207,7 @@
   });
   $('lock').addEventListener('click',()=>lock());
   $('filter').addEventListener('change',refresh);
+  $('preview-realm').addEventListener('change',drawSky);
   $('desktop-view').addEventListener('click',()=>{layout='desktop';drawSky();});
   $('mobile-view').addEventListener('click',()=>{layout='mobile';drawSky();});
   for(const name of ['pointerdown','keydown','input'])document.addEventListener(name,touch,{passive:true});
