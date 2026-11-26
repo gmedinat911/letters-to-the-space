@@ -1,0 +1,6 @@
+/* Loaded inside the miniature's shadow root only. The original star stylesheet
+   supplies all geometry, effects, colors, responsive rules and animations. */
+:host{pointer-events:none}
+.star-form-stage{display:block;position:absolute;left:50%;top:50%;width:180px;height:180px;transform:translate(-50%,-50%) scale(var(--star-form-scale,.55));transform-origin:center;pointer-events:none}
+.star-form-stage>.celestial{position:absolute;inset:0;margin:auto;pointer-events:none;outline:none}
+.star-form-stage .object-label{display:none!important}

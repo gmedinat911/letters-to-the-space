@@ -72,7 +72,12 @@
       return;
     }
     const focused = document.activeElement === anchor;
+    if(next!=='active'&&!record.custom&&!anchor.querySelector(':scope > .ltts-star-form')){
+      window.LTTSStarForms?.mount(anchor,record.key,anchor);
+    }
+    const preserved=anchor.classList.contains('has-preserved-form');
     anchor.className = next === 'active' ? activeClasses : distantClasses;
+    if(preserved)anchor.classList.add('has-preserved-form');
     anchor.dataset.lifecycleState = next;
     if (next === 'active') home.after(anchor);
     else layer.appendChild(anchor);
