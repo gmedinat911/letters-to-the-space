@@ -150,6 +150,9 @@
       const route=routeOf(a.href);
       if(!route)return;
       event.preventDefault();
+      // On touch, living-universe.js prevents the first discovery tap before
+      // this listener runs. The second tap follows the same route as a mouse.
+      if(isRealm(current.route)&&activeDoc===doc&&doc.defaultView?.LTTSRealm?.openStar(a,{keyboard:event.detail===0}))return;
       navigate(route,{source:a,keyboard:event.detail===0,returning:a.matches('.back,.return-present')});
     });
     if(doc!==document)doc.addEventListener('keydown',escapeSound);
@@ -217,6 +220,7 @@
     if(fade)timer=setTimeout(()=>mount(route,token),150);else mount(route,token);
   }
   function navigate(value,options={}){
+    if(options.sourceDoc&&options.sourceDoc!==activeDoc)return false;
     let route=routeOf(value);
     if(!route)return false;
     if(options.returning&&pathOf(route)==='/'&&!isRealm(current.route)&&realmPaths.includes(current.returnRealm))route=current.returnRealm;
@@ -230,13 +234,13 @@
     return true;
   }
   // Keep the same realm document and soundtrack alive through the cinematic swap.
-  function travelRealm(value,sourceDoc){
+  function travelRealm(value,sourceDoc,options={}){
     const route=routeOf(value);
     if(!route||!isRealm(route)||!isRealm(current.route)||pending||!activeDoc||sourceDoc!==activeDoc)return false;
     if(route===current.route)return false;
     const realm=activeDoc.defaultView?.LTTSRealm;
     if(!realm?.setRealm)return false;
-    snapshot();
+    snapshot(options.source,options.keyboard);
     current={route,key:newKey(),returnRealm:pathOf(route)};
     history.pushState({ltts:true,...current},'',route);
     realm.setRealm(realmKey(route));activeRoute=route;
@@ -245,13 +249,14 @@
   }
   window.LTTSNavigation={navigate,travelRealm};
   window.addEventListener('popstate',event=>{
+    activeDoc?.defaultView?.LTTSRealm?.cancelFlight();
     snapshot();
     const route=routeOf(location.href);if(!route)return;
     const previousRealm=isRealm(current.route);
     current={route,key:event.state?.key||newKey(),returnRealm:isRealm(route)?pathOf(route):realmPaths.includes(event.state?.returnRealm)?event.state.returnRealm:'/'};
     const pos=entries[current.key]||(isRealm(route)?last[pathOf(route)]:null);
     if(!pending&&previousRealm&&isRealm(route)&&activeDoc?.defaultView?.LTTSRealm){
-      const realm=activeDoc.defaultView.LTTSRealm;realm.cancelFlight();realm.setRealm(realmKey(route));activeRoute=route;
+      const realm=activeDoc.defaultView.LTTSRealm;realm.setRealm(realmKey(route));activeRoute=route;
       restore(activeDoc,pos||{y:0});return;
     }
     load(route,pos,false);
