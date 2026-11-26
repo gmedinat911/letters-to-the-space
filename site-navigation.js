@@ -132,7 +132,7 @@
     let y=Number(pos.y)||0,star=null;
     if(pos.star&&isRealm(current.route)){
       star=[...doc.querySelectorAll('a.celestial[href]')].find(a=>routeOf(a.href)===pos.star);
-      if(star&&win.getComputedStyle(star).position!=='fixed')y=win.scrollY+star.getBoundingClientRect().top-(Number(pos.offset)||0);
+      if(star&&!star.closest('#far-away-layer')&&win.getComputedStyle(star).position!=='fixed')y=win.scrollY+star.getBoundingClientRect().top-(Number(pos.offset)||0);
     }
     const html=doc.documentElement,old=html.style.scrollBehavior;
     html.style.scrollBehavior='auto';

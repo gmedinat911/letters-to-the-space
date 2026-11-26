@@ -1,7 +1,11 @@
 /* Lifecycle layer: stationary lights, separate from the scrolling universe.
    The established 75 Minutes, Afterlight and author-star rules remain unchanged. */
+/* One fixed containing block for every retired anchor, including on mobile.
+   The children use its viewport-relative coordinates, never the scroll document. */
 #far-away-layer{position:fixed;inset:0;z-index:4;pointer-events:none}
-#far-away-layer>.celestial{pointer-events:auto}
+#far-away-layer>a.celestial{position:absolute;pointer-events:auto}
+html[data-realm="main"] #far-away-layer>a.celestial{animation:none}
+
 .lifecycle-distant{left:var(--distant-x);top:var(--distant-y);right:auto;bottom:auto;transform:translate(-50%,-50%);width:34px;height:34px;--hidden-glow:#b9c7e62c;--hidden-opacity:.34}
 .lifecycle-distant[data-lifecycle-state="far-away"]{--hidden-opacity:.72;--hidden-glow:#b9c7e64a}
 .lifecycle-distant[data-lifecycle-state="far-away"] .light{width:3px;height:3px}
